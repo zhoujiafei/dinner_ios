@@ -19,6 +19,12 @@
 		8B851CE119683A29008DC90D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC919683A29008DC90D /* UIKit.framework */; };
 		8B851CE919683A29008DC90D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B851CE719683A29008DC90D /* InfoPlist.strings */; };
 		8B851CEB19683A29008DC90D /* DinnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851CEA19683A29008DC90D /* DinnerTests.m */; };
+		8B851CF919683E8F008DC90D /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851CF819683E8F008DC90D /* BaseTabBarController.m */; };
+		8B851CFC19683F7A008DC90D /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851CFB19683F7A008DC90D /* BaseNavigationController.m */; };
+		8B851D0019684125008DC90D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851CFF19684125008DC90D /* HomeViewController.m */; };
+		8B851D031968413B008DC90D /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D021968413B008DC90D /* CenterViewController.m */; };
+		8B851D0619684215008DC90D /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0519684215008DC90D /* MoreViewController.m */; };
+		8B851D0919684C35008DC90D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0819684C35008DC90D /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,18 @@
 		8B851CE619683A29008DC90D /* DinnerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DinnerTests-Info.plist"; sourceTree = "<group>"; };
 		8B851CE819683A29008DC90D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8B851CEA19683A29008DC90D /* DinnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DinnerTests.m; sourceTree = "<group>"; };
+		8B851CF719683E8F008DC90D /* BaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
+		8B851CF819683E8F008DC90D /* BaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
+		8B851CFA19683F7A008DC90D /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		8B851CFB19683F7A008DC90D /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		8B851CFE19684125008DC90D /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		8B851CFF19684125008DC90D /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		8B851D011968413B008DC90D /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
+		8B851D021968413B008DC90D /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
+		8B851D0419684215008DC90D /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		8B851D0519684215008DC90D /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		8B851D0719684C35008DC90D /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		8B851D0819684C35008DC90D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +125,10 @@
 		8B851CCB19683A29008DC90D /* Dinner */ = {
 			isa = PBXGroup;
 			children = (
+				8B851CFD196840FE008DC90D /* app */,
+				8B851CF619683DD8008DC90D /* base */,
 				8B851CF519683A6E008DC90D /* conf */,
 				8B851CF419683A60008DC90D /* class */,
-				8B851CD419683A29008DC90D /* AppDelegate.h */,
-				8B851CD519683A29008DC90D /* AppDelegate.m */,
 				8B851CD719683A29008DC90D /* Images.xcassets */,
 				8B851CCC19683A29008DC90D /* Supporting Files */,
 			);
@@ -158,6 +176,34 @@
 			children = (
 			);
 			name = conf;
+			sourceTree = "<group>";
+		};
+		8B851CF619683DD8008DC90D /* base */ = {
+			isa = PBXGroup;
+			children = (
+				8B851CD419683A29008DC90D /* AppDelegate.h */,
+				8B851CD519683A29008DC90D /* AppDelegate.m */,
+				8B851CFA19683F7A008DC90D /* BaseNavigationController.h */,
+				8B851CFB19683F7A008DC90D /* BaseNavigationController.m */,
+				8B851CF719683E8F008DC90D /* BaseTabBarController.h */,
+				8B851CF819683E8F008DC90D /* BaseTabBarController.m */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
+		8B851CFD196840FE008DC90D /* app */ = {
+			isa = PBXGroup;
+			children = (
+				8B851CFE19684125008DC90D /* HomeViewController.h */,
+				8B851CFF19684125008DC90D /* HomeViewController.m */,
+				8B851D011968413B008DC90D /* CenterViewController.h */,
+				8B851D021968413B008DC90D /* CenterViewController.m */,
+				8B851D0419684215008DC90D /* MoreViewController.h */,
+				8B851D0519684215008DC90D /* MoreViewController.m */,
+				8B851D0719684C35008DC90D /* MenuViewController.h */,
+				8B851D0819684C35008DC90D /* MenuViewController.m */,
+			);
+			name = app;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +301,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B851CFC19683F7A008DC90D /* BaseNavigationController.m in Sources */,
 				8B851CD619683A29008DC90D /* AppDelegate.m in Sources */,
+				8B851CF919683E8F008DC90D /* BaseTabBarController.m in Sources */,
+				8B851D0919684C35008DC90D /* MenuViewController.m in Sources */,
+				8B851D0019684125008DC90D /* HomeViewController.m in Sources */,
 				8B851CD219683A29008DC90D /* main.m in Sources */,
+				8B851D0619684215008DC90D /* MoreViewController.m in Sources */,
+				8B851D031968413B008DC90D /* CenterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

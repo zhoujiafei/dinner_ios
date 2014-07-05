@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseNavigationController.h"
+#import "BaseTabBarController.h"
+#import "HomeViewController.h"
+#import "CenterViewController.h"
+#import "MoreViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -16,6 +16,29 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    //首页
+    HomeViewController *home = [[HomeViewController alloc] init];
+    BaseNavigationController *homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
+    homeNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
+    
+    //用户中心
+    CenterViewController *center = [[CenterViewController alloc] init];
+    BaseNavigationController *centerNav = [[BaseNavigationController alloc] initWithRootViewController:center];
+    centerNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
+    
+    //更多
+    MoreViewController *more = [[MoreViewController alloc] init];
+    BaseNavigationController *moreNav = [[BaseNavigationController alloc] initWithRootViewController:more];
+    moreNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
+    
+    //创建UITabBar，并且将各子级导航加入到里面
+    UITabBarController *tab = [[UITabBarController alloc] init];
+    tab.viewControllers = @[homeNav,centerNav,moreNav];
+    
+    //加入到窗口
+    self.window.rootViewController = tab;
+    
     return YES;
 }
 
