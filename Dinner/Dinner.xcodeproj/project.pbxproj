@@ -20,6 +20,7 @@
 		8B33DF75196945190080E7FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF74196945190080E7FD /* SystemConfiguration.framework */; };
 		8B33DF77196945230080E7FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF76196945230080E7FD /* MobileCoreServices.framework */; };
 		8B33DF79196945380080E7FD /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF78196945380080E7FD /* libz.1.2.5.dylib */; };
+		8B33DF7D1969835D0080E7FD /* ShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */; };
 		8B851CC619683A29008DC90D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC519683A29008DC90D /* Foundation.framework */; };
 		8B851CC819683A29008DC90D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC719683A29008DC90D /* CoreGraphics.framework */; };
 		8B851CCA19683A29008DC90D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC919683A29008DC90D /* UIKit.framework */; };
@@ -78,6 +79,8 @@
 		8B33DF74196945190080E7FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8B33DF76196945230080E7FD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8B33DF78196945380080E7FD /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		8B33DF7B1969835D0080E7FD /* ShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewCell.h; sourceTree = "<group>"; };
+		8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTableViewCell.m; sourceTree = "<group>"; };
 		8B851CC219683A29008DC90D /* Dinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B851CC519683A29008DC90D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8B851CC719683A29008DC90D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,6 +168,14 @@
 			name = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
+		8B33DF7A196973CF0080E7FD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				8B33DF36196943750080E7FD /* ASIHTTPRequest */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		8B851CB919683A29008DC90D = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +213,7 @@
 		8B851CCB19683A29008DC90D /* Dinner */ = {
 			isa = PBXGroup;
 			children = (
+				8B33DF7A196973CF0080E7FD /* lib */,
 				8B851CFD196840FE008DC90D /* app */,
 				8B851CF619683DD8008DC90D /* base */,
 				8B851CF519683A6E008DC90D /* conf */,
@@ -244,7 +256,8 @@
 		8B851CF419683A60008DC90D /* class */ = {
 			isa = PBXGroup;
 			children = (
-				8B33DF36196943750080E7FD /* ASIHTTPRequest */,
+				8B33DF7B1969835D0080E7FD /* ShopTableViewCell.h */,
+				8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */,
 			);
 			name = class;
 			sourceTree = "<group>";
@@ -381,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B33DF68196944700080E7FD /* ASIDataCompressor.m in Sources */,
+				8B33DF7D1969835D0080E7FD /* ShopTableViewCell.m in Sources */,
 				8B851CFC19683F7A008DC90D /* BaseNavigationController.m in Sources */,
 				8B33DF6B196944700080E7FD /* ASIFormDataRequest.m in Sources */,
 				8B33DF6A196944700080E7FD /* ASIDownloadCache.m in Sources */,

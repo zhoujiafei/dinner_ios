@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MenuViewController.h"
+#import "ShopTableViewCell.h"
 #import "config.h"
 
 @interface HomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>

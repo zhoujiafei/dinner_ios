@@ -63,13 +63,18 @@
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
     
     NSInteger rowNo = indexPath.row;
-    cell.layer.cornerRadius = 12;
     cell.layer.masksToBounds = YES;
     cell.textLabel.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"name"];
+    cell.imageView.image = [UIImage imageWithData:
+                                [NSData dataWithContentsOfURL:
+                                                [NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]]];
+    NSString *statusText = _isOnTime?@"正在营业中":@"已经打烊";
+    cell.detailTextLabel.text = statusText;
+    
     return cell;
 }
 
