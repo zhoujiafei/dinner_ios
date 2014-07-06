@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MenuViewController.h"
+#import "config.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSArray *shopData;
+@property (nonatomic,assign) BOOL isOnTime;
 
 @end
