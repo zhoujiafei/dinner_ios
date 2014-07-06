@@ -41,12 +41,12 @@
         }
         else
         {
-            NSLog(@"没有数据");
+            [ProgressHUD show:@"没有数据"];
         }
     }
     else
     {
-        NSLog(@"网络不可用");
+        [ProgressHUD showError:@"网络不可用"];
     }
 }
 
@@ -74,7 +74,6 @@
                                                 [NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]]];
     NSString *statusText = _isOnTime?@"正在营业中":@"已经打烊";
     cell.detailTextLabel.text = statusText;
-    
     return cell;
 }
 

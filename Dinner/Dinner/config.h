@@ -10,6 +10,7 @@
 #define Dinner_config_h
 
 #import "ASIHTTPRequest.h"
+#import "ProgressHUD.h"
 
 #define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
 
