@@ -34,6 +34,9 @@
         
         if ([_shopData count] > 0)
         {
+            //存储数据
+            [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:GET_SHOPS_API withObject:allData];
+            
             //创建tableView
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
@@ -138,7 +141,34 @@
 //更新数据
 -(void)updateNewsByPullTable
 {
-//    [self.tableView reloadData];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (!error)
+    {
+        NSData *data = [request responseData];
+        NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        _shopData = [allData objectForKey:@"shops"];
+        _isOnTime = (BOOL)[allData objectForKey:@"isOnTime"];
+        
+        if ([_shopData count] > 0)
+        {
+            //存储数据
+            [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:GET_SHOPS_API withObject:allData];
+            [self.tableView reloadData];
+        }
+        else
+        {
+            [ProgressHUD show:@"没有数据"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [ProgressHUD dismiss];
+            });
+        }
+    }
+    else
+    {
+        [ProgressHUD showError:@"网络错误"];
+    }
 }
 
 #pragma mark -
@@ -147,7 +177,7 @@
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
     [self reloadTableViewDataSource];
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:0.5];
 }
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view

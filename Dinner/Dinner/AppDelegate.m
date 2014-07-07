@@ -39,6 +39,9 @@
     //加入到窗口
     self.window.rootViewController = tab;
     
+    //创建缓存数据表
+    [[DataManage shareDataManage] createTableName:CACHE_NAME];
+    
     return YES;
 }
 

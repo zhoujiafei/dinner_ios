@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "config.h"
 #import "BaseNavigationController.h"
 #import "BaseTabBarController.h"
 #import "HomeViewController.h"

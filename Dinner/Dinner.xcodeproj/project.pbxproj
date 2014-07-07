@@ -240,8 +240,8 @@
 				66E9AE98196A86E100558097 /* DataBase.m */,
 				66E9AE99196A86E100558097 /* DataManage.h */,
 				66E9AE9A196A86E100558097 /* DataManage.m */,
-				66E9AE9B196A86E100558097 /* FMDataBase */,
 				66E9AEA6196A86E100558097 /* dinner.db */,
+				66E9AE9B196A86E100558097 /* FMDataBase */,
 			);
 			path = database;
 			sourceTree = "<group>";
