@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66B8DFA1196A3B2F00F7CD67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */; };
+		66B8DFB5196A3B5100F7CD67 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B8DFA5196A3B5100F7CD67 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		66B8DFB9196A3B5100F7CD67 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFAD196A3B5100F7CD67 /* blackArrow.png */; };
+		66B8DFBA196A3B5100F7CD67 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFAE196A3B5100F7CD67 /* blackArrow@2x.png */; };
+		66B8DFBB196A3B5100F7CD67 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFAF196A3B5100F7CD67 /* blueArrow.png */; };
+		66B8DFBC196A3B5100F7CD67 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFB0196A3B5100F7CD67 /* blueArrow@2x.png */; };
+		66B8DFBD196A3B5100F7CD67 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFB1196A3B5100F7CD67 /* grayArrow.png */; };
+		66B8DFBE196A3B5100F7CD67 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFB2196A3B5100F7CD67 /* grayArrow@2x.png */; };
+		66B8DFBF196A3B5100F7CD67 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFB3196A3B5100F7CD67 /* whiteArrow.png */; };
+		66B8DFC0196A3B5100F7CD67 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8DFB4196A3B5100F7CD67 /* whiteArrow@2x.png */; };
 		8B33DF731969450F0080E7FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF721969450F0080E7FD /* CFNetwork.framework */; };
 		8B33DF75196945190080E7FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF74196945190080E7FD /* SystemConfiguration.framework */; };
 		8B33DF77196945230080E7FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF76196945230080E7FD /* MobileCoreServices.framework */; };
@@ -54,6 +64,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		66B8DFA4196A3B5100F7CD67 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		66B8DFA5196A3B5100F7CD67 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		66B8DFAD196A3B5100F7CD67 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		66B8DFAE196A3B5100F7CD67 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		66B8DFAF196A3B5100F7CD67 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		66B8DFB0196A3B5100F7CD67 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		66B8DFB1196A3B5100F7CD67 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		66B8DFB2196A3B5100F7CD67 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		66B8DFB3196A3B5100F7CD67 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		66B8DFB4196A3B5100F7CD67 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		8B33DF3519693D270080E7FD /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		8B33DF721969450F0080E7FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8B33DF74196945190080E7FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -121,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B8DFA1196A3B2F00F7CD67 /* QuartzCore.framework in Frameworks */,
 				8B33DF79196945380080E7FD /* libz.1.2.5.dylib in Frameworks */,
 				8B851CC819683A29008DC90D /* CoreGraphics.framework in Frameworks */,
 				8B33DF77196945230080E7FD /* MobileCoreServices.framework in Frameworks */,
@@ -144,9 +166,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66B8DFA2196A3B5100F7CD67 /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				66B8DFA3196A3B5100F7CD67 /* Classes */,
+				66B8DFAC196A3B5100F7CD67 /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		66B8DFA3196A3B5100F7CD67 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				66B8DFA4196A3B5100F7CD67 /* EGORefreshTableHeaderView.h */,
+				66B8DFA5196A3B5100F7CD67 /* EGORefreshTableHeaderView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		66B8DFAC196A3B5100F7CD67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66B8DFAD196A3B5100F7CD67 /* blackArrow.png */,
+				66B8DFAE196A3B5100F7CD67 /* blackArrow@2x.png */,
+				66B8DFAF196A3B5100F7CD67 /* blueArrow.png */,
+				66B8DFB0196A3B5100F7CD67 /* blueArrow@2x.png */,
+				66B8DFB1196A3B5100F7CD67 /* grayArrow.png */,
+				66B8DFB2196A3B5100F7CD67 /* grayArrow@2x.png */,
+				66B8DFB3196A3B5100F7CD67 /* whiteArrow.png */,
+				66B8DFB4196A3B5100F7CD67 /* whiteArrow@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		8B33DF7A196973CF0080E7FD /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				66B8DFA2196A3B5100F7CD67 /* EGOTableViewPullRefresh */,
 				8B33DF84196996400080E7FD /* ASIHTTPRequest */,
 				8B33DF7E196994C90080E7FD /* ProgressHUD */,
 			);
@@ -214,6 +270,7 @@
 		8B851CC419683A29008DC90D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */,
 				8B33DF78196945380080E7FD /* libz.1.2.5.dylib */,
 				8B33DF76196945230080E7FD /* MobileCoreServices.framework */,
 				8B33DF74196945190080E7FD /* SystemConfiguration.framework */,
@@ -390,7 +447,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B851CD019683A29008DC90D /* InfoPlist.strings in Resources */,
+				66B8DFB9196A3B5100F7CD67 /* blackArrow.png in Resources */,
 				8B851CD819683A29008DC90D /* Images.xcassets in Resources */,
+				66B8DFC0196A3B5100F7CD67 /* whiteArrow@2x.png in Resources */,
+				66B8DFBE196A3B5100F7CD67 /* grayArrow@2x.png in Resources */,
+				66B8DFBC196A3B5100F7CD67 /* blueArrow@2x.png in Resources */,
+				66B8DFBB196A3B5100F7CD67 /* blueArrow.png in Resources */,
+				66B8DFBA196A3B5100F7CD67 /* blackArrow@2x.png in Resources */,
+				66B8DFBF196A3B5100F7CD67 /* whiteArrow.png in Resources */,
+				66B8DFBD196A3B5100F7CD67 /* grayArrow.png in Resources */,
 				8B33DF82196994C90080E7FD /* ProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +487,7 @@
 				8B33DF9E196996400080E7FD /* ASIDownloadCache.m in Sources */,
 				8B33DFA3196996400080E7FD /* Reachability.m in Sources */,
 				8B33DF83196994C90080E7FD /* ProgressHUD.m in Sources */,
+				66B8DFB5196A3B5100F7CD67 /* EGORefreshTableHeaderView.m in Sources */,
 				8B33DF9C196996400080E7FD /* ASIDataCompressor.m in Sources */,
 				8B851D0019684125008DC90D /* HomeViewController.m in Sources */,
 				8B33DF9F196996400080E7FD /* ASIFormDataRequest.m in Sources */,

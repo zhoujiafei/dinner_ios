@@ -13,12 +13,15 @@
 @synthesize tableView = _tableView;
 @synthesize shopData = _shopData;
 @synthesize isOnTime = _isOnTime;
+@synthesize refreshTableHeaderView = _refreshTableHeaderView;
+@synthesize reloading = _reloading;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = @"首页";
-    
+    self.view.backgroundColor = [UIColor greenColor];
+
     //获取餐厅列表数据
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
     [request startSynchronous];
@@ -33,10 +36,21 @@
         if ([_shopData count] > 0)
         {
             //创建tableView
-            _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStylePlain];
+            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64,320,367) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
+            
+            //刷新控件
+            if (_refreshTableHeaderView == nil)
+            {
+                _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+                _refreshTableHeaderView.delegate = self;
+                [_tableView addSubview:_refreshTableHeaderView];
+            }
+            //最后一次更新的时间
+            [_refreshTableHeaderView refreshLastUpdatedDate];
+            
         }
         else
         {
@@ -95,5 +109,55 @@
     [self.navigationController pushViewController:menuVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
+
+
+//刷新的两个方法
+- (void)reloadTableViewDataSource
+{
+    [NSThread detachNewThreadSelector:@selector(updateNewsByPullTable) toTarget:self withObject:nil]; //异步加载数据，不影tableView动作
+    _reloading = YES;
+}
+//数据加载完成
+- (void)doneLoadingTableViewData
+{
+    _reloading = NO;
+    [_refreshTableHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    [_tableView reloadData];
+}
+
+//更新数据
+-(void)updateNewsByPullTable
+{
+//    [self.tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+    [self reloadTableViewDataSource];
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{
+    return [NSDate date];
+}
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [_refreshTableHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [_refreshTableHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
 
 @end
