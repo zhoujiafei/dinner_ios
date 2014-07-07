@@ -34,8 +34,8 @@ static FMDatabase *dbPointer = nil;
 
 + (NSString *)setUpDB {
     //为了简化创建数据库文件的过程，直接在工程中放入一个空的数据库，第一次运行的时候直接复制。
-	NSString *realPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"wirless.db"];
-	NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"wirless" ofType:@"db"];
+	NSString *realPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"dinner.db"];
+	NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"dinner" ofType:@"db"];
 	
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     @synchronized([self class]) {

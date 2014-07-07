@@ -24,7 +24,7 @@
 		66E9AEAB196A86E100558097 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AEA1196A86E100558097 /* FMDatabasePool.m */; };
 		66E9AEAC196A86E100558097 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AEA3196A86E100558097 /* FMDatabaseQueue.m */; };
 		66E9AEAD196A86E100558097 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AEA5196A86E100558097 /* FMResultSet.m */; };
-		66E9AEAE196A86E100558097 /* wirless.db in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AEA6196A86E100558097 /* wirless.db */; };
+		66E9AEAE196A86E100558097 /* dinner.db in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AEA6196A86E100558097 /* dinner.db */; };
 		66E9AEB0196A8ED700558097 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E9AEAF196A8ED700558097 /* libsqlite3.0.dylib */; };
 		8B33DF731969450F0080E7FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF721969450F0080E7FD /* CFNetwork.framework */; };
 		8B33DF75196945190080E7FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF74196945190080E7FD /* SystemConfiguration.framework */; };
@@ -98,7 +98,7 @@
 		66E9AEA3196A86E100558097 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		66E9AEA4196A86E100558097 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		66E9AEA5196A86E100558097 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		66E9AEA6196A86E100558097 /* wirless.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = wirless.db; sourceTree = "<group>"; };
+		66E9AEA6196A86E100558097 /* dinner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dinner.db; sourceTree = "<group>"; };
 		66E9AEAF196A8ED700558097 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8B33DF3519693D270080E7FD /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		8B33DF721969450F0080E7FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -241,7 +241,7 @@
 				66E9AE99196A86E100558097 /* DataManage.h */,
 				66E9AE9A196A86E100558097 /* DataManage.m */,
 				66E9AE9B196A86E100558097 /* FMDataBase */,
-				66E9AEA6196A86E100558097 /* wirless.db */,
+				66E9AEA6196A86E100558097 /* dinner.db */,
 			);
 			path = database;
 			sourceTree = "<group>";
@@ -519,7 +519,7 @@
 				66E9AE93196A806F00558097 /* grayArrow@2x.png in Resources */,
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
 				66E9AE90196A806F00558097 /* blueArrow.png in Resources */,
-				66E9AEAE196A86E100558097 /* wirless.db in Resources */,
+				66E9AEAE196A86E100558097 /* dinner.db in Resources */,
 				66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */,
 				66E9AE94196A806F00558097 /* whiteArrow.png in Resources */,
 				66E9AE92196A806F00558097 /* grayArrow.png in Resources */,
