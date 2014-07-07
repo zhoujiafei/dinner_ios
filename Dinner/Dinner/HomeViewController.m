@@ -20,8 +20,7 @@
 {
     [super viewDidLoad];
     self.title = @"首页";
-    self.view.backgroundColor = [UIColor greenColor];
-
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //获取餐厅列表数据
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
     [request startSynchronous];
@@ -36,34 +35,45 @@
         if ([_shopData count] > 0)
         {
             //创建tableView
-            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64,320,367) style:UITableViewStylePlain];
+            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
-            
             //刷新控件
             if (_refreshTableHeaderView == nil)
             {
-                _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+                _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 64.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
                 _refreshTableHeaderView.delegate = self;
                 [_tableView addSubview:_refreshTableHeaderView];
             }
             //最后一次更新的时间
             [_refreshTableHeaderView refreshLastUpdatedDate];
-            
         }
         else
         {
             [ProgressHUD show:@"没有数据"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [ProgressHUD dismiss];
+            });
         }
     }
     else
     {
-        [ProgressHUD showError:@"网络不可用"];
+        [ProgressHUD showError:@"网络错误"];
     }
 }
 
 #pragma mark -UITableViewDataSource
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 80;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_shopData count];
@@ -157,6 +167,11 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [_refreshTableHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{
+    return _reloading;
 }
 
 
