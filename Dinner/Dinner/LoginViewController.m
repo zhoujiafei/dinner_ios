@@ -16,6 +16,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"登陆";
+    self.view.backgroundColor = [UIColor greenColor];
     
     UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, 100, 45)];
     usernameLabel.text = @"昵称：";
