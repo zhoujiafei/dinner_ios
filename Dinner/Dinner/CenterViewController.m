@@ -14,6 +14,8 @@
 {
     [super viewDidLoad];
     self.title = @"用户中心";
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    [self presentViewController:loginVC animated:YES completion:nil];
 }
 
 @end

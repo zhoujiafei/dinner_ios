@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660BF2E8196AA729003EA75D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660BF2E7196AA729003EA75D /* LoginViewController.m */; };
 		66B8DFA1196A3B2F00F7CD67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */; };
 		66E9AE8D196A806F00558097 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66E9AE8E196A806F00558097 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AE85196A806F00558097 /* blackArrow.png */; };
@@ -73,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		660BF2E6196AA729003EA75D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		660BF2E7196AA729003EA75D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		66E9AE82196A806F00558097 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				8B851D0519684215008DC90D /* MoreViewController.m */,
 				8B851D0719684C35008DC90D /* MenuViewController.h */,
 				8B851D0819684C35008DC90D /* MenuViewController.m */,
+				660BF2E6196AA729003EA75D /* LoginViewController.h */,
+				660BF2E7196AA729003EA75D /* LoginViewController.m */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 				8B33DFA0196996400080E7FD /* ASIHTTPRequest.m in Sources */,
 				8B33DFA2196996400080E7FD /* ASINetworkQueue.m in Sources */,
 				8B33DFA1196996400080E7FD /* ASIInputStream.m in Sources */,
+				660BF2E8196AA729003EA75D /* LoginViewController.m in Sources */,
 				8B851CFC19683F7A008DC90D /* BaseNavigationController.m in Sources */,
 				8B33DF9D196996400080E7FD /* ASIDataDecompressor.m in Sources */,
 				8B851CD619683A29008DC90D /* AppDelegate.m in Sources */,
