@@ -18,7 +18,6 @@
 {
     [super viewDidLoad];
     self.title = @"首页";
-    self.view.backgroundColor = [UIColor redColor];
     
     //获取餐厅列表数据
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
@@ -34,7 +33,7 @@
         if ([_shopData count] > 0)
         {
             //创建tableView
-            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, 320, 400) style:UITableViewStylePlain];
+            _tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
@@ -69,12 +68,32 @@
     NSInteger rowNo = indexPath.row;
     cell.layer.masksToBounds = YES;
     cell.textLabel.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"name"];
+    cell.imageView.contentMode = UIViewContentModeCenter;
     cell.imageView.image = [UIImage imageWithData:
                                 [NSData dataWithContentsOfURL:
                                                 [NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]]];
+    
+    //调整图片大小
+    CGSize itemSize = CGSizeMake(40, 40);
+    UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
+    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+    [cell.imageView.image drawInRect:imageRect];
+    cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     NSString *statusText = _isOnTime?@"正在营业中":@"已经打烊";
     cell.detailTextLabel.text = statusText;
     return cell;
+}
+
+#pragma mark -UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.hidesBottomBarWhenPushed = YES;
+    MenuViewController *menuVC = [[MenuViewController alloc] init];
+    menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
+    [self.navigationController pushViewController:menuVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end

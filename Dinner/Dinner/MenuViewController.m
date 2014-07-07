@@ -10,14 +10,34 @@
 
 @implementation MenuViewController
 
+@synthesize shopId = _shopId;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = @"菜单";
     self.view.backgroundColor = [UIColor greenColor];
     
-    
-    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]]];
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (!error)
+    {
+        NSData *data = [request responseData];
+        NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        NSLog(@"%@",allData);
+        
+        
+        
+        
+        
+        
+    }
+    else
+    {
+        [ProgressHUD showError:@"网络不可用"];
+    }
 }
 
 @end

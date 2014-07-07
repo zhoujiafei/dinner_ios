@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "config.h"
 
 @interface MenuViewController : UIViewController
+
+@property(nonatomic,assign) NSString *shopId;
 
 @end
