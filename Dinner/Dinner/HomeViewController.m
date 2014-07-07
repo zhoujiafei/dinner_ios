@@ -30,7 +30,7 @@
         NSData *data = [request responseData];
         NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         _shopData = [allData objectForKey:@"shops"];
-        _isOnTime = (BOOL)[allData objectForKey:@"isOnTime"];
+        _isOnTime = [[allData objectForKey:@"isOnTime"] boolValue];
         
         if ([_shopData count] > 0)
         {
@@ -116,11 +116,18 @@
 #pragma mark -UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.hidesBottomBarWhenPushed = YES;
-    MenuViewController *menuVC = [[MenuViewController alloc] init];
-    menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
-    [self.navigationController pushViewController:menuVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    if (_isOnTime)
+    {
+        self.hidesBottomBarWhenPushed = YES;
+        MenuViewController *menuVC = [[MenuViewController alloc] init];
+        menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
+        [self.navigationController pushViewController:menuVC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
+    else
+    {
+        [ProgressHUD showError:@"已经打烊啦！"];
+    }
 }
 
 
@@ -149,7 +156,7 @@
         NSData *data = [request responseData];
         NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         _shopData = [allData objectForKey:@"shops"];
-        _isOnTime = (BOOL)[allData objectForKey:@"isOnTime"];
+        _isOnTime = [[allData objectForKey:@"isOnTime"] boolValue];
         
         if ([_shopData count] > 0)
         {
