@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 
 @property(nonatomic,assign) NSString *shopId;
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
+@property (nonatomic,assign) BOOL reloading;
+@property (nonatomic,strong) NSArray *menusData;
 
 @end
