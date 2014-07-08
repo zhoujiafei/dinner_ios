@@ -21,7 +21,6 @@
     [super viewDidLoad];
     self.title = @"菜单";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor greenColor];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]]];
     [request startSynchronous];
