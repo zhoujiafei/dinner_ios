@@ -61,6 +61,7 @@
 		8B851D031968413B008DC90D /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D021968413B008DC90D /* CenterViewController.m */; };
 		8B851D0619684215008DC90D /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0519684215008DC90D /* MoreViewController.m */; };
 		8B851D0919684C35008DC90D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0819684C35008DC90D /* MenuViewController.m */; };
+		8BC6FF3F196C2D6B0093A476 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6FF3E196C2D6B0093A476 /* CartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,8 @@
 		8B851D0519684215008DC90D /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		8B851D0719684C35008DC90D /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		8B851D0819684C35008DC90D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		8BC6FF3D196C2D6B0093A476 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		8BC6FF3E196C2D6B0093A476 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +358,7 @@
 		8B851CCB19683A29008DC90D /* Dinner */ = {
 			isa = PBXGroup;
 			children = (
+				8BC6FF3C196C23530093A476 /* resource */,
 				8B33DF7A196973CF0080E7FD /* lib */,
 				8B851CFD196840FE008DC90D /* app */,
 				8B851CF619683DD8008DC90D /* base */,
@@ -438,8 +442,17 @@
 				8B851D0819684C35008DC90D /* MenuViewController.m */,
 				660BF2E6196AA729003EA75D /* LoginViewController.h */,
 				660BF2E7196AA729003EA75D /* LoginViewController.m */,
+				8BC6FF3D196C2D6B0093A476 /* CartViewController.h */,
+				8BC6FF3E196C2D6B0093A476 /* CartViewController.m */,
 			);
 			name = app;
+			sourceTree = "<group>";
+		};
+		8BC6FF3C196C23530093A476 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,6 +573,7 @@
 				66E9AEA7196A86E100558097 /* DataBase.m in Sources */,
 				8B851D0919684C35008DC90D /* MenuViewController.m in Sources */,
 				8B33DF9E196996400080E7FD /* ASIDownloadCache.m in Sources */,
+				8BC6FF3F196C2D6B0093A476 /* CartViewController.m in Sources */,
 				66E9AEAB196A86E100558097 /* FMDatabasePool.m in Sources */,
 				8B33DFA3196996400080E7FD /* Reachability.m in Sources */,
 				8B33DF83196994C90080E7FD /* ProgressHUD.m in Sources */,

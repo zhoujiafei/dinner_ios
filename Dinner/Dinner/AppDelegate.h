@@ -13,6 +13,7 @@
 #import "HomeViewController.h"
 #import "CenterViewController.h"
 #import "MoreViewController.h"
+#import "CartViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

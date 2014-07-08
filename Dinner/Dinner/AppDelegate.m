@@ -22,19 +22,24 @@
     BaseNavigationController *homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
     homeNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
     
+    //购物车
+    CartViewController *cart = [[CartViewController alloc] init];
+    BaseNavigationController *cartNav = [[BaseNavigationController alloc] initWithRootViewController:cart];
+    cartNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:2];
+    
     //用户中心
     CenterViewController *center = [[CenterViewController alloc] init];
     BaseNavigationController *centerNav = [[BaseNavigationController alloc] initWithRootViewController:center];
-    centerNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
+    centerNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:3];
     
     //更多
     MoreViewController *more = [[MoreViewController alloc] init];
     BaseNavigationController *moreNav = [[BaseNavigationController alloc] initWithRootViewController:more];
-    moreNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
+    moreNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:4];
     
     //创建UITabBar，并且将各子级导航加入到里面
     UITabBarController *tab = [[UITabBarController alloc] init];
-    tab.viewControllers = @[homeNav,centerNav,moreNav];
+    tab.viewControllers = @[homeNav,cartNav,centerNav,moreNav];
     
     //加入到窗口
     self.window.rootViewController = tab;
