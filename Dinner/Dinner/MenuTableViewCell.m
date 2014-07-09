@@ -51,8 +51,9 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         btn.frame = CGRectMake(230, 60, 80, 30);
         [btn.layer setCornerRadius:5.0];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitle:@"吃一份" forState:UIControlStateNormal];
-        btn.backgroundColor = APP_BASE_COLOR;
+        btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:55.0/255.0 alpha:1];
         
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
