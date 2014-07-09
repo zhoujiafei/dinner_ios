@@ -53,8 +53,9 @@
             //增加一个购物车
             UIButton *cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
-            cartBtn.backgroundColor = [UIColor colorWithRed:50.0/255.0 green:151.0/255.0 blue:228.0/255.0 alpha:1];
+            cartBtn.backgroundColor = [UIColor colorWithRed:50.0/255.0 green:151.0/255.0 blue:228.0/255.0 alpha:0.8];
             [cartBtn setTitle:@"菜篮子" forState:UIControlStateNormal];
+            [cartBtn addTarget:self action:@selector(lookCart) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:cartBtn];
             
         }
@@ -70,6 +71,14 @@
     {
         [ProgressHUD showError:@"网络不可用"];
     }
+}
+
+//查看购物车
+-(void)lookCart
+{
+    self.hidesBottomBarWhenPushed = YES;
+    CartViewController *cart = [[CartViewController alloc] init];
+    [self.navigationController pushViewController:cart animated:YES];
 }
 
 #pragma mark -UITableViewDataSource

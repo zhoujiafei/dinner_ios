@@ -14,7 +14,7 @@
 {
     [super viewDidLoad];
     self.title = @"购物车";
-    
+    self.view.backgroundColor = [UIColor greenColor];
     
     
 }

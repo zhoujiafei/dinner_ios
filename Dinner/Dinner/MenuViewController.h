@@ -10,6 +10,7 @@
 #import "config.h"
 #import "EGORefreshTableHeaderView.h"
 #import "MenuTableViewCell.h"
+#import "CartViewController.h"
 
 @interface MenuViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 
