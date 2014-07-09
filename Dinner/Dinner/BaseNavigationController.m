@@ -13,7 +13,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationBar.backgroundColor = [UIColor greenColor];
+    self.navigationBar.backgroundColor = APP_BASE_COLOR;
 }
 
 @end

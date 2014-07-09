@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "EGORefreshTableHeaderView.h"
+#import "MenuTableViewCell.h"
 
 @interface MenuViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 

@@ -35,6 +35,9 @@
 		66E9AEAD196A86E100558097 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AEA5196A86E100558097 /* FMResultSet.m */; };
 		66E9AEAE196A86E100558097 /* dinner.db in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AEA6196A86E100558097 /* dinner.db */; };
 		66E9AEB0196A8ED700558097 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E9AEAF196A8ED700558097 /* libsqlite3.0.dylib */; };
+		66F08608196CCCD700AD70B1 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */; };
+		66F0860A196CE5C800AD70B1 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08609196CE5C800AD70B1 /* star@2x.png */; };
+		66F0860C196CE5E100AD70B1 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F0860B196CE5E100AD70B1 /* star.png */; };
 		8B33DF731969450F0080E7FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF721969450F0080E7FD /* CFNetwork.framework */; };
 		8B33DF75196945190080E7FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF74196945190080E7FD /* SystemConfiguration.framework */; };
 		8B33DF77196945230080E7FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF76196945230080E7FD /* MobileCoreServices.framework */; };
@@ -120,6 +123,10 @@
 		66E9AEA5196A86E100558097 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		66E9AEA6196A86E100558097 /* dinner.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dinner.db; sourceTree = "<group>"; };
 		66E9AEAF196A8ED700558097 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		66F08606196CCCD700AD70B1 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		66F08609196CE5C800AD70B1 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		66F0860B196CE5E100AD70B1 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		8B33DF3519693D270080E7FD /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		8B33DF721969450F0080E7FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8B33DF74196945190080E7FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -217,6 +224,8 @@
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				66F08609196CE5C800AD70B1 /* star@2x.png */,
+				66F0860B196CE5E100AD70B1 /* star.png */,
 				663C9A30196CC24000BEDC4A /* people.png */,
 				663C9A2E196CC23500BEDC4A /* people@2x.png */,
 				663C9A2C196CC21000BEDC4A /* cog_01.png */,
@@ -435,6 +444,8 @@
 			children = (
 				8B33DF7B1969835D0080E7FD /* ShopTableViewCell.h */,
 				8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */,
+				66F08606196CCCD700AD70B1 /* MenuTableViewCell.h */,
+				66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */,
 			);
 			name = class;
 			sourceTree = "<group>";
@@ -571,8 +582,10 @@
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
 				663C9A23196CC1C800BEDC4A /* trolley@2x.png in Resources */,
 				663C9A2F196CC23500BEDC4A /* people@2x.png in Resources */,
+				66F0860C196CE5E100AD70B1 /* star.png in Resources */,
 				663C9A27196CC1E400BEDC4A /* house.png in Resources */,
 				66E9AE90196A806F00558097 /* blueArrow.png in Resources */,
+				66F0860A196CE5C800AD70B1 /* star@2x.png in Resources */,
 				66E9AEAE196A86E100558097 /* dinner.db in Resources */,
 				66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */,
 				663C9A2D196CC21000BEDC4A /* cog_01.png in Resources */,
@@ -622,6 +635,7 @@
 				8B33DF9C196996400080E7FD /* ASIDataCompressor.m in Sources */,
 				66E9AEAC196A86E100558097 /* FMDatabaseQueue.m in Sources */,
 				8B851D0019684125008DC90D /* HomeViewController.m in Sources */,
+				66F08608196CCCD700AD70B1 /* MenuTableViewCell.m in Sources */,
 				8B33DF9F196996400080E7FD /* ASIFormDataRequest.m in Sources */,
 				8B851CD219683A29008DC90D /* main.m in Sources */,
 				8B851D0619684215008DC90D /* MoreViewController.m in Sources */,

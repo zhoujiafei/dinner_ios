@@ -38,6 +38,7 @@
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
+            _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
             [self.view addSubview:_tableView];
             //刷新控件
             if (_refreshTableHeaderView == nil)
@@ -88,29 +89,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellId = @"cellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        cell = [[MenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     
     NSInteger rowNo = indexPath.row;
-    cell.layer.masksToBounds = YES;
-    cell.textLabel.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"name"];
-    cell.imageView.contentMode = UIViewContentModeCenter;
-    cell.imageView.image = [UIImage imageWithData:
+    cell.menuName.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"name"];
+    cell.menuImageView.image = [UIImage imageWithData:
                             [NSData dataWithContentsOfURL:
                              [NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]]];
-    
-    //调整图片大小
-    CGSize itemSize = CGSizeMake(80, 80);
-    UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
-    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
-    [cell.imageView.image drawInRect:imageRect];
-    cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    cell.detailTextLabel.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
+    cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
+    cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     return cell;
 }
 

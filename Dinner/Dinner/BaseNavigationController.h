@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "config.h"
 
 @interface BaseNavigationController : UINavigationController
 

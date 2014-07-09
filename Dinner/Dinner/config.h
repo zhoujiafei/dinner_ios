@@ -13,6 +13,9 @@
 #import "ProgressHUD.h"
 #import "DataManage.h"
 
+//定义该app主基调颜色风格
+#define APP_BASE_COLOR ([UIColor colorWithRed:255/255.0 green:154/255.0 blue:97/255.0 alpha:1])
+
 //缓存表名
 #define CACHE_NAME @"cacheData"
 
