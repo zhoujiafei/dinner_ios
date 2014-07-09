@@ -20,22 +20,23 @@
     //首页
     HomeViewController *home = [[HomeViewController alloc] init];
     BaseNavigationController *homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
-    homeNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
+    homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"house"] tag:1];
     
     //购物车
     CartViewController *cart = [[CartViewController alloc] init];
     BaseNavigationController *cartNav = [[BaseNavigationController alloc] initWithRootViewController:cart];
-    cartNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:2];
+    cartNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"购物车" image:[UIImage imageNamed:@"trolley"] tag:2];
+    cartNav.tabBarItem.badgeValue = @"new";
     
     //用户中心
     CenterViewController *center = [[CenterViewController alloc] init];
     BaseNavigationController *centerNav = [[BaseNavigationController alloc] initWithRootViewController:center];
-    centerNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:3];
+    centerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"people"] tag:3];
     
     //更多
     MoreViewController *more = [[MoreViewController alloc] init];
     BaseNavigationController *moreNav = [[BaseNavigationController alloc] initWithRootViewController:more];
-    moreNav.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:4];
+    moreNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"更多" image:[UIImage imageNamed:@"cog_01"] tag:4];
     
     //创建UITabBar，并且将各子级导航加入到里面
     UITabBarController *tab = [[UITabBarController alloc] init];

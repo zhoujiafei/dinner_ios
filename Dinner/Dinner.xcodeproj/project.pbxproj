@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		660BF2E8196AA729003EA75D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660BF2E7196AA729003EA75D /* LoginViewController.m */; };
+		663C9A23196CC1C800BEDC4A /* trolley@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A22196CC1C800BEDC4A /* trolley@2x.png */; };
+		663C9A25196CC1D500BEDC4A /* trolley.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A24196CC1D500BEDC4A /* trolley.png */; };
+		663C9A27196CC1E400BEDC4A /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A26196CC1E400BEDC4A /* house.png */; };
+		663C9A29196CC1F100BEDC4A /* house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A28196CC1F100BEDC4A /* house@2x.png */; };
+		663C9A2B196CC20100BEDC4A /* cog_01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A2A196CC20100BEDC4A /* cog_01@2x.png */; };
+		663C9A2D196CC21000BEDC4A /* cog_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A2C196CC21000BEDC4A /* cog_01.png */; };
+		663C9A2F196CC23500BEDC4A /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A2E196CC23500BEDC4A /* people@2x.png */; };
+		663C9A31196CC24000BEDC4A /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A30196CC24000BEDC4A /* people.png */; };
 		66B8DFA1196A3B2F00F7CD67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */; };
 		66E9AE8D196A806F00558097 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66E9AE8E196A806F00558097 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AE85196A806F00558097 /* blackArrow.png */; };
@@ -77,6 +85,14 @@
 /* Begin PBXFileReference section */
 		660BF2E6196AA729003EA75D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		660BF2E7196AA729003EA75D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		663C9A22196CC1C800BEDC4A /* trolley@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trolley@2x.png"; sourceTree = "<group>"; };
+		663C9A24196CC1D500BEDC4A /* trolley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trolley.png; sourceTree = "<group>"; };
+		663C9A26196CC1E400BEDC4A /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		663C9A28196CC1F100BEDC4A /* house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house@2x.png"; sourceTree = "<group>"; };
+		663C9A2A196CC20100BEDC4A /* cog_01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog_01@2x.png"; sourceTree = "<group>"; };
+		663C9A2C196CC21000BEDC4A /* cog_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cog_01.png; sourceTree = "<group>"; };
+		663C9A2E196CC23500BEDC4A /* people@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "people@2x.png"; sourceTree = "<group>"; };
+		663C9A30196CC24000BEDC4A /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		66E9AE82196A806F00558097 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
@@ -198,6 +214,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		663C9A21196CC1B600BEDC4A /* image */ = {
+			isa = PBXGroup;
+			children = (
+				663C9A30196CC24000BEDC4A /* people.png */,
+				663C9A2E196CC23500BEDC4A /* people@2x.png */,
+				663C9A2C196CC21000BEDC4A /* cog_01.png */,
+				663C9A2A196CC20100BEDC4A /* cog_01@2x.png */,
+				663C9A28196CC1F100BEDC4A /* house@2x.png */,
+				663C9A26196CC1E400BEDC4A /* house.png */,
+				663C9A24196CC1D500BEDC4A /* trolley.png */,
+				663C9A22196CC1C800BEDC4A /* trolley@2x.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
 		66E9AE7F196A806F00558097 /* EGOTableViewPullRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +482,7 @@
 		8BC6FF3C196C23530093A476 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				663C9A21196CC1B600BEDC4A /* image */,
 			);
 			name = resource;
 			sourceTree = "<group>";
@@ -533,14 +565,22 @@
 				8B851CD019683A29008DC90D /* InfoPlist.strings in Resources */,
 				66E9AE8E196A806F00558097 /* blackArrow.png in Resources */,
 				8B851CD819683A29008DC90D /* Images.xcassets in Resources */,
+				663C9A2B196CC20100BEDC4A /* cog_01@2x.png in Resources */,
 				66E9AE95196A806F00558097 /* whiteArrow@2x.png in Resources */,
 				66E9AE93196A806F00558097 /* grayArrow@2x.png in Resources */,
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
+				663C9A23196CC1C800BEDC4A /* trolley@2x.png in Resources */,
+				663C9A2F196CC23500BEDC4A /* people@2x.png in Resources */,
+				663C9A27196CC1E400BEDC4A /* house.png in Resources */,
 				66E9AE90196A806F00558097 /* blueArrow.png in Resources */,
 				66E9AEAE196A86E100558097 /* dinner.db in Resources */,
 				66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */,
+				663C9A2D196CC21000BEDC4A /* cog_01.png in Resources */,
 				66E9AE94196A806F00558097 /* whiteArrow.png in Resources */,
+				663C9A25196CC1D500BEDC4A /* trolley.png in Resources */,
+				663C9A29196CC1F100BEDC4A /* house@2x.png in Resources */,
 				66E9AE92196A806F00558097 /* grayArrow.png in Resources */,
+				663C9A31196CC24000BEDC4A /* people.png in Resources */,
 				8B33DF82196994C90080E7FD /* ProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

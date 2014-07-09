@@ -67,7 +67,12 @@
 #pragma mark -UITableViewDataSource
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 80;
+    return 80.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -99,7 +104,7 @@
                              [NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]]];
     
     //调整图片大小
-    CGSize itemSize = CGSizeMake(40, 40);
+    CGSize itemSize = CGSizeMake(80, 80);
     UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
     CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
     [cell.imageView.image drawInRect:imageRect];
@@ -113,8 +118,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //添加到购物车
-    
-    
     
     
 }
