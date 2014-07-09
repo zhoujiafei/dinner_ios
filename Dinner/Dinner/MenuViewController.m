@@ -49,6 +49,14 @@
             }
             //最后一次更新的时间
             [_refreshTableHeaderView refreshLastUpdatedDate];
+            
+            //增加一个购物车
+            UIButton *cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
+            cartBtn.backgroundColor = [UIColor colorWithRed:50.0/255.0 green:151.0/255.0 blue:228.0/255.0 alpha:1];
+            [cartBtn setTitle:@"菜篮子" forState:UIControlStateNormal];
+            [self.view addSubview:cartBtn];
+            
         }
         else
         {
@@ -57,7 +65,6 @@
                 [ProgressHUD dismiss];
             });
         }
-        
     }
     else
     {

@@ -52,7 +52,7 @@
         btn.frame = CGRectMake(230, 60, 80, 30);
         [btn.layer setCornerRadius:5.0];
         [btn setTitle:@"吃一份" forState:UIControlStateNormal];
-        [btn setBackgroundColor:APP_BASE_COLOR];
+        btn.backgroundColor = APP_BASE_COLOR;
         
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
@@ -67,7 +67,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-//    self.backgroundColor = [UIColor blueColor];
 }
 
 @end
