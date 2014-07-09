@@ -7,10 +7,14 @@
 //  登陆界面
 
 #import <UIKit/UIKit.h>
+#import "config.h"
+#import "RegisterViewController.h"
+#import "CenterViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) UITextField *username;
 @property (nonatomic,strong) UITextField *password;
+@property (nonatomic,strong) UITableView *tableView;
 
 @end

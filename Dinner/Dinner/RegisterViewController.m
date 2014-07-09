@@ -1,22 +1,20 @@
 //
-//  CartViewController.m
+//  RegisterViewController.m
 //  Dinner
 //
-//  Created by 刘 金兰 on 14-7-8.
+//  Created by 周 加飞 on 14-7-9.
 //  Copyright (c) 2014年 周加飞. All rights reserved.
 //
 
-#import "CartViewController.h"
+#import "RegisterViewController.h"
 
-@implementation CartViewController
+@implementation RegisterViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"美食框";
+    self.title = @"注册";
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    
 }
 
 @end

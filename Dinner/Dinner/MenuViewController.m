@@ -54,8 +54,8 @@
             UIButton *cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
             cartBtn.backgroundColor = [UIColor colorWithRed:50.0/255.0 green:151.0/255.0 blue:228.0/255.0 alpha:0.8];
-            [cartBtn setTitle:@"菜篮子" forState:UIControlStateNormal];
-            [cartBtn addTarget:self action:@selector(lookCart) forControlEvents:UIControlEventTouchUpInside];
+            [cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
+            [cartBtn addTarget:self action:@selector(addToCart:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:cartBtn];
             
         }
@@ -74,7 +74,7 @@
 }
 
 //查看购物车
--(void)lookCart
+-(void)addToCart:(UIButton *)btn
 {
     self.hidesBottomBarWhenPushed = YES;
     CartViewController *cart = [[CartViewController alloc] init];

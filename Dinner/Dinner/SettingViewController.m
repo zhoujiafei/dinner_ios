@@ -6,14 +6,14 @@
 //  Copyright (c) 2014年 周加飞. All rights reserved.
 //
 
-#import "MoreViewController.h"
+#import "SettingViewController.h"
 
-@implementation MoreViewController
+@implementation SettingViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"更多";
+    self.title = @"设置";
 }
 
 @end

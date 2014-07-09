@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "config.h"
+#import "BaseNavigationController.h"
 #import "LoginViewController.h"
 
 @interface CenterViewController : UIViewController

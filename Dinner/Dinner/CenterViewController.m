@@ -14,7 +14,7 @@
 {
     [super viewDidLoad];
     self.title = @"用户中心";
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginBtn.frame = CGRectMake(20, 160, 100, 45);
@@ -27,7 +27,8 @@
 -(void)login
 {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self presentViewController:loginVC animated:YES completion:nil];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 @end
