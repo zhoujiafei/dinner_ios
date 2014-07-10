@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
-#import "BaseNavigationController.h"
 #import "LoginViewController.h"
+#import "UIScrollView+TwitterCover.h"
 
-@interface CenterViewController : BaseViewController
+@interface CenterViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
 
 @end

@@ -69,6 +69,9 @@
 		66F08613196CF6D400AD70B1 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08611196CF6D400AD70B1 /* user.png */; };
 		66F08614196CF6D400AD70B1 /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08612196CF6D400AD70B1 /* user@2x.png */; };
 		8B25DC84196ED33A0040A49B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B25DC83196ED33A0040A49B /* SDWebImage.framework */; };
+		8B25DC88196EDF690040A49B /* UIScrollView+TwitterCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B25DC87196EDF690040A49B /* UIScrollView+TwitterCover.m */; };
+		8B25DC8B196EE4230040A49B /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B25DC89196EE4230040A49B /* cover.png */; };
+		8B25DC8C196EE4230040A49B /* cover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B25DC8A196EE4230040A49B /* cover@2x.png */; };
 		8B33DF731969450F0080E7FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF721969450F0080E7FD /* CFNetwork.framework */; };
 		8B33DF75196945190080E7FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF74196945190080E7FD /* SystemConfiguration.framework */; };
 		8B33DF77196945230080E7FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF76196945230080E7FD /* MobileCoreServices.framework */; };
@@ -206,6 +209,10 @@
 		66F08611196CF6D400AD70B1 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		66F08612196CF6D400AD70B1 /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
 		8B25DC83196ED33A0040A49B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
+		8B25DC86196EDF690040A49B /* UIScrollView+TwitterCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TwitterCover.h"; sourceTree = "<group>"; };
+		8B25DC87196EDF690040A49B /* UIScrollView+TwitterCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TwitterCover.m"; sourceTree = "<group>"; };
+		8B25DC89196EE4230040A49B /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
+		8B25DC8A196EE4230040A49B /* cover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cover@2x.png"; sourceTree = "<group>"; };
 		8B33DF3519693D270080E7FD /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		8B33DF721969450F0080E7FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8B33DF74196945190080E7FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -304,6 +311,8 @@
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				8B25DC89196EE4230040A49B /* cover.png */,
+				8B25DC8A196EE4230040A49B /* cover@2x.png */,
 				669FB4C4196E9D03003BD821 /* dian@2x.png */,
 				669FB4C2196E9CEF003BD821 /* dian.png */,
 				669FB4C0196E9B1F003BD821 /* food@2x.png */,
@@ -439,9 +448,19 @@
 			path = FMDataBase;
 			sourceTree = "<group>";
 		};
+		8B25DC85196EDF690040A49B /* TwitterCover */ = {
+			isa = PBXGroup;
+			children = (
+				8B25DC86196EDF690040A49B /* UIScrollView+TwitterCover.h */,
+				8B25DC87196EDF690040A49B /* UIScrollView+TwitterCover.m */,
+			);
+			path = TwitterCover;
+			sourceTree = "<group>";
+		};
 		8B33DF7A196973CF0080E7FD /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				8B25DC85196EDF690040A49B /* TwitterCover */,
 				669FB492196E99E6003BD821 /* SDWebImage */,
 				66E9AE96196A86E100558097 /* database */,
 				66E9AE7F196A806F00558097 /* EGOTableViewPullRefresh */,
@@ -717,6 +736,7 @@
 				66E9AE95196A806F00558097 /* whiteArrow@2x.png in Resources */,
 				66AE41AB196D12F5001F5640 /* cart_empty.png in Resources */,
 				66E9AE93196A806F00558097 /* grayArrow@2x.png in Resources */,
+				8B25DC8C196EE4230040A49B /* cover@2x.png in Resources */,
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
 				66F08610196CF64C00AD70B1 /* nav_comment_active@2x.png in Resources */,
 				66AE41B2196D1BF7001F5640 /* navBar.png in Resources */,
@@ -733,6 +753,7 @@
 				66E9AE90196A806F00558097 /* blueArrow.png in Resources */,
 				66F0860A196CE5C800AD70B1 /* star@2x.png in Resources */,
 				66E9AEAE196A86E100558097 /* dinner.db in Resources */,
+				8B25DC8B196EE4230040A49B /* cover.png in Resources */,
 				66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */,
 				669FB4C5196E9D03003BD821 /* dian@2x.png in Resources */,
 				663C9A2D196CC21000BEDC4A /* cog_01.png in Resources */,
@@ -801,6 +822,7 @@
 				669FB4B1196E99E6003BD821 /* NSData+ImageContentType.m in Sources */,
 				8B33DF9F196996400080E7FD /* ASIFormDataRequest.m in Sources */,
 				669FB4BC196E99E6003BD821 /* UIImage+WebP.m in Sources */,
+				8B25DC88196EDF690040A49B /* UIScrollView+TwitterCover.m in Sources */,
 				8B851CD219683A29008DC90D /* main.m in Sources */,
 				8B851D0619684215008DC90D /* SettingViewController.m in Sources */,
 				8B851D031968413B008DC90D /* CenterViewController.m in Sources */,

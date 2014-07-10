@@ -10,24 +10,48 @@
 
 @implementation CenterViewController
 
+@synthesize tableView = _tableView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = @"用户中心";
-
-    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    loginBtn.frame = CGRectMake(20, 160, 100, 45);
-    [loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
-    [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:loginBtn];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+    
+    [self.tableView addTwitterCoverWithImage:[UIImage imageNamed:@"cover"]];
+    
+    //This tableHeaderView plays the placeholder role here.
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, CHTwitterCoverViewHeight)];
+    
+    
 }
 
--(void)login
+#pragma mark -
+#pragma mark -UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
-    [self presentViewController:nav animated:YES completion:nil];
+   return 5;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellId = @"cellId";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+    }
+    
+//    NSInteger rowNo = indexPath.row;
+    cell.layer.masksToBounds = YES;
+    cell.textLabel.text = @"哈哈哈";
+    return cell;
 }
 
 @end
