@@ -17,7 +17,6 @@
 		663C9A2F196CC23500BEDC4A /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A2E196CC23500BEDC4A /* people@2x.png */; };
 		663C9A31196CC24000BEDC4A /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A30196CC24000BEDC4A /* people.png */; };
 		669FB48B196E807C003BD821 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB48A196E807C003BD821 /* BaseViewController.m */; };
-		669FB491196E9975003BD821 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669FB490196E9975003BD821 /* SDWebImage.framework */; };
 		669FB4B0196E99E6003BD821 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB494196E99E6003BD821 /* MKAnnotationView+WebCache.m */; };
 		669FB4B1196E99E6003BD821 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB496196E99E6003BD821 /* NSData+ImageContentType.m */; };
 		669FB4B2196E99E6003BD821 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB498196E99E6003BD821 /* SDImageCache.m */; };
@@ -69,6 +68,7 @@
 		66F08610196CF64C00AD70B1 /* nav_comment_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F0860E196CF64C00AD70B1 /* nav_comment_active@2x.png */; };
 		66F08613196CF6D400AD70B1 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08611196CF6D400AD70B1 /* user.png */; };
 		66F08614196CF6D400AD70B1 /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08612196CF6D400AD70B1 /* user@2x.png */; };
+		8B25DC84196ED33A0040A49B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B25DC83196ED33A0040A49B /* SDWebImage.framework */; };
 		8B33DF731969450F0080E7FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF721969450F0080E7FD /* CFNetwork.framework */; };
 		8B33DF75196945190080E7FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF74196945190080E7FD /* SystemConfiguration.framework */; };
 		8B33DF77196945230080E7FD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B33DF76196945230080E7FD /* MobileCoreServices.framework */; };
@@ -129,7 +129,6 @@
 		663C9A30196CC24000BEDC4A /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		669FB489196E807C003BD821 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		669FB48A196E807C003BD821 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		669FB490196E9975003BD821 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = ../../../../Downloads/SDWebImage.framework; sourceTree = "<group>"; };
 		669FB493196E99E6003BD821 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		669FB494196E99E6003BD821 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		669FB495196E99E6003BD821 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		66F0860E196CF64C00AD70B1 /* nav_comment_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_comment_active@2x.png"; sourceTree = "<group>"; };
 		66F08611196CF6D400AD70B1 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		66F08612196CF6D400AD70B1 /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
+		8B25DC83196ED33A0040A49B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		8B33DF3519693D270080E7FD /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		8B33DF721969450F0080E7FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8B33DF74196945190080E7FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -275,7 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				669FB491196E9975003BD821 /* SDWebImage.framework in Frameworks */,
+				8B25DC84196ED33A0040A49B /* SDWebImage.framework in Frameworks */,
 				66E9AEB0196A8ED700558097 /* libsqlite3.0.dylib in Frameworks */,
 				66B8DFA1196A3B2F00F7CD67 /* QuartzCore.framework in Frameworks */,
 				8B33DF79196945380080E7FD /* libz.1.2.5.dylib in Frameworks */,
@@ -512,7 +512,7 @@
 		8B851CC419683A29008DC90D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				669FB490196E9975003BD821 /* SDWebImage.framework */,
+				8B25DC83196ED33A0040A49B /* SDWebImage.framework */,
 				66E9AEAF196A8ED700558097 /* libsqlite3.0.dylib */,
 				66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */,
 				8B33DF78196945380080E7FD /* libz.1.2.5.dylib */,
@@ -929,6 +929,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhoujiafei/Downloads,
+					/Users/liujinlan/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinner/Dinner-Prefix.pch";
@@ -948,6 +950,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhoujiafei/Downloads,
+					/Users/liujinlan/Downloads,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinner/Dinner-Prefix.pch";
