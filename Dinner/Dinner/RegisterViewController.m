@@ -14,7 +14,7 @@
 {
     [super viewDidLoad];
     self.title = @"注册";
-    self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 @end

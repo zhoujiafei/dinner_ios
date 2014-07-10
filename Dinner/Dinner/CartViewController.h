@@ -7,7 +7,8 @@
 // 购物车
 
 #import <UIKit/UIKit.h>
+#import "config.h"
 
-@interface CartViewController : UIViewController
+@interface CartViewController : BaseViewController
 
 @end

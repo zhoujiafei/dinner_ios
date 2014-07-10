@@ -14,9 +14,6 @@
 {
     [super viewDidLoad];
     self.title = @"美食框";
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    
 }
 
 @end

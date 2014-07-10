@@ -20,13 +20,26 @@
 {
     [super viewDidLoad];
     self.title = @"首页";
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    //获取餐厅列表数据
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
-    [request startSynchronous];
-    NSError *error = [request error];
-    if (!error)
-    {
+    [self showLoading];
+    [self showAllShops];
+}
+
+//显示商家列表
+-(void)showAllShops
+{
+    NSURL *url = [NSURL URLWithString:GET_SHOPS_API];
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setCompletionBlock:^{
+        if ([request responseStatusCode] != 200)
+        {
+            return;
+        }
+        
+        if (isNilNull([request responseData]))
+        {
+            return;
+        }
+        
         NSData *data = [request responseData];
         NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         _shopData = [allData objectForKey:@"shops"];
@@ -34,9 +47,14 @@
         
         if ([_shopData count] > 0)
         {
+            [self hideTip];
             //存储数据
             [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:GET_SHOPS_API withObject:allData];
             
+            if(SYSTEM_VERSION >= 7.0)
+            {
+                self.automaticallyAdjustsScrollViewInsets = NO;
+            }
             //创建tableView
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
@@ -55,15 +73,16 @@
         else
         {
             [ProgressHUD show:@"没有数据"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [ProgressHUD dismiss];
             });
         }
-    }
-    else
-    {
+    }];
+    [request setFailedBlock:^{
+        [self hideTip];
         [ProgressHUD showError:@"网络错误"];
-    }
+    }];
+    [request startAsynchronous];
 }
 
 #pragma mark -UITableViewDataSource
@@ -99,7 +118,6 @@
     cell.imageView.image = [UIImage imageWithData:
                                 [NSData dataWithContentsOfURL:
                                                 [NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]]];
-    
     //调整图片大小
     CGSize itemSize = CGSizeMake(40, 40);
     UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);

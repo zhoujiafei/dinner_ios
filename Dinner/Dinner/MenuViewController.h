@@ -12,7 +12,7 @@
 #import "MenuTableViewCell.h"
 #import "CartViewController.h"
 
-@interface MenuViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+@interface MenuViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 
 @property(nonatomic,assign) NSString *shopId;
 @property (nonatomic,strong) UITableView *tableView;

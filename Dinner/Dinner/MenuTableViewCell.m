@@ -38,7 +38,7 @@
         
         //菜的价格
         _menuPrice = [[UILabel alloc] initWithFrame:CGRectMake(230, 10, 80, 30)];
-        _menuPrice.textColor = [UIColor redColor];
+        _menuPrice.textColor = APP_BASE_COLOR;
         _menuPrice.font = [UIFont systemFontOfSize:12];
         _menuPrice.textAlignment = NSTextAlignmentRight;
         
@@ -53,7 +53,7 @@
         [btn.layer setCornerRadius:5.0];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitle:@"吃一份" forState:UIControlStateNormal];
-        btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:55.0/255.0 alpha:1];
+        btn.backgroundColor = APP_BASE_COLOR;
         
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];

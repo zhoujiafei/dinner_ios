@@ -11,6 +11,6 @@
 #import "BaseNavigationController.h"
 #import "LoginViewController.h"
 
-@interface CenterViewController : UIViewController
+@interface CenterViewController : BaseViewController
 
 @end

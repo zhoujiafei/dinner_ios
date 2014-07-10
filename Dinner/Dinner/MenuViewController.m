@@ -20,19 +20,38 @@
 {
     [super viewDidLoad];
     self.title = @"菜单";
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]]];
-    [request startSynchronous];
-    NSError *error = [request error];
-    if (!error)
-    {
+    [self showLoading];
+    [self showMenus];
+}
+
+//显示菜单
+-(void)showMenus
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]];
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setCompletionBlock:^{
+        if ([request responseStatusCode] != 200)
+        {
+            return;
+        }
+        
+        if (isNilNull([request responseData]))
+        {
+            return;
+        }
+        
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:nil];
         _menusData = [data objectForKey:@"menus"];
         if ([_menusData count] > 0)
         {
+            [self hideTip];
             //存储数据
             [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_MENUS_API,_shopId] withObject:_menusData];
+            
+            if(SYSTEM_VERSION >= 7.0)
+            {
+                self.automaticallyAdjustsScrollViewInsets = NO;
+            }
             
             //创建tableView
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
@@ -53,7 +72,7 @@
             //增加一个购物车
             UIButton *cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
-            cartBtn.backgroundColor = [UIColor colorWithRed:50.0/255.0 green:151.0/255.0 blue:228.0/255.0 alpha:0.8];
+            cartBtn.backgroundColor = APP_BASE_COLOR;
             [cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
             [cartBtn addTarget:self action:@selector(addToCart:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:cartBtn];
@@ -62,15 +81,16 @@
         else
         {
             [ProgressHUD show:@"没有数据"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [ProgressHUD dismiss];
             });
         }
-    }
-    else
-    {
-        [ProgressHUD showError:@"网络不可用"];
-    }
+    }];
+    [request setFailedBlock:^{
+        [self hideTip];
+        [ProgressHUD showError:@"网络错误"];
+    }];
+    [request startAsynchronous];
 }
 
 //查看购物车
@@ -114,9 +134,8 @@
     
     NSInteger rowNo = indexPath.row;
     cell.menuName.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"name"];
-    cell.menuImageView.image = [UIImage imageWithData:
-                            [NSData dataWithContentsOfURL:
-                             [NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]]];
+    [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
+                   placeholderImage:[UIImage imageNamed:@"food"]];
     cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
     cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     return cell;

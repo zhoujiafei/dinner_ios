@@ -12,7 +12,7 @@
 #import "ShopTableViewCell.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface HomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+@interface HomeViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray *shopData;

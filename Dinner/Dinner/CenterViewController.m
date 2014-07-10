@@ -14,8 +14,7 @@
 {
     [super viewDidLoad];
     self.title = @"用户中心";
-    self.view.backgroundColor = [UIColor whiteColor];
-    
+
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     loginBtn.frame = CGRectMake(20, 160, 100, 45);
     [loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
