@@ -12,11 +12,17 @@
 
 @synthesize pathCover = _pathCover;
 @synthesize tableView = _tableView;
+@synthesize settingLabels = _settingLabels;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = @"用户中心";
+    
+    //设置项
+    _settingLabels = [NSArray arrayWithObjects:
+                        @[@"个人资料",@"修改密码"],
+                        @[@"今日订单",@"历史订单"],nil];
     
     if(SYSTEM_VERSION >= 7.0)
     {
@@ -50,12 +56,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [[_settingLabels objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,17 +74,15 @@
         cell = [[CenterTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
     
-    //    NSInteger rowNo = indexPath.row;
-    cell.textLabel.text = @"哈哈哈";
+    cell.textLabel.text = [[_settingLabels objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
 }
 
 #pragma mark -UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10.0f;
+    return 30.0f;
 }
-
 
 #pragma mark- scroll delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

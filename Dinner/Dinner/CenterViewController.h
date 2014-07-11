@@ -16,5 +16,5 @@
 
 @property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UITableView *tableView;
-
+@property (nonatomic,strong) NSArray *settingLabels;
 @end
