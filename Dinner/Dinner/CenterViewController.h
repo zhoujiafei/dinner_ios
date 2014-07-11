@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "LoginViewController.h"
-#import "UIScrollView+TwitterCover.h"
+#import "CenterTableViewCell.h"
+#import "XHPathCover.h"
 
 @interface CenterViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic, strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UITableView *tableView;
 
 @end

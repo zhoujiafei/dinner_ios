@@ -43,6 +43,14 @@
 		66AE41B3196D1BF7001F5640 /* navBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66AE41B1196D1BF7001F5640 /* navBar@2x.png */; };
 		66AE41BC196D37FD001F5640 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AE41BB196D37FD001F5640 /* RegisterViewController.m */; };
 		66B8DFA1196A3B2F00F7CD67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */; };
+		66BA4BBE196F65880072A4FC /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 66BA4BBC196F65880072A4FC /* circle.png */; };
+		66BA4BBF196F65880072A4FC /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66BA4BBD196F65880072A4FC /* circle@2x.png */; };
+		66BA4BC7196F65B40072A4FC /* XHPathCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BA4BC2196F65B40072A4FC /* XHPathCover.m */; };
+		66BA4BC8196F65B40072A4FC /* XHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BA4BC4196F65B40072A4FC /* XHSoundManager.m */; };
+		66BA4BC9196F65B40072A4FC /* XHWaterDropRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BA4BC6196F65B40072A4FC /* XHWaterDropRefresh.m */; };
+		66BA4BCC196F66DE0072A4FC /* meicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66BA4BCA196F66DE0072A4FC /* meicon.png */; };
+		66BA4BCD196F66DE0072A4FC /* meicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66BA4BCB196F66DE0072A4FC /* meicon@2x.png */; };
+		66BA4BD0196F6BA10072A4FC /* CenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BA4BCF196F6BA10072A4FC /* CenterTableViewCell.m */; };
 		66E9AE8D196A806F00558097 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66E9AE8E196A806F00558097 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AE85196A806F00558097 /* blackArrow.png */; };
 		66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AE86196A806F00558097 /* blackArrow@2x.png */; };
@@ -174,6 +182,19 @@
 		66AE41BA196D37FD001F5640 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		66AE41BB196D37FD001F5640 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		66B8DFA0196A3B2F00F7CD67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		66BA4BBB196F656F0072A4FC /* pullrefresh.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = pullrefresh.aif; sourceTree = "<group>"; };
+		66BA4BBC196F65880072A4FC /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		66BA4BBD196F65880072A4FC /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
+		66BA4BC1196F65B40072A4FC /* XHPathCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPathCover.h; sourceTree = "<group>"; };
+		66BA4BC2196F65B40072A4FC /* XHPathCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPathCover.m; sourceTree = "<group>"; };
+		66BA4BC3196F65B40072A4FC /* XHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSoundManager.h; sourceTree = "<group>"; };
+		66BA4BC4196F65B40072A4FC /* XHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSoundManager.m; sourceTree = "<group>"; };
+		66BA4BC5196F65B40072A4FC /* XHWaterDropRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWaterDropRefresh.h; sourceTree = "<group>"; };
+		66BA4BC6196F65B40072A4FC /* XHWaterDropRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHWaterDropRefresh.m; sourceTree = "<group>"; };
+		66BA4BCA196F66DE0072A4FC /* meicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meicon.png; sourceTree = "<group>"; };
+		66BA4BCB196F66DE0072A4FC /* meicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meicon@2x.png"; sourceTree = "<group>"; };
+		66BA4BCE196F6BA10072A4FC /* CenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterTableViewCell.h; sourceTree = "<group>"; };
+		66BA4BCF196F6BA10072A4FC /* CenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterTableViewCell.m; sourceTree = "<group>"; };
 		66E9AE82196A806F00558097 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		66E9AE85196A806F00558097 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -311,6 +332,10 @@
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				66BA4BCA196F66DE0072A4FC /* meicon.png */,
+				66BA4BCB196F66DE0072A4FC /* meicon@2x.png */,
+				66BA4BBC196F65880072A4FC /* circle.png */,
+				66BA4BBD196F65880072A4FC /* circle@2x.png */,
 				8B25DC89196EE4230040A49B /* cover.png */,
 				8B25DC8A196EE4230040A49B /* cover@2x.png */,
 				669FB4C4196E9D03003BD821 /* dian@2x.png */,
@@ -375,6 +400,27 @@
 				669FB4AF196E99E6003BD821 /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		66BA4BBA196F65540072A4FC /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				66BA4BBB196F656F0072A4FC /* pullrefresh.aif */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
+		66BA4BC0196F65B40072A4FC /* XHPathCover */ = {
+			isa = PBXGroup;
+			children = (
+				66BA4BC1196F65B40072A4FC /* XHPathCover.h */,
+				66BA4BC2196F65B40072A4FC /* XHPathCover.m */,
+				66BA4BC3196F65B40072A4FC /* XHSoundManager.h */,
+				66BA4BC4196F65B40072A4FC /* XHSoundManager.m */,
+				66BA4BC5196F65B40072A4FC /* XHWaterDropRefresh.h */,
+				66BA4BC6196F65B40072A4FC /* XHWaterDropRefresh.m */,
+			);
+			path = XHPathCover;
 			sourceTree = "<group>";
 		};
 		66E9AE7F196A806F00558097 /* EGOTableViewPullRefresh */ = {
@@ -460,6 +506,7 @@
 		8B33DF7A196973CF0080E7FD /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				66BA4BC0196F65B40072A4FC /* XHPathCover */,
 				8B25DC85196EDF690040A49B /* TwitterCover */,
 				669FB492196E99E6003BD821 /* SDWebImage */,
 				66E9AE96196A86E100558097 /* database */,
@@ -597,6 +644,8 @@
 				8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */,
 				66F08606196CCCD700AD70B1 /* MenuTableViewCell.h */,
 				66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */,
+				66BA4BCE196F6BA10072A4FC /* CenterTableViewCell.h */,
+				66BA4BCF196F6BA10072A4FC /* CenterTableViewCell.m */,
 			);
 			name = class;
 			sourceTree = "<group>";
@@ -648,6 +697,7 @@
 		8BC6FF3C196C23530093A476 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				66BA4BBA196F65540072A4FC /* sound */,
 				663C9A21196CC1B600BEDC4A /* image */,
 			);
 			name = resource;
@@ -730,6 +780,7 @@
 			files = (
 				8B851CD019683A29008DC90D /* InfoPlist.strings in Resources */,
 				66E9AE8E196A806F00558097 /* blackArrow.png in Resources */,
+				66BA4BCC196F66DE0072A4FC /* meicon.png in Resources */,
 				66F0860F196CF64C00AD70B1 /* nav_comment_active.png in Resources */,
 				8B851CD819683A29008DC90D /* Images.xcassets in Resources */,
 				663C9A2B196CC20100BEDC4A /* cog_01@2x.png in Resources */,
@@ -744,6 +795,7 @@
 				663C9A23196CC1C800BEDC4A /* trolley@2x.png in Resources */,
 				663C9A2F196CC23500BEDC4A /* people@2x.png in Resources */,
 				66F08613196CF6D400AD70B1 /* user.png in Resources */,
+				66BA4BCD196F66DE0072A4FC /* meicon@2x.png in Resources */,
 				66F0860C196CE5E100AD70B1 /* star.png in Resources */,
 				66AE41AE196D12F5001F5640 /* cart_full_show@2x.png in Resources */,
 				669FB4C3196E9CEF003BD821 /* dian.png in Resources */,
@@ -764,6 +816,8 @@
 				669FB4BF196E9AE1003BD821 /* food.png in Resources */,
 				66E9AE92196A806F00558097 /* grayArrow.png in Resources */,
 				663C9A31196CC24000BEDC4A /* people.png in Resources */,
+				66BA4BBF196F65880072A4FC /* circle@2x.png in Resources */,
+				66BA4BBE196F65880072A4FC /* circle.png in Resources */,
 				66AE41AD196D12F5001F5640 /* cart_full_show.png in Resources */,
 				8B33DF82196994C90080E7FD /* ProgressHUD.bundle in Resources */,
 			);
@@ -792,6 +846,7 @@
 				660BF2E8196AA729003EA75D /* LoginViewController.m in Sources */,
 				8B851CFC19683F7A008DC90D /* BaseNavigationController.m in Sources */,
 				669FB4B9196E99E6003BD821 /* UIButton+WebCache.m in Sources */,
+				66BA4BD0196F6BA10072A4FC /* CenterTableViewCell.m in Sources */,
 				8B33DF9D196996400080E7FD /* ASIDataDecompressor.m in Sources */,
 				8B851CD619683A29008DC90D /* AppDelegate.m in Sources */,
 				8B851CF919683E8F008DC90D /* BaseTabBarController.m in Sources */,
@@ -802,6 +857,7 @@
 				8B851D0919684C35008DC90D /* MenuViewController.m in Sources */,
 				669FB4B3196E99E6003BD821 /* SDWebImageCompat.m in Sources */,
 				669FB4B5196E99E6003BD821 /* SDWebImageDownloader.m in Sources */,
+				66BA4BC9196F65B40072A4FC /* XHWaterDropRefresh.m in Sources */,
 				669FB4B6196E99E6003BD821 /* SDWebImageDownloaderOperation.m in Sources */,
 				669FB4B4196E99E6003BD821 /* SDWebImageDecoder.m in Sources */,
 				669FB4B7196E99E6003BD821 /* SDWebImageManager.m in Sources */,
@@ -820,6 +876,8 @@
 				8B851D0019684125008DC90D /* HomeViewController.m in Sources */,
 				66F08608196CCCD700AD70B1 /* MenuTableViewCell.m in Sources */,
 				669FB4B1196E99E6003BD821 /* NSData+ImageContentType.m in Sources */,
+				66BA4BC7196F65B40072A4FC /* XHPathCover.m in Sources */,
+				66BA4BC8196F65B40072A4FC /* XHSoundManager.m in Sources */,
 				8B33DF9F196996400080E7FD /* ASIFormDataRequest.m in Sources */,
 				669FB4BC196E99E6003BD821 /* UIImage+WebP.m in Sources */,
 				8B25DC88196EDF690040A49B /* UIScrollView+TwitterCover.m in Sources */,
