@@ -1,4 +1,4 @@
-//
+    //
 //  MenuTableViewCell.m
 //  Dinner
 //
@@ -13,6 +13,7 @@
 @synthesize menuName        = _menuName;
 @synthesize menuPrice       = _menuPrice;
 @synthesize menuDetail      = _menuDetail;
+@synthesize btn             = _btn;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,7 +21,6 @@
     if (self)
     {
         self.frame = CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 100);
-        self.userInteractionEnabled = NO;
         //菜的图片
         _menuImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
         _menuImageView.layer.cornerRadius = 8.0;
@@ -48,26 +48,21 @@
         _menuDetail.font = [UIFont systemFontOfSize:14];
         
         //按钮
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        btn.frame = CGRectMake(230, 60, 80, 30);
-        [btn.layer setCornerRadius:5.0];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitle:@"吃一份" forState:UIControlStateNormal];
-        btn.backgroundColor = APP_BASE_COLOR;
+        _btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _btn.frame = CGRectMake(230, 60, 80, 30);
+        [_btn.layer setCornerRadius:5.0];
+        [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btn setTitle:@"吃一份" forState:UIControlStateNormal];
+        _btn.backgroundColor = APP_BASE_COLOR;
         
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
         [self.contentView addSubview:_menuPrice];
         [self.contentView addSubview:_menuDetail];
-        [self.contentView addSubview:btn];
+        [self.contentView addSubview:_btn];
         [self.contentView addSubview:starView];
     }
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
 }
 
 @end

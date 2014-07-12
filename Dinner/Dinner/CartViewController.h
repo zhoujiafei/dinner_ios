@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "FoodCartTableViewCell.h"
 
-@interface CartViewController : BaseViewController
+@interface CartViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSMutableArray *cartData;
 
 @end

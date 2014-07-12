@@ -12,12 +12,13 @@
 #import "MenuTableViewCell.h"
 #import "CartViewController.h"
 
-@interface MenuViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+@interface MenuViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate>
 
 @property(nonatomic,assign) NSString *shopId;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
 @property (nonatomic,assign) BOOL reloading;
 @property (nonatomic,strong) NSArray *menusData;
+@property (nonatomic,strong) UIButton *cartBtn;
 
 @end

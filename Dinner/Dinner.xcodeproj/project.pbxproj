@@ -76,6 +76,7 @@
 		66F08610196CF64C00AD70B1 /* nav_comment_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F0860E196CF64C00AD70B1 /* nav_comment_active@2x.png */; };
 		66F08613196CF6D400AD70B1 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08611196CF6D400AD70B1 /* user.png */; };
 		66F08614196CF6D400AD70B1 /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F08612196CF6D400AD70B1 /* user@2x.png */; };
+		8B1FCFBC1971250400D6BFFF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1FCFBB1971250400D6BFFF /* MBProgressHUD.m */; };
 		8B25DC84196ED33A0040A49B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B25DC83196ED33A0040A49B /* SDWebImage.framework */; };
 		8B25DC88196EDF690040A49B /* UIScrollView+TwitterCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B25DC87196EDF690040A49B /* UIScrollView+TwitterCover.m */; };
 		8B25DC8B196EE4230040A49B /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B25DC89196EE4230040A49B /* cover.png */; };
@@ -114,6 +115,7 @@
 		8B851D031968413B008DC90D /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D021968413B008DC90D /* CenterViewController.m */; };
 		8B851D0619684215008DC90D /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0519684215008DC90D /* SettingViewController.m */; };
 		8B851D0919684C35008DC90D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0819684C35008DC90D /* MenuViewController.m */; };
+		8BA0B79A19717BF600A668D2 /* FoodCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */; };
 		8BC6FF3F196C2D6B0093A476 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6FF3E196C2D6B0093A476 /* CartViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -229,6 +231,8 @@
 		66F0860E196CF64C00AD70B1 /* nav_comment_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_comment_active@2x.png"; sourceTree = "<group>"; };
 		66F08611196CF6D400AD70B1 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		66F08612196CF6D400AD70B1 /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
+		8B1FCFBA1971250400D6BFFF /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8B1FCFBB1971250400D6BFFF /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		8B25DC83196ED33A0040A49B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		8B25DC86196EDF690040A49B /* UIScrollView+TwitterCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TwitterCover.h"; sourceTree = "<group>"; };
 		8B25DC87196EDF690040A49B /* UIScrollView+TwitterCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TwitterCover.m"; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 		8B851D0519684215008DC90D /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		8B851D0719684C35008DC90D /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		8B851D0819684C35008DC90D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		8BA0B79819717BF600A668D2 /* FoodCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCartTableViewCell.h; sourceTree = "<group>"; };
+		8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCartTableViewCell.m; sourceTree = "<group>"; };
 		8BC6FF3D196C2D6B0093A476 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		8BC6FF3E196C2D6B0093A476 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -494,6 +500,15 @@
 			path = FMDataBase;
 			sourceTree = "<group>";
 		};
+		8B1FCFB91971250400D6BFFF /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8B1FCFBA1971250400D6BFFF /* MBProgressHUD.h */,
+				8B1FCFBB1971250400D6BFFF /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		8B25DC85196EDF690040A49B /* TwitterCover */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +521,7 @@
 		8B33DF7A196973CF0080E7FD /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				8B1FCFB91971250400D6BFFF /* MBProgressHUD */,
 				66BA4BC0196F65B40072A4FC /* XHPathCover */,
 				8B25DC85196EDF690040A49B /* TwitterCover */,
 				669FB492196E99E6003BD821 /* SDWebImage */,
@@ -646,6 +662,8 @@
 				66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */,
 				66BA4BCE196F6BA10072A4FC /* CenterTableViewCell.h */,
 				66BA4BCF196F6BA10072A4FC /* CenterTableViewCell.m */,
+				8BA0B79819717BF600A668D2 /* FoodCartTableViewCell.h */,
+				8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */,
 			);
 			name = class;
 			sourceTree = "<group>";
@@ -849,6 +867,7 @@
 				66BA4BD0196F6BA10072A4FC /* CenterTableViewCell.m in Sources */,
 				8B33DF9D196996400080E7FD /* ASIDataDecompressor.m in Sources */,
 				8B851CD619683A29008DC90D /* AppDelegate.m in Sources */,
+				8BA0B79A19717BF600A668D2 /* FoodCartTableViewCell.m in Sources */,
 				8B851CF919683E8F008DC90D /* BaseTabBarController.m in Sources */,
 				669FB4BA196E99E6003BD821 /* UIImage+GIF.m in Sources */,
 				669FB4B8196E99E6003BD821 /* SDWebImagePrefetcher.m in Sources */,
@@ -873,6 +892,7 @@
 				66E9AEAC196A86E100558097 /* FMDatabaseQueue.m in Sources */,
 				669FB4B0196E99E6003BD821 /* MKAnnotationView+WebCache.m in Sources */,
 				669FB4BB196E99E6003BD821 /* UIImage+MultiFormat.m in Sources */,
+				8B1FCFBC1971250400D6BFFF /* MBProgressHUD.m in Sources */,
 				8B851D0019684125008DC90D /* HomeViewController.m in Sources */,
 				66F08608196CCCD700AD70B1 /* MenuTableViewCell.m in Sources */,
 				669FB4B1196E99E6003BD821 /* NSData+ImageContentType.m in Sources */,

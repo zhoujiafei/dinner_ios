@@ -15,5 +15,7 @@
 @property (nonatomic,strong) UILabel *menuName;//菜名
 @property (nonatomic,strong) UILabel *menuPrice;//菜的价格
 @property (nonatomic,strong) UILabel *menuDetail;//菜的简介
+@property (nonatomic,strong) UIButton *btn;
+
 
 @end

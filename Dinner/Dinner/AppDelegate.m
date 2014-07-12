@@ -47,6 +47,12 @@
     
     //创建缓存数据表
     [[DataManage shareDataManage] createTableName:CACHE_NAME];
+    //创建美食框的数据表
+    [[DataManage shareDataManage] createTableName:FOOD_CART];
+    
+//    [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
+    
+    
     
     return YES;
 }

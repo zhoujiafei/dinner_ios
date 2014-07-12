@@ -10,11 +10,12 @@
 
 @implementation MenuViewController
 
-@synthesize shopId = _shopId;
-@synthesize tableView = _tableView;
-@synthesize refreshTableHeaderView = _refreshTableHeaderView;
-@synthesize reloading = _reloading;
-@synthesize menusData = _menusData;
+@synthesize shopId                  = _shopId;
+@synthesize tableView               = _tableView;
+@synthesize refreshTableHeaderView  = _refreshTableHeaderView;
+@synthesize reloading               = _reloading;
+@synthesize menusData               = _menusData;
+@synthesize cartBtn                 = _cartBtn;
 
 - (void)viewDidLoad
 {
@@ -70,12 +71,12 @@
             [_refreshTableHeaderView refreshLastUpdatedDate];
             
             //增加一个购物车
-            UIButton *cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
-            cartBtn.backgroundColor = APP_BASE_COLOR;
-            [cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
-            [cartBtn addTarget:self action:@selector(addToCart:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:cartBtn];
+            _cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            _cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
+            _cartBtn.backgroundColor = APP_BASE_COLOR;
+            [_cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
+            [_cartBtn addTarget:self action:@selector(addToCart:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:_cartBtn];
             
         }
         else
@@ -138,17 +139,148 @@
                    placeholderImage:[UIImage imageNamed:@"food"]];
     cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
     cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
+    cell.btn.tag = rowNo;
+    [cell.btn addTarget:self action:@selector(addMenuToFoodCart:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
-#pragma mark -UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//添加菜到美食框
+-(void)addMenuToFoodCart:(UIButton *)btn
 {
-    //添加到购物车
+//    [self addAnimateWithStart:btn end:_cartBtn];return;
+    [self animationTwo:btn];return;
     
     
+    btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
+    
+    //获取所选的菜的基本信息
+    NSDictionary *dic = [_menusData objectAtIndex:btn.tag];
+    //获取购物车里面的数据
+    NSMutableArray *foodCart = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
+    if (![foodCart isEqual:nil] && [foodCart count] > 0)
+    {
+        //首先判断购物车里面的菜所属的商家与当前的商家是不是同一家
+        if (![_shopId isEqualToString:[[foodCart objectAtIndex:0] objectForKey:@"shop_id"]])
+        {
+            NSString *msg = [NSString stringWithFormat:@"当前美食框里面的菜来自:《%@》，请清空美食框之后再选菜",[[foodCart objectAtIndex:0] objectForKey:@"shop_name"]];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"清空", nil];
+            [alert show];
+            return;
+        }
+        
+        //判断添加的这道菜是不是已经存在于购物车
+        if ([self isInFoodCart:[dic objectForKey:@"id"]])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"这道菜已经存在美食框" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+            return;
+        }
+    }
+    else
+    {
+        foodCart = [NSMutableArray array];
+    }
+    
+    //添加到购物车里面
+    [foodCart addObject:dic];
+    //再将添加之后的数据保存到购物车里面
+    [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:foodCart];
 }
 
+//判断某一道菜是否已经在购物车里面了
+-(BOOL)isInFoodCart:(NSString *)menuId
+{
+    //获取购物车数据
+    NSArray *cartData = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
+    if (![cartData isEqual:nil] && [cartData count] > 0)
+    {
+        for (int i = 0; i < [cartData count]; i++)
+        {
+            if([[[cartData objectAtIndex:i] objectForKey:@"id"] isEqualToString:menuId])
+            {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+//添加菜到美食框的动画效果
+- (void)addAnimateWithStart:(UIButton *)start end:(id)target
+{
+    // 该部分动画 以self.view为参考系进行
+    CGRect frame = start.frame;
+    UIButton *move = [[UIButton alloc] initWithFrame:frame];
+    [move setBackgroundColor:[UIColor redColor]];
+    [move setTitle:start.currentTitle forState:UIControlStateNormal];
+    [move setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    move.contentMode = UIViewContentModeScaleToFill;
+    [self.view addSubview:move];
+    // 加入购物车动画效果
+    [UIView animateWithDuration:1.5 animations:^{
+        move.frame = ((UIButton *)target).frame;
+    } completion:^(BOOL finished) {
+        [move removeFromSuperview];
+        
+        NSLog(@"ok");
+        
+        
+    }];
+    return;
+}
+
+-(void)animationTwo:(UIButton *)btn
+{
+    UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"food.png"]];
+    imageView.contentMode=UIViewContentModeScaleToFill;
+    imageView.frame=CGRectMake(0, 0, 20, 20);
+    imageView.hidden=YES;
+    imageView.center = btn.center;
+    CGPoint point = imageView.center;
+    CALayer *layer=[[CALayer alloc]init];
+    layer.contents=imageView.layer.contents;
+    layer.frame=imageView.frame;
+    layer.opacity=1;
+    [self.view.layer addSublayer:layer];
+    CGPoint point1=_cartBtn.center;
+    //动画 终点 都以sel.view为参考系
+    CGPoint endpoint=[self.view convertPoint:point1 fromView:_cartBtn];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //动画起点
+    CGPoint startPoint=[self.view convertPoint:point fromView:self.tableView];
+    [path moveToPoint:startPoint];
+    //贝塞尔曲线中间点
+    float sx=startPoint.x;
+    float sy=startPoint.y;
+    float ex=endpoint.x;
+    float ey=endpoint.y;
+    float x=sx+(ex-sx)/3;
+    float y=sy+(ey-sy)*0.5-400;
+    CGPoint centerPoint=CGPointMake(x,y);
+    [path addQuadCurveToPoint:endpoint controlPoint:centerPoint];
+    
+    CAKeyframeAnimation *animation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.path = path.CGPath;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.duration=0.8;
+    animation.delegate=self;
+    animation.autoreverses= NO;
+    animation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [layer addAnimation:animation forKey:@"buy"];
+}
+
+#pragma mark -UIAlertViewDelegate
+//主要是用于清空美食框
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //如果用户点击确认，则清空美食框
+    if (buttonIndex == 1)
+    {
+        [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
+        [ProgressHUD showSuccess:@"美食框已清空"];
+    }
+}
 
 //刷新的两个方法
 - (void)reloadTableViewDataSource

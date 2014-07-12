@@ -1,21 +1,21 @@
 //
-//  CenterTableViewCell.m
+//  FoodCartTableViewCell.m
 //  Dinner
 //
-//  Created by 周 加飞 on 14-7-11.
+//  Created by 刘 金兰 on 14-7-12.
 //  Copyright (c) 2014年 周加飞. All rights reserved.
 //
 
-#import "CenterTableViewCell.h"
+#import "FoodCartTableViewCell.h"
 
-@implementation CenterTableViewCell
+@implementation FoodCartTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
     }
     return self;
 }
