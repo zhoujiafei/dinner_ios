@@ -57,7 +57,14 @@
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_cartData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
                        placeholderImage:[UIImage imageNamed:@"food"]];
     cell.menuPrice.text = [[[_cartData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
+    [cell.leftBtn addTarget:self action:@selector(changeNum:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
+}
+
+//改变个数
+-(void)changeNum:(UIButton *)btn
+{
+    NSLog(@"111");
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

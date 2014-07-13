@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UIImageView *menuImageView;//菜图
 @property (nonatomic,strong) UILabel *menuName;//菜名
 @property (nonatomic,strong) UILabel *menuPrice;//菜的价格
-@property (nonatomic,strong) UIStepper *stepper;//步进器
+@property (nonatomic,strong) UIButton *leftBtn;//减按钮
+@property (nonatomic,strong) UIButton *rightBtn;//加按钮
+@property (nonatomic,strong) UILabel *menuNum;//显示某一道菜所选的个数
 
 @end

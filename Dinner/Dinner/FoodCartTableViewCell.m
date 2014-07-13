@@ -13,7 +13,10 @@
 @synthesize menuImageView   = _menuImageView;
 @synthesize menuName        = _menuName;
 @synthesize menuPrice       = _menuPrice;
-@synthesize stepper         = _stepper;
+@synthesize leftBtn         = _leftBtn;
+@synthesize rightBtn        = _rightBtn;
+@synthesize menuNum         = _menuNum;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -35,16 +38,35 @@
         _menuPrice.textColor = APP_BASE_COLOR;
         _menuPrice.font = [UIFont systemFontOfSize:12];
         
-        //步进器
-        _stepper = [[UIStepper alloc] initWithFrame:CGRectMake(216, 12, 80, 30)];
-        _stepper.value = 1;//默认是1
-        _stepper.minimumValue = 0;
-        _stepper.maximumValue = 100;
+        //减按钮
+        _leftBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _leftBtn.frame = CGRectMake(220, 12, 30, 30);
+        [_leftBtn setTitle:@"+" forState:UIControlStateNormal];
+        [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _leftBtn.backgroundColor = APP_BASE_COLOR;
+        
+        //显示数量的框子
+//        _menuNum = [[UITextField alloc] initWithFrame:CGRectMake(250, 12, 30, 30)];
+//        _menuNum.text = @"1";
+//        _menuNum.borderStyle = UITextBorderStyleNone;
+//        _menuNum.textAlignment = NSTextAlignmentCenter;
+        
+        _menuNum = [[UILabel alloc] initWithFrame:CGRectMake(250, 12, 30, 30)];
+        _menuNum.text = @"1";
+        _menuNum.textAlignment = NSTextAlignmentCenter;
+        
+        _rightBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _rightBtn.frame = CGRectMake(280, 12, 30, 30);
+        [_rightBtn setTitle:@"-" forState:UIControlStateNormal];
+        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _rightBtn.backgroundColor = APP_BASE_COLOR;
         
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
         [self.contentView addSubview:_menuPrice];
-        [self.contentView addSubview:_stepper];
+        [self.contentView addSubview:_leftBtn];
+        [self.contentView addSubview:_rightBtn];
+        [self.contentView addSubview:_menuNum];
     }
     return self;
 }
