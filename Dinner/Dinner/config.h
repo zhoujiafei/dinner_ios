@@ -27,6 +27,9 @@
 //美食框的表名
 #define FOOD_CART @"foodCart"
 
+//定义美食框数量发生变化的通知名称
+#define FOOD_NUM_CHANGED_NOTICE @"foodCartChangedNotice"
+
 //接口地址
 //#define GET_SHOPS_API @"http://localhost/dinner/branches/beta/index.php?r=api" //获取餐厅列表数据
 //#define GET_MENUS_API @"http://localhost/dinner/branches/beta/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单

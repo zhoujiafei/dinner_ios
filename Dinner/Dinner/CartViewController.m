@@ -17,13 +17,9 @@
 {
     [super viewDidLoad];
     self.title = @"美食框";
-    
-    
+
     //获取美食数据
     _cartData = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
-    
-    NSLog(@"%@",_cartData);
-    
     if (![_cartData isEqual:nil] && [_cartData count] > 0)
     {
         //创建tableView
@@ -57,10 +53,16 @@
     }
     
     NSInteger rowNo = indexPath.row;
-    
-    cell.textLabel.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"name"];
-    cell.detailTextLabel.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"brief"];
+    cell.menuName.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"name"];
+    [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_cartData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
+                       placeholderImage:[UIImage imageNamed:@"food"]];
+    cell.menuPrice.text = [[[_cartData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80.0f;
 }
 
 

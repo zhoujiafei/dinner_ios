@@ -147,10 +147,6 @@
 //添加菜到美食框
 -(void)addMenuToFoodCart:(UIButton *)btn
 {
-//    [self addAnimateWithStart:btn end:_cartBtn];return;
-    [self animationTwo:btn];return;
-    
-    
     btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
     
     //获取所选的菜的基本信息
@@ -185,6 +181,8 @@
     [foodCart addObject:dic];
     //再将添加之后的数据保存到购物车里面
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:foodCart];
+    //保存数据之后发通知
+    [self sendNotificationForCartChanged];
 }
 
 //判断某一道菜是否已经在购物车里面了
@@ -205,70 +203,6 @@
     return NO;
 }
 
-//添加菜到美食框的动画效果
-- (void)addAnimateWithStart:(UIButton *)start end:(id)target
-{
-    // 该部分动画 以self.view为参考系进行
-    CGRect frame = start.frame;
-    UIButton *move = [[UIButton alloc] initWithFrame:frame];
-    [move setBackgroundColor:[UIColor redColor]];
-    [move setTitle:start.currentTitle forState:UIControlStateNormal];
-    [move setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    move.contentMode = UIViewContentModeScaleToFill;
-    [self.view addSubview:move];
-    // 加入购物车动画效果
-    [UIView animateWithDuration:1.5 animations:^{
-        move.frame = ((UIButton *)target).frame;
-    } completion:^(BOOL finished) {
-        [move removeFromSuperview];
-        
-        NSLog(@"ok");
-        
-        
-    }];
-    return;
-}
-
--(void)animationTwo:(UIButton *)btn
-{
-    UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"food.png"]];
-    imageView.contentMode=UIViewContentModeScaleToFill;
-    imageView.frame=CGRectMake(0, 0, 20, 20);
-    imageView.hidden=YES;
-    imageView.center = btn.center;
-    CGPoint point = imageView.center;
-    CALayer *layer=[[CALayer alloc]init];
-    layer.contents=imageView.layer.contents;
-    layer.frame=imageView.frame;
-    layer.opacity=1;
-    [self.view.layer addSublayer:layer];
-    CGPoint point1=_cartBtn.center;
-    //动画 终点 都以sel.view为参考系
-    CGPoint endpoint=[self.view convertPoint:point1 fromView:_cartBtn];
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    //动画起点
-    CGPoint startPoint=[self.view convertPoint:point fromView:self.tableView];
-    [path moveToPoint:startPoint];
-    //贝塞尔曲线中间点
-    float sx=startPoint.x;
-    float sy=startPoint.y;
-    float ex=endpoint.x;
-    float ey=endpoint.y;
-    float x=sx+(ex-sx)/3;
-    float y=sy+(ey-sy)*0.5-400;
-    CGPoint centerPoint=CGPointMake(x,y);
-    [path addQuadCurveToPoint:endpoint controlPoint:centerPoint];
-    
-    CAKeyframeAnimation *animation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
-    animation.path = path.CGPath;
-    animation.removedOnCompletion = NO;
-    animation.fillMode = kCAFillModeForwards;
-    animation.duration=0.8;
-    animation.delegate=self;
-    animation.autoreverses= NO;
-    animation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    [layer addAnimation:animation forKey:@"buy"];
-}
 
 #pragma mark -UIAlertViewDelegate
 //主要是用于清空美食框
@@ -278,6 +212,7 @@
     if (buttonIndex == 1)
     {
         [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
+        [self sendNotificationForCartChanged];
         [ProgressHUD showSuccess:@"美食框已清空"];
     }
 }

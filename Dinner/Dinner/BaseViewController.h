@@ -13,5 +13,6 @@
 
 -(void)showLoading;//显示正在加载的提示
 -(void)hideTip;//隐藏提示框
+-(void)sendNotificationForCartChanged;//当美食框数量发生变化发送通知
 
 @end

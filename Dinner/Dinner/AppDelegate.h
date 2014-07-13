@@ -18,5 +18,9 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong) BaseNavigationController *homeNav;
+@property (nonatomic,strong) BaseNavigationController *cartNav;
+@property (nonatomic,strong) BaseNavigationController *centerNav;
+@property (nonatomic,strong) BaseNavigationController *settingNav;
 
 @end

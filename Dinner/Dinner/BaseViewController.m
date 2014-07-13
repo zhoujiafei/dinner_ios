@@ -28,4 +28,23 @@
     [ProgressHUD dismiss];
 }
 
+//当美食框数量发生变化发送通知
+-(void)sendNotificationForCartChanged
+{
+    //获取当前美食框的数量
+    NSArray *foodCart = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
+    NSString *numStr = @"";
+    if (![foodCart isEqual:nil] && [foodCart count] > 0)
+    {
+        numStr = [NSString stringWithFormat:@"%ld",[foodCart count]];
+    }
+    
+    //发送通知
+    NSNotification *notification = [NSNotification
+                                    notificationWithName:FOOD_NUM_CHANGED_NOTICE
+                                    object:nil
+                                    userInfo:[NSDictionary dictionaryWithObject:numStr forKey:@"cartNum"]];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
+
 @end

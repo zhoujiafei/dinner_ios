@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.m
 //  Dinner
 //
@@ -10,6 +10,12 @@
 
 @implementation AppDelegate
 
+@synthesize homeNav = _homeNav;
+@synthesize cartNav = _cartNav;
+@synthesize centerNav = _centerNav;
+@synthesize settingNav = _settingNav;
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -17,45 +23,67 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    //首页
-    HomeViewController *home = [[HomeViewController alloc] init];
-    BaseNavigationController *homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
-    homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"house"] tag:1];
-    
-    //美食框
-    CartViewController *cart = [[CartViewController alloc] init];
-    BaseNavigationController *cartNav = [[BaseNavigationController alloc] initWithRootViewController:cart];
-    cartNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"美食框" image:[UIImage imageNamed:@"trolley"] tag:2];
-    cartNav.tabBarItem.badgeValue = @"new";
-    
-    //用户中心
-    CenterViewController *center = [[CenterViewController alloc] init];
-    BaseNavigationController *centerNav = [[BaseNavigationController alloc] initWithRootViewController:center];
-    centerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"people"] tag:3];
-    
-    //设置
-    SettingViewController *setting = [[SettingViewController alloc] init];
-    BaseNavigationController *settingNav = [[BaseNavigationController alloc] initWithRootViewController:setting];
-    settingNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置" image:[UIImage imageNamed:@"cog_01"] tag:4];
-    
-    //创建UITabBar，并且将各子级导航加入到里面
-    UITabBarController *tab = [[UITabBarController alloc] init];
-    tab.viewControllers = @[homeNav,cartNav,centerNav,settingNav];
-    
-    //加入到窗口
-    self.window.rootViewController = tab;
-    
     //创建缓存数据表
     [[DataManage shareDataManage] createTableName:CACHE_NAME];
     //创建美食框的数据表
     [[DataManage shareDataManage] createTableName:FOOD_CART];
+    //获取美食框里面美食的个数
+    NSArray *foodCart = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
+    NSInteger foodNum = 0;
+    if (![foodCart isEqual:nil] && [foodCart count] > 0)
+    {
+        foodNum = [foodCart count];
+    }
     
-//    [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
+    //首页
+    HomeViewController *home = [[HomeViewController alloc] init];
+    _homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
+    _homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"house"] tag:1];
     
+    //美食框
+    CartViewController *cart = [[CartViewController alloc] init];
+    _cartNav = [[BaseNavigationController alloc] initWithRootViewController:cart];
+    _cartNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"美食框" image:[UIImage imageNamed:@"trolley"] tag:2];
     
+    if (foodNum > 0)
+    {
+        _cartNav.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",foodNum];
+    }
     
+    //用户中心
+    CenterViewController *center = [[CenterViewController alloc] init];
+    _centerNav = [[BaseNavigationController alloc] initWithRootViewController:center];
+    _centerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"people"] tag:3];
+    
+    //设置
+    SettingViewController *setting = [[SettingViewController alloc] init];
+    _settingNav = [[BaseNavigationController alloc] initWithRootViewController:setting];
+    _settingNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置" image:[UIImage imageNamed:@"cog_01"] tag:4];
+    
+    //创建UITabBar，并且将各子级导航加入到里面
+    UITabBarController *tab = [[UITabBarController alloc] init];
+    tab.viewControllers = @[_homeNav,_cartNav,_centerNav,_settingNav];
+    
+    //加入到窗口
+    self.window.rootViewController = tab;
+    
+    //注册通知，一旦美食框里面的数量发生变化，就更改 _cartNav.tabBarItem.badgeValue 的值
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCartNum:) name:FOOD_NUM_CHANGED_NOTICE object:nil];
     return YES;
 }
+
+//通知观察者
+-(void)changeCartNum:(NSNotification *)notification
+{
+    NSDictionary *info = notification.userInfo;
+    NSString *tag = [info objectForKey:@"cartNum"];
+    if ([tag isEqualToString:@""])
+    {
+        tag = nil;
+    }
+    _cartNav.tabBarItem.badgeValue = tag;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
