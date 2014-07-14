@@ -12,6 +12,7 @@
 
 @synthesize tableView   = _tableView;
 @synthesize cartData    = _cartData;
+@synthesize totalPrice  = _totalPrice;
 
 - (void)viewDidLoad
 {
@@ -114,14 +115,47 @@
     return 80.0f;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 10.0f;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 100.0f;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 120.0f;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footer=[[UIView alloc] initWithFrame:CGRectMake(0,0,320.0,100.0f)];
+    UILabel *totalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 20, 45, 30)];
+    totalPriceLabel.text = @"总价：";
+    totalPriceLabel.textColor = [UIColor grayColor];
+    totalPriceLabel.font = [UIFont systemFontOfSize:14];
+    
+    _totalPrice = [[UILabel alloc] initWithFrame:CGRectMake(250, 20, 60, 30)];
+    _totalPrice.text = @"￥208";
+    _totalPrice.textAlignment = NSTextAlignmentRight;
+    _totalPrice.textColor = APP_BASE_COLOR;
+    _totalPrice.font = [UIFont systemFontOfSize:14];
+
+    UIButton *orderConfirm = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    orderConfirm.frame = CGRectMake(10, 60, 300, 50);
+    orderConfirm.backgroundColor = APP_BASE_COLOR;
+    orderConfirm.layer.cornerRadius = 5.0f;
+    [orderConfirm setTitle:@"确认下单" forState:UIControlStateNormal];
+    [orderConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    orderConfirm.titleLabel.font = [UIFont systemFontOfSize:20];
+    
+    [footer addSubview:totalPriceLabel];
+    [footer addSubview:_totalPrice];
+    [footer addSubview:orderConfirm];
+    
+    return footer;
+}
+
+//确认下单
+-(void)confirmOrder
+{
+    
+    
+    
+    
+}
 
 @end
