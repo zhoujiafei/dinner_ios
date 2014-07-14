@@ -36,7 +36,7 @@
     NSString *numStr = @"";
     if (![foodCart isEqual:nil] && [foodCart count] > 0)
     {
-        numStr = [NSString stringWithFormat:@"%ld",[foodCart count]];
+        numStr = [NSString stringWithFormat:@"%d",[foodCart count]];
     }
     
     //发送通知

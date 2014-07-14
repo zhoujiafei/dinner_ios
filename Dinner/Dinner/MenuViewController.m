@@ -75,7 +75,7 @@
             _cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
             _cartBtn.backgroundColor = APP_BASE_COLOR;
             [_cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
-            [_cartBtn addTarget:self action:@selector(addToCart:) forControlEvents:UIControlEventTouchUpInside];
+            [_cartBtn addTarget:self action:@selector(lookCart:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_cartBtn];
             
         }
@@ -95,7 +95,7 @@
 }
 
 //查看购物车
--(void)addToCart:(UIButton *)btn
+-(void)lookCart:(UIButton *)btn
 {
     self.hidesBottomBarWhenPushed = YES;
     CartViewController *cart = [[CartViewController alloc] init];
@@ -150,7 +150,9 @@
     btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
     
     //获取所选的菜的基本信息
-    NSDictionary *dic = [_menusData objectAtIndex:btn.tag];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[_menusData objectAtIndex:btn.tag]];
+    [dic setObject:@"1" forKey:@"food_num"];
+    
     //获取购物车里面的数据
     NSMutableArray *foodCart = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
     if (![foodCart isEqual:nil] && [foodCart count] > 0)
@@ -181,6 +183,7 @@
     [foodCart addObject:dic];
     //再将添加之后的数据保存到购物车里面
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:foodCart];
+    
     //保存数据之后发通知
     [self sendNotificationForCartChanged];
 }

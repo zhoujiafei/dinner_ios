@@ -31,13 +31,13 @@
 #define FOOD_NUM_CHANGED_NOTICE @"foodCartChangedNotice"
 
 //接口地址
-//#define GET_SHOPS_API @"http://localhost/dinner/branches/beta/index.php?r=api" //获取餐厅列表数据
-//#define GET_MENUS_API @"http://localhost/dinner/branches/beta/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
-//#define LOGIN_API @"http://localhost/dinner/branches/beta/index.php?r=api/login" //用户登陆接口
+#define GET_SHOPS_API @"http://localhost/dinner/branches/beta/index.php?r=api" //获取餐厅列表数据
+#define GET_MENUS_API @"http://localhost/dinner/branches/beta/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
+#define LOGIN_API @"http://localhost/dinner/branches/beta/index.php?r=api/login" //用户登陆接口
 
-#define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
-#define GET_MENUS_API @"http://localhost/dinner/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
-#define LOGIN_API @"http://localhost/dinner/index.php?r=api/login" //用户登陆接口
+//#define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
+//#define GET_MENUS_API @"http://localhost/dinner/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
+//#define LOGIN_API @"http://localhost/dinner/index.php?r=api/login" //用户登陆接口
 
 
 #endif

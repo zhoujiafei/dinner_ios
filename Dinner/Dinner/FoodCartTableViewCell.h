@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "config.h"
 
+#define kMenuNumTag 1000 //显示菜的个数的label的tag基准值
+
 @interface FoodCartTableViewCell : UITableViewCell
 
 @property (nonatomic,strong) UIImageView *menuImageView;//菜图

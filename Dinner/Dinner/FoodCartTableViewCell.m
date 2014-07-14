@@ -41,25 +41,21 @@
         //减按钮
         _leftBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _leftBtn.frame = CGRectMake(220, 12, 30, 30);
-        [_leftBtn setTitle:@"+" forState:UIControlStateNormal];
+        [_leftBtn setTitle:@"＋" forState:UIControlStateNormal];
         [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _leftBtn.backgroundColor = APP_BASE_COLOR;
+        _leftBtn.layer.cornerRadius = 5.0;
         
         //显示数量的框子
-//        _menuNum = [[UITextField alloc] initWithFrame:CGRectMake(250, 12, 30, 30)];
-//        _menuNum.text = @"1";
-//        _menuNum.borderStyle = UITextBorderStyleNone;
-//        _menuNum.textAlignment = NSTextAlignmentCenter;
-        
         _menuNum = [[UILabel alloc] initWithFrame:CGRectMake(250, 12, 30, 30)];
-        _menuNum.text = @"1";
         _menuNum.textAlignment = NSTextAlignmentCenter;
         
         _rightBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _rightBtn.frame = CGRectMake(280, 12, 30, 30);
-        [_rightBtn setTitle:@"-" forState:UIControlStateNormal];
+        [_rightBtn setTitle:@"－" forState:UIControlStateNormal];
         [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _rightBtn.backgroundColor = APP_BASE_COLOR;
+        _rightBtn.layer.cornerRadius = 5.0;
         
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
