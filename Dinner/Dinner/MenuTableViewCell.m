@@ -20,7 +20,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.frame = CGRectMake(0.0, 0.0, [[UIScreen mainScreen] bounds].size.width, 100);
         //菜的图片
         _menuImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
         _menuImageView.layer.cornerRadius = 8.0;
