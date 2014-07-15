@@ -77,7 +77,6 @@
             [_cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
             [_cartBtn addTarget:self action:@selector(lookCart:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_cartBtn];
-            
         }
         else
         {

@@ -14,10 +14,9 @@
 {
     [super viewDidLoad];
     self.title = @"下单成功";
-    
-    
-    
-    
+    UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    bgImageView.image = [UIImage imageNamed:@"Garfield.jpg"];
+    [self.view addSubview:bgImageView];
 }
 
 @end

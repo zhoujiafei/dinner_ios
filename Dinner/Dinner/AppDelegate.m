@@ -62,7 +62,7 @@
     _settingNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置" image:[UIImage imageNamed:@"cog_01"] tag:4];
     
     //创建UITabBar，并且将各子级导航加入到里面
-    UITabBarController *tab = [[UITabBarController alloc] init];
+    BaseTabBarController *tab = [[BaseTabBarController alloc] init];
     tab.viewControllers = @[_homeNav,_cartNav,_centerNav,_settingNav];
     
     

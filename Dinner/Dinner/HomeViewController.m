@@ -56,9 +56,10 @@
                 self.automaticallyAdjustsScrollViewInsets = NO;
             }
             //创建tableView
-            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+            _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
+            _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
             [self.view addSubview:_tableView];
             //刷新控件
             if (_refreshTableHeaderView == nil)
@@ -88,7 +89,12 @@
 #pragma mark -UITableViewDataSource
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 80;
+    return 65.0f;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120.0f;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -104,48 +110,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellId = @"cellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    ShopTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        cell = [[ShopTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     
     NSInteger rowNo = indexPath.row;
-    cell.layer.masksToBounds = YES;
-    cell.textLabel.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"name"];
-    cell.imageView.contentMode = UIViewContentModeCenter;
-    cell.imageView.image = [UIImage imageWithData:
+    cell.title.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"name"];
+    cell.indexPicView.image = [UIImage imageWithData:
                                 [NSData dataWithContentsOfURL:
                                                 [NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]]];
-    //调整图片大小
-    CGSize itemSize = CGSizeMake(40, 40);
-    UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
-    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
-    [cell.imageView.image drawInRect:imageRect];
-    cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
     
-    NSString *statusText = _isOnTime?@"正在营业中":@"已经打烊";
-    cell.detailTextLabel.text = statusText;
+    NSString *statusText = _isOnTime?@"营业中":@"已打烊";
+    cell.status.text = statusText;
+    cell.address.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"address"];
+    cell.phone.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"tel"];
     return cell;
 }
 
 #pragma mark -UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_isOnTime)
-    {
-        self.hidesBottomBarWhenPushed = YES;
-        MenuViewController *menuVC = [[MenuViewController alloc] init];
-        menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
-        [self.navigationController pushViewController:menuVC animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
-    else
-    {
-        [ProgressHUD showError:@"已经打烊啦！"];
-    }
+    self.hidesBottomBarWhenPushed = YES;
+    MenuViewController *menuVC = [[MenuViewController alloc] init];
+    menuVC.shopId = [[_shopData objectAtIndex:[indexPath row]] objectForKey:@"id"];
+    [self.navigationController pushViewController:menuVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 
@@ -198,7 +190,6 @@
 
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
-
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
     [self reloadTableViewDataSource];
