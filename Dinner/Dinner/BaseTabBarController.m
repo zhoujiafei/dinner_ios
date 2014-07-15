@@ -7,12 +7,14 @@
 //
 
 #import "BaseTabBarController.h"
+#import "config.h"
 
 @implementation BaseTabBarController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBar.selectedImageTintColor = APP_BASE_COLOR;
 }
 
 @end

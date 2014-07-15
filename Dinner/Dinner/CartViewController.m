@@ -25,23 +25,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"美食框";
     
     UIBarButtonItem *clearCartItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_delete"] style:UIBarButtonItemStylePlain target:self action:@selector(clearFoodCart)];
     self.navigationItem.rightBarButtonItem = clearCartItem;
     
     //获取美食数据
     _cartData = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
-    if (![_cartData isEqual:nil] && [_cartData count] > 0)
-    {
-        self.title = [NSString stringWithFormat:@"%@",[[_cartData objectAtIndex:0] objectForKey:@"shop_name"]];
-    }
-    else
-    {
-        self.title = @"美食框";
-    }
     
     //创建tableView
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 44) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
@@ -75,7 +68,7 @@
 
         cell.menuName.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"name"];
         [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_cartData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
-                           placeholderImage:[UIImage imageNamed:@"food"]];
+                           placeholderImage:[UIImage imageNamed:@"defaultFood.jpg"]];
         cell.menuPrice.text = [[[_cartData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
         cell.menuNum.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"food_num"];
         cell.menuNum.tag = rowNo + kMenuNumTag;

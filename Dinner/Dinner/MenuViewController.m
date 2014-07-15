@@ -135,7 +135,7 @@
     NSInteger rowNo = indexPath.row;
     cell.menuName.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"name"];
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
-                   placeholderImage:[UIImage imageNamed:@"food"]];
+                   placeholderImage:[UIImage imageNamed:@"defaultFood.jpg"]];
     cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
     cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     cell.btn.tag = rowNo;

@@ -56,7 +56,7 @@
                 self.automaticallyAdjustsScrollViewInsets = NO;
             }
             //创建tableView
-            _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
@@ -119,10 +119,8 @@
     
     NSInteger rowNo = indexPath.row;
     cell.title.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"name"];
-    cell.indexPicView.image = [UIImage imageWithData:
-                                [NSData dataWithContentsOfURL:
-                                                [NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]]];
-    
+    [cell.indexPicView setImageWithURL:[NSURL URLWithString:[[_shopData objectAtIndex:rowNo] objectForKey:@"logo"]]
+                       placeholderImage:[UIImage imageNamed:@"defaultShop.jpg"]];
     NSString *statusText = _isOnTime?@"营业中":@"已打烊";
     cell.status.text = statusText;
     cell.address.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"address"];
