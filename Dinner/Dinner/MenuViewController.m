@@ -31,6 +31,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]];
     __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setCompletionBlock:^{
+        [self hideTip];
         if ([request responseStatusCode] != 200)
         {
             return;
@@ -45,7 +46,6 @@
         _menusData = [data objectForKey:@"menus"];
         if ([_menusData count] > 0)
         {
-            [self hideTip];
             //存储数据
             [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_MENUS_API,_shopId] withObject:_menusData];
             
@@ -169,8 +169,7 @@
         //判断添加的这道菜是不是已经存在于购物车
         if ([self isInFoodCart:[dic objectForKey:@"id"]])
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"这道菜已经存在美食框" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            [alert show];
+            [ProgressHUD showSuccess:@"这道菜已经存在美食框"];
             return;
         }
     }

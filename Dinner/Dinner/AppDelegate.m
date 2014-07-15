@@ -65,6 +65,7 @@
     UITabBarController *tab = [[UITabBarController alloc] init];
     tab.viewControllers = @[_homeNav,_cartNav,_centerNav,_settingNav];
     
+    
     //加入到窗口
     self.window.rootViewController = tab;
     //注册通知，一旦美食框里面的数量发生变化，就更改 _cartNav.tabBarItem.badgeValue 的值

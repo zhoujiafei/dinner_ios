@@ -140,12 +140,9 @@
         }
         else
         {
-            //跳到用户中心
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-                CenterViewController *centerVC = [[CenterViewController alloc] init];
-                [self.navigationController pushViewController:centerVC animated:YES];
-            }];
+            //登陆成功后保存accessToken
+            [[NSUserDefaults standardUserDefaults] setObject:[data objectForKey:@"token"] forKey:@"access_token"];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
     else
