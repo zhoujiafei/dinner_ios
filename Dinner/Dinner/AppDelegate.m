@@ -39,7 +39,7 @@
     //首页
     HomeViewController *home = [[HomeViewController alloc] init];
     _homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
-    _homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"house"] tag:1];
+    _homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"tab_all_normal"] tag:1];
     
     //美食框
     CartViewController *cart = [[CartViewController alloc] init];
@@ -54,7 +54,7 @@
     //用户中心
     CenterViewController *center = [[CenterViewController alloc] init];
     _centerNav = [[BaseNavigationController alloc] initWithRootViewController:center];
-    _centerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我" image:[UIImage imageNamed:@"people"] tag:3];
+    _centerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"用户中心" image:[UIImage imageNamed:@"tab_personal_normal"] tag:3];
     
     //设置
     SettingViewController *setting = [[SettingViewController alloc] init];
