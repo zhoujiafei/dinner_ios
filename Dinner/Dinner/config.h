@@ -10,6 +10,7 @@
 #define Dinner_config_h
 
 #import "BaseViewController.h"
+#import "BaseNavigationController.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "ProgressHUD.h"

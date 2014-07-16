@@ -11,12 +11,17 @@
 #import "LoginViewController.h"
 #import "CenterTableViewCell.h"
 #import "XHPathCover.h"
+#import "TodayOrderViewController.h"
+#import "HistoryOrderViewController.h"
+#import "ModifyPasswordViewController.h"
+#import "PersonalViewController.h"
 
 @interface CenterViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) XHPathCover *pathCover;
+@property (nonatomic,strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray *settingLabels;
+@property (nonatomic,strong) NSArray *settingIcons;
 @property (nonatomic,strong) NSDictionary *userInfo;//保存用户信息
 
 @end

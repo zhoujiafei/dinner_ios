@@ -22,6 +22,7 @@
 @synthesize tableView = _tableView;
 @synthesize settingLabels = _settingLabels;
 @synthesize userInfo = _userInfo;
+@synthesize settingIcons = _settingIcons;
 
 - (void)viewDidLoad
 {
@@ -69,6 +70,9 @@
     _settingLabels = [NSArray arrayWithObjects:
                         @[@"个人资料",@"修改密码"],
                         @[@"今日订单",@"历史订单"],nil];
+    
+    _settingIcons = [NSArray arrayWithObjects:
+                     @[@"personal_account",@"personal_recharge"],@[@"order_forPay",@"order_all"],nil];
     
     if(SYSTEM_VERSION >= 7.0)
     {
@@ -121,7 +125,9 @@
         cell = [[CenterTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
     
-    cell.textLabel.text = [[_settingLabels objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    NSInteger rowNo = indexPath.row;
+    cell.textLabel.text = [[_settingLabels objectAtIndex:indexPath.section] objectAtIndex:rowNo];
+    cell.imageView.image = [UIImage imageNamed:[[_settingIcons objectAtIndex:indexPath.section] objectAtIndex:rowNo]];
     return cell;
 }
 
@@ -129,6 +135,64 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 30.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //点击之前判断当前用户有没有登陆,如果没有叫调出登陆界面
+    if (!self.userName)
+    {
+        [self goToLogin];
+        return;
+    }
+    
+    if (indexPath.section)
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                [self goToTargetInterface:[[TodayOrderViewController alloc] init]];
+                break;
+            case 1:
+                [self goToTargetInterface:[[HistoryOrderViewController alloc] init]];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                [self goToTargetInterface:[[PersonalViewController alloc] init]];
+                break;
+            case 1:
+                [self goToTargetInterface:[[ModifyPasswordViewController alloc] init]];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+//跳到指定的界面
+-(void)goToTargetInterface:(BaseViewController *)viewController
+{
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:viewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+
+//跳转到登陆界面
+-(void)goToLogin
+{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark- scroll delegate
@@ -151,6 +215,5 @@
 {
     [_pathCover scrollViewWillBeginDragging:scrollView];
 }
-
 
 @end

@@ -10,7 +10,6 @@
 #import "config.h"
 #import "FoodCartTableViewCell.h"
 #import "LoginViewController.h"
-#import "BaseNavigationController.h"
 #import "OrderSuccessViewController.h"
 
 @interface CartViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
