@@ -22,6 +22,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         //logo图
         _indexPicView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 130,100)];
         
