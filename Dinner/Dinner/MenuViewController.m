@@ -58,6 +58,7 @@
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
+            _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
             [self.view addSubview:_tableView];
             //刷新控件

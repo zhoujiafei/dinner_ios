@@ -53,6 +53,10 @@
         _commentView = [[UIImageView alloc] initWithFrame:CGRectMake(145,88, 30, 30)];
         _commentView.image = [UIImage imageNamed:@"comment_active"];
         
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 120.0-0.5, self.frame.size.width, 0.5)];
+        line.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
+        [self.contentView addSubview:line];
+        
         [self.contentView addSubview:_indexPicView];
         [self.contentView addSubview:_title];
         [self.contentView addSubview:_status];
@@ -61,6 +65,7 @@
         [self.contentView addSubview:phoneImageView];
         [self.contentView addSubview:_phone];
         [self.contentView addSubview:_commentView];
+        [self.contentView addSubview:line];
     }
     return self;
 }

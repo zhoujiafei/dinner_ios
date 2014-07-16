@@ -42,6 +42,7 @@
 //#define GET_MENUS_API @"http://localhost/dinner/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
 //#define LOGIN_API @"http://localhost/dinner/index.php?r=api/login" //用户登陆接口
 //#define ORDER_API @"http://localhost/dinner/index.php?r=api/center/confirmorder" //确认下单接口
+//#define GET_USERINFO_API @"http://localhost/dinner/index.php?r=api/center" //获取用户信息接口
 
 
 #endif

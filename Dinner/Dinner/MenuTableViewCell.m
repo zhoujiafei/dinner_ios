@@ -55,12 +55,17 @@
         [_btn setTitle:@"吃一份" forState:UIControlStateNormal];
         _btn.backgroundColor = APP_BASE_COLOR;
         
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 100.0-0.5, self.frame.size.width, 0.5)];
+        line.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
+        [self.contentView addSubview:line];
+        
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
         [self.contentView addSubview:_menuPrice];
         [self.contentView addSubview:_menuDetail];
         [self.contentView addSubview:_btn];
         [self.contentView addSubview:starView];
+        [self.contentView addSubview:line];
     }
     return self;
 }
