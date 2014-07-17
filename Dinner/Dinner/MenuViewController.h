@@ -18,7 +18,7 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
 @property (nonatomic,assign) BOOL reloading;
-@property (nonatomic,strong) NSArray *menusData;
+@property (nonatomic,strong) NSMutableArray *menusData;
 @property (nonatomic,strong) UIButton *cartBtn;
 
 @end

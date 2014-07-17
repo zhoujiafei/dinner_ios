@@ -14,24 +14,53 @@
 @synthesize cartData    = _cartData;
 @synthesize totalPrice  = _totalPrice;
 
-
--(void)viewWillAppear:(BOOL)animated
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super viewWillAppear:animated];
-    _cartData = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
-    [self.tableView reloadData];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.title = @"美食框";
+        _cartData = [NSMutableArray array];
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"美食框";
-    
+    [self getCartData];
+    [self showCart];
+}
+
+#pragma mark -
+#pragma mark 目的是让每次进入美食框都刷新数据
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_cartData removeAllObjects];
+    [self getCartData];
+    [_tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark Show Cart Table
+
+//获取美食数据
+-(void)getCartData
+{
+    NSArray *data = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
+    if (data)
+    {
+        [_cartData addObjectsFromArray:data];
+    }
+}
+
+//显示美食框列表
+-(void)showCart
+{
     UIBarButtonItem *clearCartItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_delete"] style:UIBarButtonItemStylePlain target:self action:@selector(clearFoodCart)];
     self.navigationItem.rightBarButtonItem = clearCartItem;
-    
-    //获取美食数据
-    _cartData = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
     
     //创建tableView
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
@@ -41,6 +70,9 @@
     _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
     [self.view addSubview:_tableView];
 }
+
+#pragma mark -
+#pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -82,6 +114,7 @@
     else
     {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFooter"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UIView *footer=[[UIView alloc] initWithFrame:CGRectMake(0,0,320.0,100.0f)];
         UILabel *totalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 20, 45, 30)];
         totalPriceLabel.text = @"总价：";
@@ -111,6 +144,24 @@
     }
 }
 
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < [_cartData count])
+    {
+        return 80.0f;
+    }
+    else
+    {
+        return 120.0f;
+    }
+}
+
+#pragma mark -
+#pragma mark Some Opration Method
+
 //增加某一菜的个数
 -(void)addMenuNums:(UIButton *)btn
 {
@@ -118,7 +169,7 @@
     NSInteger newNum = [menuNum.text intValue] + 1;
     if (newNum > 100)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您定数量超过限额" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您定的数量超过限额" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
@@ -129,7 +180,7 @@
     [_cartData replaceObjectAtIndex:btn.tag withObject:curData];
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
     menuNum.text = [NSString stringWithFormat:@"%d",newNum];
-    [self.tableView reloadData];
+    [_tableView reloadData];
 }
 
 //减少某一菜的个数
@@ -143,7 +194,7 @@
         [_cartData removeObjectAtIndex:btn.tag];
         //保存数据库
         [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
-        [self.tableView reloadData];
+        [_tableView reloadData];
         //发通知更新 _cartNav.tabBarItem.badgeValue 的值
         [self sendNotificationForCartChanged];
         return;
@@ -154,19 +205,7 @@
     [_cartData replaceObjectAtIndex:btn.tag withObject:curData];
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
     menuNum.text = [NSString stringWithFormat:@"%d",newNum];
-    [self.tableView reloadData];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row < [_cartData count])
-    {
-        return 80.0f;
-    }
-    else
-    {
-        return 120.0f;
-    }
+    [_tableView reloadData];
 }
 
 //确认下单

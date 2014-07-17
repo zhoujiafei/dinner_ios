@@ -16,20 +16,70 @@
 @synthesize refreshTableHeaderView = _refreshTableHeaderView;
 @synthesize reloading = _reloading;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.title = @"首页";
+        _shopData = [NSMutableArray array];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"首页";
-    [self showLoading];
+    [self getCacheData];
     [self showAllShops];
+    [self showLoading];
+    [self requestShopListData];
+}
+
+#pragma mark -
+#pragma mark Show Table
+
+//获取餐厅列表缓存数据
+-(void)getCacheData
+{
+    NSArray *data = [[DataManage shareDataManage] getData:CACHE_NAME withNetworkApi:GET_SHOPS_API];
+    if (data)
+    {
+        [_shopData addObjectsFromArray:data];
+    }
 }
 
 //显示商家列表
 -(void)showAllShops
 {
-    NSURL *url = [NSURL URLWithString:GET_SHOPS_API];
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    if(SYSTEM_VERSION >= 7.0)
+    {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    //创建tableView
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_tableView];
+    //刷新控件
+    if (_refreshTableHeaderView == nil)
+    {
+        _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 64.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+        _refreshTableHeaderView.delegate = self;
+        [_tableView addSubview:_refreshTableHeaderView];
+    }
+    //最后一次更新的时间
+    [_refreshTableHeaderView refreshLastUpdatedDate];
+}
+
+//请求餐厅列表数据
+-(void)requestShopListData
+{
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
     [request setCompletionBlock:^{
+        [self hideTip];
         if ([request responseStatusCode] != 200)
         {
             return;
@@ -42,66 +92,30 @@
         
         NSData *data = [request responseData];
         NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        _shopData = [allData objectForKey:@"shops"];
+        NSArray *requestShopData = [allData objectForKey:@"shops"];
         _isOnTime = [[allData objectForKey:@"isOnTime"] boolValue];
-        
-        if ([_shopData count] > 0)
+        if ([requestShopData count] <= 0)
         {
-            [self hideTip];
-            //存储数据
-            [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:GET_SHOPS_API withObject:allData];
-            
-            if(SYSTEM_VERSION >= 7.0)
-            {
-                self.automaticallyAdjustsScrollViewInsets = NO;
-            }
-            //创建tableView
-            _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44) style:UITableViewStylePlain];
-            _tableView.delegate = self;
-            _tableView.dataSource = self;
-            _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
-            _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            [self.view addSubview:_tableView];
-            //刷新控件
-            if (_refreshTableHeaderView == nil)
-            {
-                _refreshTableHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 64.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-                _refreshTableHeaderView.delegate = self;
-                [_tableView addSubview:_refreshTableHeaderView];
-            }
-            //最后一次更新的时间
-            [_refreshTableHeaderView refreshLastUpdatedDate];
-        }
-        else
-        {
-            [ProgressHUD show:@"没有数据"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [ProgressHUD dismiss];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [ProgressHUD showError:@"没有数据"];
             });
         }
+        
+        //保存数据
+        [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:GET_SHOPS_API withObject:requestShopData];
+        [_shopData removeAllObjects];
+        [_shopData addObjectsFromArray:requestShopData];
+        [_tableView reloadData];
+        
     }];
     [request setFailedBlock:^{
-        [self hideTip];
-        [ProgressHUD showError:@"网络错误"];
+        [ProgressHUD showError:@"网络连接错误"];
     }];
     [request startAsynchronous];
 }
 
-#pragma mark -UITableViewDataSource
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 65.0f;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 120.0f;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [[UIView alloc] initWithFrame:CGRectZero];
-}
+#pragma mark -
+#pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -129,7 +143,9 @@
     return cell;
 }
 
-#pragma mark -UITableViewDelegate
+#pragma mark -
+#pragma mark UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.hidesBottomBarWhenPushed = YES;
@@ -139,11 +155,28 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 65.0f;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 120.0f;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+#pragma mark -
+#pragma mark Refresh Methods
 
 //刷新的两个方法
 - (void)reloadTableViewDataSource
 {
-    [NSThread detachNewThreadSelector:@selector(updateNewsByPullTable) toTarget:self withObject:nil]; //异步加载数据，不影tableView动作
+    [NSThread detachNewThreadSelector:@selector(requestShopListData) toTarget:self withObject:nil]; //异步加载数据，不影tableView动作
     _reloading = YES;
 }
 //数据加载完成
@@ -152,39 +185,6 @@
     _reloading = NO;
     [_refreshTableHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     [_tableView reloadData];
-}
-
-//更新数据
--(void)updateNewsByPullTable
-{
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
-    [request startSynchronous];
-    NSError *error = [request error];
-    if (!error)
-    {
-        NSData *data = [request responseData];
-        NSDictionary *allData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        _shopData = [allData objectForKey:@"shops"];
-        _isOnTime = [[allData objectForKey:@"isOnTime"] boolValue];
-        
-        if ([_shopData count] > 0)
-        {
-            //存储数据
-            [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:GET_SHOPS_API withObject:allData];
-            [self.tableView reloadData];
-        }
-        else
-        {
-            [ProgressHUD show:@"没有数据"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [ProgressHUD dismiss];
-            });
-        }
-    }
-    else
-    {
-        [ProgressHUD showError:@"网络错误"];
-    }
 }
 
 #pragma mark -

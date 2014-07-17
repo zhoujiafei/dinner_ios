@@ -15,7 +15,7 @@
 @interface HomeViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSArray *shopData;
+@property (nonatomic,strong) NSMutableArray *shopData;
 @property (nonatomic,assign) BOOL isOnTime;
 @property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
 @property (nonatomic,assign) BOOL reloading;
