@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "OrderTableViewCell.h"
+#import "EGORefreshTableHeaderView.h"
 
 @interface HistoryOrderViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 

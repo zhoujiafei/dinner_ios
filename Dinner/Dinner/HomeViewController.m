@@ -60,6 +60,7 @@
             _tableView.delegate = self;
             _tableView.dataSource = self;
             _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
+            _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             [self.view addSubview:_tableView];
             //刷新控件
             if (_refreshTableHeaderView == nil)
