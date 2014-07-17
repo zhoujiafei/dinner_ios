@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "OrderTableViewCell.h"
 
-@interface HistoryOrderViewController : BaseViewController
+@interface HistoryOrderViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
+@property (nonatomic,assign) BOOL reloading;
+@property (nonatomic,strong) NSMutableArray *orderData;
 
 @end
