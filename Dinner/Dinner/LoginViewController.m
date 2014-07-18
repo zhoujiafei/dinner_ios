@@ -8,94 +8,87 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
-
-@property (nonatomic,strong) NSArray *labelArr;//标签
-
-@end
-
 @implementation LoginViewController
 
 @synthesize username    = _username;
 @synthesize password    = _password;
-@synthesize tableView   = _tableView;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.title = @"登陆";
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"登陆";
+    [self showLogin];
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+//显示登陆界面
+-(void)showLogin
+{
     //注册按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(goToRegister)];
     
     //回到上一个界面
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backToOver)];
     
-    self.labelArr = [NSArray arrayWithObjects:@[@"账号",@"密码"],@[@"登陆"],nil];
-    //创建tableView
-    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
-    [self.view addSubview:_tableView];
-}
-
-#pragma mark -login UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-{
-    NSArray *sectionData = [self.labelArr objectAtIndex:section];
-    return [sectionData count];
-}
-
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-
-    if (indexPath.section)
-    {
-        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
-        cell.selectedBackgroundView.backgroundColor = APP_BASE_COLOR;
-        UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        loginBtn.frame = CGRectMake(cell.frame.size.width/2 - 50 , 0, 100, 44);
-        [loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
-        [loginBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [loginBtn addTarget:self action:@selector(goToLogin) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:loginBtn];
-        [cell addSubview:loginBtn];
-    }
-    else
-    {
-        NSArray *sectionData = [self.labelArr objectAtIndex:indexPath.section];
-        cell.textLabel.text = [sectionData objectAtIndex:indexPath.row];
-        switch (indexPath.row)
-        {
-            case 0:
-                self.username = [[UITextField alloc] initWithFrame:CGRectMake(80,11,220,32)];
-                self.username.placeholder = @"用户名";
-                [cell addSubview:self.username];
-                break;
-            case 1:
-                self.password = [[UITextField alloc] initWithFrame:CGRectMake(80,11,220,32)];
-                self.password.placeholder = @"密码";
-                [cell addSubview:self.password];
-                break;
-            default:
-                break;
-        }
-        
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    }
-    return cell;
+    //用户名
+    _username = [[LoginTextField alloc] initWithFrame:CGRectMake(10, 80, self.view.frame.size.width - 20, 45)];
+    _username.placeholder = @"请输入您的用户名";
+    _username.borderStyle = UITextBorderStyleRoundedRect;
+    _username.background = [UIImage imageNamed:@"account"];
+    _username.leftViewMode = UITextFieldViewModeAlways;
+    _username.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"account"]];
+    _username.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    //密码框
+    _password = [[LoginTextField alloc] initWithFrame:CGRectMake(10, 140, self.view.frame.size.width - 20, 45)];
+    _password.placeholder = @"请输入您的密码";
+    _password.borderStyle = UITextBorderStyleRoundedRect;
+    _password.secureTextEntry = YES;
+    _password.leftViewMode = UITextFieldViewModeAlways;
+    _password.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pw"]];
+    _password.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    //登陆按钮
+    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    loginBtn.frame = CGRectMake(10, 200, self.view.frame.size.width - 20, 45);
+    loginBtn.backgroundColor = APP_BASE_COLOR;
+    loginBtn.layer.cornerRadius = 5.0f;
+    [loginBtn setTitle:@"登陆" forState:UIControlStateNormal];
+    [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    [loginBtn addTarget:self action:@selector(goToLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    //注册按钮
+    UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    registerBtn.frame = CGRectMake(10, 260, self.view.frame.size.width - 20, 45);
+    registerBtn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
+    registerBtn.layer.cornerRadius = 5.0f;
+    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    registerBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    [registerBtn addTarget:self action:@selector(goToRegister) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_username];
+    [self.view addSubview:_password];
+    [self.view addSubview:loginBtn];
+    [self.view addSubview:registerBtn];
 }
 
 //去注册

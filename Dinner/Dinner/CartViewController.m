@@ -128,7 +128,7 @@
         _totalPrice.font = [UIFont systemFontOfSize:14];
         
         UIButton *orderConfirm = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        orderConfirm.frame = CGRectMake(10, 60, 300, 50);
+        orderConfirm.frame = CGRectMake(10, 60, 300, 45);
         orderConfirm.backgroundColor = APP_BASE_COLOR;
         orderConfirm.layer.cornerRadius = 5.0f;
         [orderConfirm setTitle:@"确认下单" forState:UIControlStateNormal];

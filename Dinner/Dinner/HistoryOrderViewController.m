@@ -19,20 +19,7 @@
     self.title = @"历史订单";
     self.view.backgroundColor = [UIColor greenColor];
     [self showOrderList];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
 
 -(void)showOrderList

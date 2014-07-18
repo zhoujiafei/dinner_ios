@@ -10,11 +10,11 @@
 #import "config.h"
 #import "RegisterViewController.h"
 #import "CenterViewController.h"
+#import "LoginTextField.h"
 
-@interface LoginViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+@interface LoginViewController : BaseViewController
 
 @property (nonatomic,strong) UITextField *username;
 @property (nonatomic,strong) UITextField *password;
-@property (nonatomic,strong) UITableView *tableView;
 
 @end

@@ -24,6 +24,7 @@
 		6605238F1976441C005DD835 /* personal_recharge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6605238D1976441C005DD835 /* personal_recharge@2x.png */; };
 		6605239219764B70005DD835 /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6605239119764B70005DD835 /* ModifyPasswordViewController.m */; };
 		6605239519764BB5005DD835 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6605239419764BB5005DD835 /* PersonalViewController.m */; };
+		660721F61978AB5600F0F0AC /* LoginTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 660721F51978AB5600F0F0AC /* LoginTextField.m */; };
 		660BF2E8196AA729003EA75D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660BF2E7196AA729003EA75D /* LoginViewController.m */; };
 		663C9A23196CC1C800BEDC4A /* trolley@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A22196CC1C800BEDC4A /* trolley@2x.png */; };
 		663C9A25196CC1D500BEDC4A /* trolley.png in Resources */ = {isa = PBXBuildFile; fileRef = 663C9A24196CC1D500BEDC4A /* trolley.png */; };
@@ -197,6 +198,8 @@
 		6605239119764B70005DD835 /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
 		6605239319764BB5005DD835 /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
 		6605239419764BB5005DD835 /* PersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		660721F41978AB5600F0F0AC /* LoginTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextField.h; sourceTree = "<group>"; };
+		660721F51978AB5600F0F0AC /* LoginTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextField.m; sourceTree = "<group>"; };
 		660BF2E6196AA729003EA75D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		660BF2E7196AA729003EA75D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		663C9A22196CC1C800BEDC4A /* trolley@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trolley@2x.png"; sourceTree = "<group>"; };
@@ -435,6 +438,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		660721F21978AB1D00F0F0AC /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B33DF7B1969835D0080E7FD /* ShopTableViewCell.h */,
+				8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */,
+				66F08606196CCCD700AD70B1 /* MenuTableViewCell.h */,
+				66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */,
+				66BA4BCE196F6BA10072A4FC /* CenterTableViewCell.h */,
+				66BA4BCF196F6BA10072A4FC /* CenterTableViewCell.m */,
+				8BA0B79819717BF600A668D2 /* FoodCartTableViewCell.h */,
+				8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */,
+				6601A9AC197758F4003FBB56 /* OrderTableViewCell.h */,
+				6601A9AD197758F4003FBB56 /* OrderTableViewCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		660721F31978AB2900F0F0AC /* textField */ = {
+			isa = PBXGroup;
+			children = (
+				660721F41978AB5600F0F0AC /* LoginTextField.h */,
+				660721F51978AB5600F0F0AC /* LoginTextField.m */,
+			);
+			name = textField;
+			sourceTree = "<group>";
+		};
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,16 +826,8 @@
 		8B851CF419683A60008DC90D /* class */ = {
 			isa = PBXGroup;
 			children = (
-				8B33DF7B1969835D0080E7FD /* ShopTableViewCell.h */,
-				8B33DF7C1969835D0080E7FD /* ShopTableViewCell.m */,
-				66F08606196CCCD700AD70B1 /* MenuTableViewCell.h */,
-				66F08607196CCCD700AD70B1 /* MenuTableViewCell.m */,
-				66BA4BCE196F6BA10072A4FC /* CenterTableViewCell.h */,
-				66BA4BCF196F6BA10072A4FC /* CenterTableViewCell.m */,
-				8BA0B79819717BF600A668D2 /* FoodCartTableViewCell.h */,
-				8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */,
-				6601A9AC197758F4003FBB56 /* OrderTableViewCell.h */,
-				6601A9AD197758F4003FBB56 /* OrderTableViewCell.m */,
+				660721F31978AB2900F0F0AC /* textField */,
+				660721F21978AB1D00F0F0AC /* cell */,
 			);
 			name = class;
 			sourceTree = "<group>";
@@ -1059,6 +1080,7 @@
 				8B851CFC19683F7A008DC90D /* BaseNavigationController.m in Sources */,
 				669FB4B9196E99E6003BD821 /* UIButton+WebCache.m in Sources */,
 				66BA4BD0196F6BA10072A4FC /* CenterTableViewCell.m in Sources */,
+				660721F61978AB5600F0F0AC /* LoginTextField.m in Sources */,
 				8B33DF9D196996400080E7FD /* ASIDataDecompressor.m in Sources */,
 				8B851CD619683A29008DC90D /* AppDelegate.m in Sources */,
 				8BA0B79A19717BF600A668D2 /* FoodCartTableViewCell.m in Sources */,
