@@ -10,6 +10,7 @@
 #import "config.h"
 #import "OrderTableViewCell.h"
 #import "EGORefreshTableHeaderView.h"
+#import "LoginViewController.h"
 
 @interface HistoryOrderViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 

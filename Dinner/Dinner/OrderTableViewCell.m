@@ -22,16 +22,21 @@
         topRect.image = [UIImage imageNamed:@"cell_top_rec"];
         
         //中间
-        UIImageView *midRect = [[UIImageView alloc] initWithFrame:CGRectMake(10,6, self.frame.size.width - 20,65)];
+        UIImageView *midRect = [[UIImageView alloc] initWithFrame:CGRectMake(10,3, self.frame.size.width - 20,65)];
         midRect.image = [UIImage imageNamed:@"cell_mid_rec"];
         
         //下边
-        UIImageView *bottomRect = [[UIImageView alloc] initWithFrame:CGRectMake(10,0, self.frame.size.width - 20, 3)];
+        UIImageView *bottomRect = [[UIImageView alloc] initWithFrame:CGRectMake(10,68, self.frame.size.width - 20, 3)];
         bottomRect.image = [UIImage imageNamed:@"cell_buttom_rec"];
+        
+        //书的连接
+        UIImageView *linker = [[UIImageView alloc] initWithFrame:CGRectMake(32, 15, 44, 43)];
+        linker.image = [UIImage imageNamed:@"rec_cell_linker"];
         
         [self.contentView addSubview:topRect];
         [self.contentView addSubview:midRect];
         [self.contentView addSubview:bottomRect];
+        [self.contentView addSubview:linker];
         
         
     }

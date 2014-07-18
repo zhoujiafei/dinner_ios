@@ -37,7 +37,7 @@
 #define LOGIN_API @"http://localhost/dinner/branches/beta/index.php?r=api/login" //用户登陆接口
 #define ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/confirmorder" //确认下单接口
 #define GET_USERINFO_API @"http://localhost/dinner/branches/beta/index.php?r=api/center" //获取用户信息接口
-#define GET_HISTORY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/historyorder" //获取历史订单接口
+#define GET_HISTORY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/historyorder&access_token=%@" //获取历史订单接口
 #define GET_TODAY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/todayorder" //获取历史订单接口
 
 //#define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据

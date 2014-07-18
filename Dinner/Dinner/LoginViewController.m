@@ -28,15 +28,10 @@
 {
     [super viewDidLoad];
     [self showLogin];
-    
-    
-    
-    
-    
-    
-    
-    
 }
+
+#pragma mark -
+#pragma mark Login Interface
 
 //显示登陆界面
 -(void)showLogin
@@ -91,12 +86,18 @@
     [self.view addSubview:registerBtn];
 }
 
+#pragma mark -
+#pragma mark Go To Register
+
 //去注册
 -(void)goToRegister
 {
     RegisterViewController *registerVC = [[RegisterViewController alloc] init];
     [self.navigationController pushViewController:registerVC animated:YES];
 }
+
+#pragma mark -
+#pragma mark Go To Login
 
 //去登陆
 -(void)goToLogin
@@ -116,15 +117,21 @@
         return;
     }
     
-    //发送请求去登陆
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:LOGIN_API]];
+    [ProgressHUD show:@"正在登陆..."];
+    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:LOGIN_API]];
     [request addPostValue:username forKey:@"name"];
     [request addPostValue:password forKey:@"password"];
-    [request startSynchronous];
-    
-    NSError *error = [request error];
-    if (!error)
-    {
+    [request setCompletionBlock:^{
+        if ([request responseStatusCode] != 200)
+        {
+            return;
+        }
+        
+        if (isNilNull([request responseData]))
+        {
+            return;
+        }
+        
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:nil];
         if ([data objectForKey:@"errorCode"])
         {
@@ -133,21 +140,35 @@
         }
         else
         {
+            [ProgressHUD showSuccess:@"登陆成功"];
             //登陆成功后保存accessToken
             [[NSUserDefaults standardUserDefaults] setObject:[data objectForKey:@"token"] forKey:@"access_token"];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-    }
-    else
-    {
-        [ProgressHUD showError:@"网络错误"];
-    }
+    }];
+    [request setFailedBlock:^{
+        [ProgressHUD showError:@"网络连接错误"];
+    }];
+    [request startAsynchronous];
 }
+
+#pragma mark -
+#pragma mark 返回
 
 //回到上一个界面
 -(void)backToOver
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark -
+#pragma mark 隐藏键盘
+
+//隐藏键盘
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_username resignFirstResponder];
+    [_password resignFirstResponder];
 }
 
 @end

@@ -56,9 +56,9 @@
         [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _rightBtn.backgroundColor = APP_BASE_COLOR;
         _rightBtn.layer.cornerRadius = 5.0;
-
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 80-0.5, self.frame.size.width, 0.5)];
-        line.backgroundColor = [UIColor colorWithRed:213.0f/255.0f green:213.0f/255.0f blue:213.0f/255.0f alpha:1.0];
+        
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80-0.5, self.frame.size.width, 0.5)];
+        line.image = [UIImage imageNamed:@"x-line"];
         [self.contentView addSubview:line];
         
         [self.contentView addSubview:_menuImageView];
