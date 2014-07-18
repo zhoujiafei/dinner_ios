@@ -10,4 +10,9 @@
 
 @interface OrderTableViewCell : UITableViewCell
 
+@property (nonatomic,strong) UILabel *shopName;
+@property (nonatomic,strong) UILabel *orderStatus;
+@property (nonatomic,strong) UILabel *totalPrice;
+@property (nonatomic,strong) UILabel *orderTime;
+
 @end

@@ -156,7 +156,32 @@
         cell = [[OrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     
-//    NSInteger rowNo = indexPath.row;
+    NSInteger rowNo = indexPath.row;
+    cell.shopName.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"shop_name"];
+    cell.totalPrice.text = [NSString stringWithFormat:@"花费：￥ %@",[[_orderData objectAtIndex:rowNo] objectForKey:@"total_price"]];
+    cell.orderStatus.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"status_text"];
+    UIColor *color = nil;
+    NSInteger status = [[[_orderData objectAtIndex:rowNo] objectForKey:@"status"] intValue];
+    switch (status)
+    {
+        case 1://待付款
+            color = APP_BASE_COLOR;
+            break;
+        case 2://已付款
+            color = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
+            break;
+        case 3://用户取消订单
+            color = [UIColor purpleColor];
+            break;
+        case 4://妹子取消订单
+            color = [UIColor brownColor];
+            break;
+        default:
+            color = APP_BASE_COLOR;
+            break;
+    }
+    cell.orderStatus.textColor = color;
+    cell.orderTime.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"create_time"];
     return cell;
 }
 

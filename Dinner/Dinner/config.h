@@ -19,7 +19,9 @@
 #import "MBProgressHUD.h"
 
 //定义该app主基调颜色风格
-#define APP_BASE_COLOR ([UIColor colorWithRed:255/255.0 green:102/255.0 blue:143.0/255.0 alpha:1]);
+#define APP_BASE_COLOR ([UIColor colorWithRed:255/255.0 green:102/255.0 blue:143.0/255.0 alpha:1])
+//定义系统背景色
+#define SYSTEM_BG_COLOR ([UIColor colorWithRed:241.0/255.0 green:241.0/255.0 blue:241.0/255.0 alpha:1.0])
 //定义系统版本
 #define SYSTEM_VERSION ([[[UIDevice currentDevice] systemVersion] floatValue])
 

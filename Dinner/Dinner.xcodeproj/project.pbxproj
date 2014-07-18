@@ -95,6 +95,11 @@
 		66CFE35719778B9B002DF1E6 /* cell_mid_rec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66CFE35319778B9B002DF1E6 /* cell_mid_rec@2x.png */; };
 		66CFE35819778B9B002DF1E6 /* cell_top_rec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66CFE35419778B9B002DF1E6 /* cell_top_rec@2x.png */; };
 		66CFE35A19778CB2002DF1E6 /* MemCardTipBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66CFE35919778CB2002DF1E6 /* MemCardTipBg@2x.png */; };
+		66DEBD5719790BA900F6172A /* orderCellRightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DEBD5519790BA900F6172A /* orderCellRightArrow@2x.png */; };
+		66DEBD5819790BA900F6172A /* orderCellRightArrowSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DEBD5619790BA900F6172A /* orderCellRightArrowSelected@2x.png */; };
+		66DEBD5A1979235D00F6172A /* ugcbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DEBD591979235D00F6172A /* ugcbtn@2x.png */; };
+		66DEBD5C197924CB00F6172A /* cm_center_sv_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DEBD5B197924CB00F6172A /* cm_center_sv_bg@2x.png */; };
+		66DEBD5E1979253400F6172A /* cm_center_price_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DEBD5D1979253400F6172A /* cm_center_price_1@2x.png */; };
 		66E9AE8D196A806F00558097 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66E9AE8E196A806F00558097 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AE85196A806F00558097 /* blackArrow.png */; };
 		66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E9AE86196A806F00558097 /* blackArrow@2x.png */; };
@@ -298,6 +303,11 @@
 		66CFE35319778B9B002DF1E6 /* cell_mid_rec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_mid_rec@2x.png"; sourceTree = "<group>"; };
 		66CFE35419778B9B002DF1E6 /* cell_top_rec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell_top_rec@2x.png"; sourceTree = "<group>"; };
 		66CFE35919778CB2002DF1E6 /* MemCardTipBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MemCardTipBg@2x.png"; sourceTree = "<group>"; };
+		66DEBD5519790BA900F6172A /* orderCellRightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderCellRightArrow@2x.png"; sourceTree = "<group>"; };
+		66DEBD5619790BA900F6172A /* orderCellRightArrowSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orderCellRightArrowSelected@2x.png"; sourceTree = "<group>"; };
+		66DEBD591979235D00F6172A /* ugcbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ugcbtn@2x.png"; sourceTree = "<group>"; };
+		66DEBD5B197924CB00F6172A /* cm_center_sv_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_center_sv_bg@2x.png"; sourceTree = "<group>"; };
+		66DEBD5D1979253400F6172A /* cm_center_price_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm_center_price_1@2x.png"; sourceTree = "<group>"; };
 		66E9AE82196A806F00558097 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		66E9AE83196A806F00558097 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		66E9AE85196A806F00558097 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -471,6 +481,11 @@
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				66DEBD5D1979253400F6172A /* cm_center_price_1@2x.png */,
+				66DEBD5B197924CB00F6172A /* cm_center_sv_bg@2x.png */,
+				66DEBD591979235D00F6172A /* ugcbtn@2x.png */,
+				66DEBD5519790BA900F6172A /* orderCellRightArrow@2x.png */,
+				66DEBD5619790BA900F6172A /* orderCellRightArrowSelected@2x.png */,
 				66F333151978D53600E02E0C /* x-line.png */,
 				66F333161978D53600E02E0C /* x-line@2x.png */,
 				66CFE35119778B9B002DF1E6 /* cell_buttom_line@2x.png */,
@@ -991,6 +1006,7 @@
 				66782192197600E100A6371B /* tab_personal_normal.png in Resources */,
 				8B851CD819683A29008DC90D /* Images.xcassets in Resources */,
 				663C9A2B196CC20100BEDC4A /* cog_01@2x.png in Resources */,
+				66DEBD5819790BA900F6172A /* orderCellRightArrowSelected@2x.png in Resources */,
 				8B217E5419756D3D005CEDC2 /* defaultShop@2x.jpg in Resources */,
 				66E9AE95196A806F00558097 /* whiteArrow@2x.png in Resources */,
 				66AE41AB196D12F5001F5640 /* cart_empty.png in Resources */,
@@ -1002,6 +1018,7 @@
 				8B25DC8C196EE4230040A49B /* cover@2x.png in Resources */,
 				6678218D1975FF3700A6371B /* account@2x.png in Resources */,
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
+				66DEBD5C197924CB00F6172A /* cm_center_sv_bg@2x.png in Resources */,
 				66F08610196CF64C00AD70B1 /* comment_active@2x.png in Resources */,
 				66AE41B2196D1BF7001F5640 /* navBar.png in Resources */,
 				66AE41B3196D1BF7001F5640 /* navBar@2x.png in Resources */,
@@ -1012,6 +1029,7 @@
 				66F08613196CF6D400AD70B1 /* user.png in Resources */,
 				66BA4BCD196F66DE0072A4FC /* meicon@2x.png in Resources */,
 				66A020F71974FA4E00A048BE /* Garfield@2x.jpg in Resources */,
+				66DEBD5A1979235D00F6172A /* ugcbtn@2x.png in Resources */,
 				6605238B197643EB005DD835 /* order_all@2x.png in Resources */,
 				8B217E5819756EA3005CEDC2 /* defaultFood@2x.jpg in Resources */,
 				66F0860C196CE5E100AD70B1 /* star.png in Resources */,
@@ -1034,6 +1052,7 @@
 				66E9AEAE196A86E100558097 /* dinner.db in Resources */,
 				8B25DC8B196EE4230040A49B /* cover.png in Resources */,
 				66052387197643A8005DD835 /* order_forRecieve@2x.png in Resources */,
+				66DEBD5E1979253400F6172A /* cm_center_price_1@2x.png in Resources */,
 				66E9AE8F196A806F00558097 /* blackArrow@2x.png in Resources */,
 				6605237E19764320005DD835 /* order_forPay.png in Resources */,
 				669FB4C5196E9D03003BD821 /* dian@2x.png in Resources */,
@@ -1056,6 +1075,7 @@
 				66BA4BBF196F65880072A4FC /* circle@2x.png in Resources */,
 				66A020FE1975104800A048BE /* Phone@2x.png in Resources */,
 				66BA4BBE196F65880072A4FC /* circle.png in Resources */,
+				66DEBD5719790BA900F6172A /* orderCellRightArrow@2x.png in Resources */,
 				66A020F21974DA1500A048BE /* icon_delete.png in Resources */,
 				66AE41AD196D12F5001F5640 /* cart_full_show.png in Resources */,
 				667821971976014C00A6371B /* tab_setting_normal@2x.png in Resources */,
