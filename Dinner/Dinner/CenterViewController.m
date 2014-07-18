@@ -24,11 +24,86 @@
 @synthesize userInfo = _userInfo;
 @synthesize settingIcons = _settingIcons;
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.title = @"用户中心";
+        _userInfo = [NSMutableDictionary dictionary];
+        //设置项
+        _settingLabels = [NSArray arrayWithObjects:
+                          @[@"个人资料",@"修改密码"],
+                          @[@"今日订单",@"历史订单"],nil];
+        
+        _settingIcons = [NSArray arrayWithObjects:
+                         @[@"personal_account",@"personal_recharge"],@[@"order_forPay",@"order_all"],nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"用户中心";
+    [self getCacheData];
+    [self showCenter];
+    [self requestUserInfo];
     
+}
+
+#pragma mark -
+#pragma mark Show Center Interface
+
+//获取用户缓存信息
+-(void)getCacheData
+{
+    NSDictionary *data = [[DataManage shareDataManage] getData:CACHE_NAME withNetworkApi:@"__userinfo"];
+    if (data)
+    {
+        [_userInfo setDictionary:data];
+    }
+}
+
+//显示用户中心界面
+-(void)showCenter
+{
+    if(SYSTEM_VERSION >= 7.0)
+    {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
+    [self.view addSubview:_tableView];
+    
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220)];
+    [_pathCover setBackgroundImage:[UIImage imageNamed:@"banner"]];
+    [_pathCover setAvatarImage:[UIImage imageNamed:@"meicon.png"]];
+    
+    if ([_userInfo objectForKey:@"name"])
+    {
+        NSString *balance = [NSString stringWithFormat:@"￥ %@",[_userInfo objectForKey:@"balance"]];
+        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[_userInfo objectForKey:@"name"], XHUserNameKey, balance, XHBirthdayKey, nil]];
+    }
+    self.tableView.tableHeaderView = self.pathCover;
+    
+    //刷新
+    __weak CenterViewController *wself = self;
+    [_pathCover setHandleRefreshEvent:^{
+        double delayInSeconds = 4.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [wself.pathCover stopRefresh];
+        });
+    }];
+}
+
+//请求用户信息
+-(void)requestUserInfo
+{
     //根据保存的access_token获取用户信息
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
     if (accessToken)
@@ -47,68 +122,31 @@
             }
             
             NSData *data = [request responseData];
-            NSDictionary *returnData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            if (![returnData objectForKey:@"errorCode"])
+            id returnData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            if (![returnData objectForKey:@"errorCode"] && [returnData isKindOfClass:[NSDictionary class]])
             {
-                _userInfo = returnData;
-                self.userName = [_userInfo objectForKey:@"name"];
-                self.balance = [_userInfo objectForKey:@"balance"];
+                [_userInfo removeAllObjects];
+                [_userInfo setDictionary:returnData];
+                
+                //保存数据
+                [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:@"__userinfo" withObject:_userInfo];
+                
                 //设置用户名与账户
                 [_pathCover setInfo:[NSDictionary
                                      dictionaryWithObjectsAndKeys:
-                                     self.userName, XHUserNameKey,
-                                     [NSString stringWithFormat:@"账户余额：￥%@",self.balance], XHBirthdayKey, nil]];
+                                     [_userInfo objectForKey:@"name"], XHUserNameKey,
+                                     [NSString stringWithFormat:@"账户余额：￥%@",[_userInfo objectForKey:@"balance"]], XHBirthdayKey, nil]];
             }
         }];
         [request setFailedBlock:^{
-            [ProgressHUD showError:@"网络错误"];
+            [ProgressHUD showError:@"网络连接错误"];
         }];
         [request startAsynchronous];
     }
-    
-    //设置项
-    _settingLabels = [NSArray arrayWithObjects:
-                        @[@"个人资料",@"修改密码"],
-                        @[@"今日订单",@"历史订单"],nil];
-    
-    _settingIcons = [NSArray arrayWithObjects:
-                     @[@"personal_account",@"personal_recharge"],@[@"order_forPay",@"order_all"],nil];
-    
-    if(SYSTEM_VERSION >= 7.0)
-    {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    
-    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
-    [self.view addSubview:_tableView];
-    
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220)];
-    [_pathCover setBackgroundImage:[UIImage imageNamed:@"cover"]];
-    [_pathCover setAvatarImage:[UIImage imageNamed:@"meicon.png"]];
-    [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.userName, XHUserNameKey, self.balance, XHBirthdayKey, nil]];
-    self.tableView.tableHeaderView = self.pathCover;
-    
-    //刷新
-    __weak CenterViewController *wself = self;
-    [_pathCover setHandleRefreshEvent:^{
-        double delayInSeconds = 4.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [wself.pathCover stopRefresh];
-        });
-    }];
 }
 
 #pragma mark -
 #pragma mark -UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -131,16 +169,24 @@
     return cell;
 }
 
-#pragma mark -UITableViewDelegate
+#pragma mark -
+#pragma mark UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 30.0f;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //点击之前判断当前用户有没有登陆,如果没有叫调出登陆界面
-    if (!self.userName)
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    if (!accessToken)
     {
         [self goToLogin];
         return;
@@ -178,6 +224,9 @@
     }
 }
 
+#pragma mark -
+#pragma mark Go To Interface
+
 //跳到指定的界面
 -(void)goToTargetInterface:(BaseViewController *)viewController
 {
@@ -195,7 +244,9 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-#pragma mark- scroll delegate
+#pragma mark -
+#pragma mark scroll delegate
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [_pathCover scrollViewDidScroll:scrollView];

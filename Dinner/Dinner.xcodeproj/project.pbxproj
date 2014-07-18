@@ -171,6 +171,8 @@
 		8B851D0619684215008DC90D /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0519684215008DC90D /* SettingViewController.m */; };
 		8B851D0919684C35008DC90D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B851D0819684C35008DC90D /* MenuViewController.m */; };
 		8BA0B79A19717BF600A668D2 /* FoodCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */; };
+		8BB1016919795AD200D97B96 /* banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB1016719795AD200D97B96 /* banner.png */; };
+		8BB1016A19795AD200D97B96 /* banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB1016819795AD200D97B96 /* banner@2x.png */; };
 		8BC6FF3F196C2D6B0093A476 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6FF3E196C2D6B0093A476 /* CartViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -417,6 +419,8 @@
 		8B851D0819684C35008DC90D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		8BA0B79819717BF600A668D2 /* FoodCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCartTableViewCell.h; sourceTree = "<group>"; };
 		8BA0B79919717BF600A668D2 /* FoodCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCartTableViewCell.m; sourceTree = "<group>"; };
+		8BB1016719795AD200D97B96 /* banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner.png; sourceTree = "<group>"; };
+		8BB1016819795AD200D97B96 /* banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner@2x.png"; sourceTree = "<group>"; };
 		8BC6FF3D196C2D6B0093A476 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		8BC6FF3E196C2D6B0093A476 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -481,6 +485,8 @@
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				8BB1016719795AD200D97B96 /* banner.png */,
+				8BB1016819795AD200D97B96 /* banner@2x.png */,
 				66DEBD5D1979253400F6172A /* cm_center_price_1@2x.png */,
 				66DEBD5B197924CB00F6172A /* cm_center_sv_bg@2x.png */,
 				66DEBD591979235D00F6172A /* ugcbtn@2x.png */,
@@ -1019,9 +1025,11 @@
 				6678218D1975FF3700A6371B /* account@2x.png in Resources */,
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
 				66DEBD5C197924CB00F6172A /* cm_center_sv_bg@2x.png in Resources */,
+				8BB1016919795AD200D97B96 /* banner.png in Resources */,
 				66F08610196CF64C00AD70B1 /* comment_active@2x.png in Resources */,
 				66AE41B2196D1BF7001F5640 /* navBar.png in Resources */,
 				66AE41B3196D1BF7001F5640 /* navBar@2x.png in Resources */,
+				8BB1016A19795AD200D97B96 /* banner@2x.png in Resources */,
 				6605237B197642BC005DD835 /* order_date@2x.png in Resources */,
 				663C9A23196CC1C800BEDC4A /* trolley@2x.png in Resources */,
 				663C9A2F196CC23500BEDC4A /* people@2x.png in Resources */,

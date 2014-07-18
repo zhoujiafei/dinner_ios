@@ -143,6 +143,7 @@
             [ProgressHUD showSuccess:@"登陆成功"];
             //登陆成功后保存accessToken
             [[NSUserDefaults standardUserDefaults] setObject:[data objectForKey:@"token"] forKey:@"access_token"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];

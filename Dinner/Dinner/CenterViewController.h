@@ -22,6 +22,6 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray *settingLabels;
 @property (nonatomic,strong) NSArray *settingIcons;
-@property (nonatomic,strong) NSDictionary *userInfo;//保存用户信息
+@property (nonatomic,strong) NSMutableDictionary *userInfo;//保存用户信息
 
 @end
