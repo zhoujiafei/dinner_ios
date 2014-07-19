@@ -13,7 +13,7 @@
 @synthesize homeNav = _homeNav;
 @synthesize cartNav = _cartNav;
 @synthesize centerNav = _centerNav;
-@synthesize settingNav = _settingNav;
+@synthesize moreNav = _moreNav;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -57,13 +57,13 @@
     _centerNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"用户中心" image:[UIImage imageNamed:@"tab_personal_normal"] tag:3];
     
     //设置
-    SettingViewController *setting = [[SettingViewController alloc] init];
-    _settingNav = [[BaseNavigationController alloc] initWithRootViewController:setting];
-    _settingNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"设置" image:[UIImage imageNamed:@"cog_01"] tag:4];
+    MoreViewController *more = [[MoreViewController alloc] init];
+    _moreNav = [[BaseNavigationController alloc] initWithRootViewController:more];
+    _moreNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"更多" image:[UIImage imageNamed:@"tab_more"] tag:4];
     
     //创建UITabBar，并且将各子级导航加入到里面
     BaseTabBarController *tab = [[BaseTabBarController alloc] init];
-    tab.viewControllers = @[_homeNav,_cartNav,_centerNav,_settingNav];
+    tab.viewControllers = @[_homeNav,_cartNav,_centerNav,_moreNav];
     
     
     //加入到窗口

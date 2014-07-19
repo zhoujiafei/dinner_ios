@@ -7,6 +7,7 @@
 //  订单列表
 
 #import <UIKit/UIKit.h>
+#import "config.h"
 
 @interface OrderTableViewCell : UITableViewCell
 
@@ -14,5 +15,6 @@
 @property (nonatomic,strong) UILabel *orderStatus;
 @property (nonatomic,strong) UILabel *totalPrice;
 @property (nonatomic,strong) UILabel *orderTime;
+@property (nonatomic,strong) UILabel *orderDate;
 
 @end

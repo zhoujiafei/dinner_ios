@@ -10,6 +10,7 @@
 #import "config.h"
 #import "LoginTextField.h"
 #import "LoginViewController.h"
+#import "CenterTableViewCell.h"
 
 @interface ModifyPasswordViewController : BaseViewController
 

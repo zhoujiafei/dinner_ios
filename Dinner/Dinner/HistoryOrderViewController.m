@@ -12,6 +12,7 @@
 
 @synthesize orderData = _orderData;
 @synthesize refreshTableHeaderView = _refreshTableHeaderView;
+@synthesize accessToken = _accessToken;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -21,6 +22,7 @@
     {
         self.title = @"历史订单";
         _orderData = [NSMutableArray array];
+        [self getAccessToken];
     }
     return self;
 }
@@ -34,21 +36,23 @@
     [self requestOrderData];
 }
 
+-(void)getAccessToken
+{
+    _accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    if (!_accessToken)
+    {
+        [self goToLogin];
+        return;
+    }
+}
+
 #pragma mark -
 #pragma mark Show Order List Table
 
 //获取订单的缓存数据
 -(void)getCacheData
 {
-    //获取access_token
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-    if (!accessToken)
-    {
-        [self goToLogin];
-        return;
-    }
-    
-    NSArray *data = [[DataManage shareDataManage] getData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_HISTORY_ORDER_API,accessToken]];
+    NSArray *data = [[DataManage shareDataManage] getData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_HISTORY_ORDER_API,_accessToken]];
     if (data)
     {
         [_orderData addObjectsFromArray:data];
@@ -84,15 +88,7 @@
 //请求订单数据
 -(void)requestOrderData
 {
-    //获取access_token
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-    if (!accessToken)
-    {
-        [self goToLogin];
-        return;
-    }
-    
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_HISTORY_ORDER_API,accessToken]]];
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_HISTORY_ORDER_API,_accessToken]]];
     [request setCompletionBlock:^{
         [self hideTip];
         if ([request responseStatusCode] != 200)
@@ -111,6 +107,14 @@
         //出错了
         if ([returnData isKindOfClass:[NSDictionary class]] && [returnData objectForKey:@"errorCode"])
         {
+            //未登录，则调出登陆界面
+            if ([[returnData objectForKey:@"errorCode"] isEqualToNumber:[NSNumber numberWithInt:40002]])
+            {
+                [ProgressHUD dismiss];
+                [self goToLogin];
+                return;
+            }
+
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [ProgressHUD showError:[returnData objectForKey:@"errorText"]];
             });
@@ -126,7 +130,7 @@
         }
         
         //保存数据
-        [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_HISTORY_ORDER_API,accessToken] withObject:returnData];
+        [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_HISTORY_ORDER_API,_accessToken] withObject:returnData];
         [_orderData removeAllObjects];
         [_orderData addObjectsFromArray:returnData];
         [_tableView reloadData];
@@ -182,6 +186,8 @@
     }
     cell.orderStatus.textColor = color;
     cell.orderTime.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"create_time"];
+    cell.orderDate.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"create_order_date"];
+    cell.orderDate.backgroundColor = APP_BASE_COLOR;
     return cell;
 }
 

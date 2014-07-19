@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "LoginViewController.h"
+#import "PersonalTableViewCell.h"
 
-@interface PersonalViewController : BaseViewController
+@interface PersonalViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSMutableDictionary *userInfo;
+@property (nonatomic,strong) NSString *accessToken;
 
 @end

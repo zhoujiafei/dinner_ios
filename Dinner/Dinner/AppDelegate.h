@@ -14,6 +14,7 @@
 #import "CenterViewController.h"
 #import "SettingViewController.h"
 #import "CartViewController.h"
+#import "MoreViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -21,6 +22,6 @@
 @property (nonatomic,strong) BaseNavigationController *homeNav;
 @property (nonatomic,strong) BaseNavigationController *cartNav;
 @property (nonatomic,strong) BaseNavigationController *centerNav;
-@property (nonatomic,strong) BaseNavigationController *settingNav;
+@property (nonatomic,strong) BaseNavigationController *moreNav;
 
 @end

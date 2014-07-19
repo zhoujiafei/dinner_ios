@@ -42,11 +42,6 @@
 {
     [super viewDidLoad];
     [self showModify];
-    
-    
-    
-    
-    
 }
 
 //显示修改密码界面
@@ -98,6 +93,80 @@
 //请求修改密码
 -(void)goToModifyPassword
 {
+    //获取原始密码
+    NSString *originalName = [_originalName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //获取新密码
+    NSString *modifyPassword = [_modifyPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    //获取确认密码
+    NSString *confirmPassword = [_confirmPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([originalName length] == 0)
+    {
+        [ProgressHUD showError:@"请输入原始密码"];
+        return;
+    }
+    
+    if ([modifyPassword length] == 0)
+    {
+        [ProgressHUD showError:@"请输入新密码"];
+        return;
+    }
+    
+    if ([confirmPassword length] == 0)
+    {
+        [ProgressHUD showError:@"请输入确认密码"];
+        return;
+    }
+    
+    [ProgressHUD show:@"正在修改密码..."];
+    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:MODIFY_PASSWORD_API]];
+    [request addPostValue:_accessToken forKey:@"access_token"];
+    [request addPostValue:originalName forKey:@"cur_password"];
+    [request addPostValue:modifyPassword forKey:@"new_password"];
+    [request addPostValue:confirmPassword forKey:@"comfirm_password"];
+    [request setCompletionBlock:^{
+        if ([request responseStatusCode] != 200)
+        {
+            return;
+        }
+        
+        if (isNilNull([request responseData]))
+        {
+            return;
+        }
+        
+        NSDictionary *returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:nil];
+        if ([returnData objectForKey:@"errorCode"])
+        {
+            //未登录，则调出登陆界面
+            if ([[returnData objectForKey:@"errorCode"] isEqualToNumber:[NSNumber numberWithInt:40002]])
+            {
+                [ProgressHUD dismiss];
+                [self goToLogin];
+                return;
+            }
+            
+            [ProgressHUD showError:[returnData objectForKey:@"errorText"]];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [ProgressHUD dismiss];
+            });
+            return;
+        }
+        else
+        {
+            [ProgressHUD showSuccess:@"修改成功"];
+            //将新的密码保存到用户信息缓存里面
+            NSDictionary *userData = [[DataManage shareDataManage] getData:CACHE_NAME withNetworkApi:@"__userinfo"];
+            NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:userData];
+            [userInfo setObject:confirmPassword forKey:@"password"];
+            //返回用户中心
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+    [request setFailedBlock:^{
+        [ProgressHUD showError:@"网络连接错误"];
+    }];
+    [request startAsynchronous];
     
 }
 
@@ -107,6 +176,17 @@
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark -
+#pragma mark 隐藏键盘
+
+//隐藏键盘
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_originalName resignFirstResponder];
+    [_modifyPassword resignFirstResponder];
+    [_confirmPassword resignFirstResponder];
 }
 
 

@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "OrderTableViewCell.h"
+#import "EGORefreshTableHeaderView.h"
+#import "LoginViewController.h"
 
-@interface TodayOrderViewController : BaseViewController
+@interface TodayOrderViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
+@property (nonatomic,assign) BOOL reloading;
+@property (nonatomic,strong) NSMutableArray *orderData;
+@property (nonatomic,strong) NSString *accessToken;
 
 @end

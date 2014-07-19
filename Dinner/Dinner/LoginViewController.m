@@ -144,6 +144,10 @@
             //登陆成功后保存accessToken
             [[NSUserDefaults standardUserDefaults] setObject:[data objectForKey:@"token"] forKey:@"access_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            //保存用户信息
+            NSMutableDictionary *userData = [NSMutableDictionary dictionaryWithDictionary:data];
+            [userData setObject:password forKey:@"password"];
+            [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:@"__userinfo" withObject:userData];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];

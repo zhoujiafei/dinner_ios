@@ -8,14 +8,6 @@
 
 #import "CenterViewController.h"
 
-@interface CenterViewController ()
-
-@property (nonatomic,strong) NSString *userName;
-@property (nonatomic,strong) NSString *balance;
-
-@end
-
-
 @implementation CenterViewController
 
 @synthesize pathCover = _pathCover;
@@ -48,8 +40,26 @@
     [super viewDidLoad];
     [self getCacheData];
     [self showCenter];
-    [self requestUserInfo];
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_userInfo removeAllObjects];
+    NSDictionary *data = [[DataManage shareDataManage] getData:CACHE_NAME withNetworkApi:@"__userinfo"];
+    if (data)
+    {
+        [_userInfo setDictionary:data];
+        if ([_userInfo objectForKey:@"name"])
+        {
+            NSString *balance = [NSString stringWithFormat:@"￥ %@",[_userInfo objectForKey:@"balance"]];
+            [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[_userInfo objectForKey:@"name"], XHUserNameKey, balance, XHBirthdayKey, nil]];
+        }
+    }
+    else
+    {
+        [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:nil, XHUserNameKey, nil, XHBirthdayKey, nil]];
+    }
 }
 
 #pragma mark -
@@ -99,50 +109,6 @@
             [wself.pathCover stopRefresh];
         });
     }];
-}
-
-//请求用户信息
--(void)requestUserInfo
-{
-    //根据保存的access_token获取用户信息
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-    if (accessToken)
-    {
-        __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:GET_USERINFO_API]];
-        [request addPostValue:accessToken forKey:@"access_token"];
-        [request setCompletionBlock:^{
-            if ([request responseStatusCode] != 200)
-            {
-                return;
-            }
-            
-            if (isNilNull([request responseData]))
-            {
-                return;
-            }
-            
-            NSData *data = [request responseData];
-            id returnData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            if (![returnData objectForKey:@"errorCode"] && [returnData isKindOfClass:[NSDictionary class]])
-            {
-                [_userInfo removeAllObjects];
-                [_userInfo setDictionary:returnData];
-                
-                //保存数据
-                [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:@"__userinfo" withObject:_userInfo];
-                
-                //设置用户名与账户
-                [_pathCover setInfo:[NSDictionary
-                                     dictionaryWithObjectsAndKeys:
-                                     [_userInfo objectForKey:@"name"], XHUserNameKey,
-                                     [NSString stringWithFormat:@"账户余额：￥%@",[_userInfo objectForKey:@"balance"]], XHBirthdayKey, nil]];
-            }
-        }];
-        [request setFailedBlock:^{
-            [ProgressHUD showError:@"网络连接错误"];
-        }];
-        [request startAsynchronous];
-    }
 }
 
 #pragma mark -
