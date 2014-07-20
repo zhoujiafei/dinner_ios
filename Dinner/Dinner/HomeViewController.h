@@ -19,5 +19,7 @@
 @property (nonatomic,assign) BOOL isOnTime;
 @property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
 @property (nonatomic,assign) BOOL reloading;
+@property (nonatomic,strong) UIView *emptyBgView;
+
 
 @end

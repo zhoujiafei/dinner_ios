@@ -117,6 +117,10 @@
 }
 
 #pragma mark -
+#pragma mark Get Cache Size
+
+
+#pragma mark -
 #pragma mark Go To Interface
 
 //跳到指定的界面

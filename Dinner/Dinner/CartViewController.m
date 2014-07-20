@@ -13,6 +13,7 @@
 @synthesize tableView   = _tableView;
 @synthesize cartData    = _cartData;
 @synthesize totalPrice  = _totalPrice;
+@synthesize emptyBgView = _emptyBgView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +41,7 @@
     [super viewWillAppear:animated];
     [_cartData removeAllObjects];
     [self getCartData];
+    [self changeBgColor];
     [_tableView reloadData];
 }
 
@@ -68,6 +70,26 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
+    
+    //没有菜时候的背景
+    //提示图片
+    _emptyBgView = [[UIView alloc] initWithFrame:self.view.frame];
+    UIImageView *noDataIcon = [[UIImageView alloc] initWithFrame:CGRectMake(133, 64, 54, 54)];
+    noDataIcon.image = [UIImage imageNamed:@"nearby_error_order"];
+    
+    //提示文字
+    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 126, 180, 45)];
+    tipLabel.font = [UIFont systemFontOfSize:16];
+    tipLabel.textColor = [UIColor grayColor];
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    tipLabel.numberOfLines = 0;
+    tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    tipLabel.text = @"亲！您还没有添加菜到美食框哦！@_@";
+    
+    [_emptyBgView addSubview:noDataIcon];
+    [_emptyBgView addSubview:tipLabel];
+    _emptyBgView.hidden = YES;
+    [_tableView addSubview:_emptyBgView];
     [self.view addSubview:_tableView];
 }
 
@@ -180,6 +202,7 @@
     [_cartData replaceObjectAtIndex:btn.tag withObject:curData];
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
     menuNum.text = [NSString stringWithFormat:@"%d",newNum];
+    [self changeBgColor];//改背景色
     [_tableView reloadData];
 }
 
@@ -194,6 +217,7 @@
         [_cartData removeObjectAtIndex:btn.tag];
         //保存数据库
         [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
+        [self changeBgColor];
         [_tableView reloadData];
         //发通知更新 _cartNav.tabBarItem.badgeValue 的值
         [self sendNotificationForCartChanged];
@@ -205,6 +229,7 @@
     [_cartData replaceObjectAtIndex:btn.tag withObject:curData];
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
     menuNum.text = [NSString stringWithFormat:@"%d",newNum];
+    [self changeBgColor];//改背景色
     [_tableView reloadData];
 }
 
@@ -326,10 +351,23 @@
         [_cartData removeAllObjects];
         [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
         [self sendNotificationForCartChanged];
+        [self changeBgColor];
         [self.tableView reloadData];
         [ProgressHUD showSuccess:@"美食框已清空"];
     }
 }
 
+//处理tableView背景颜色
+-(void)changeBgColor
+{
+    if ([_cartData count] <= 0)
+    {
+        _emptyBgView.hidden = NO;
+    }
+    else
+    {
+        _emptyBgView.hidden = YES;
+    }
+}
 
 @end

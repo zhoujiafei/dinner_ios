@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "HomeViewController.h"
+#import "TodayOrderViewController.h"
+#import "AppDelegate.h"
 
 @interface OrderSuccessViewController : BaseViewController
+
+@property (nonatomic,strong) NSMutableDictionary *userInfo;
 
 @end

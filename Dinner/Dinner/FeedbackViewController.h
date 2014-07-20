@@ -11,4 +11,6 @@
 
 @interface FeedbackViewController : BaseViewController
 
+@property (nonatomic,strong) UITextView *feedbackView;
+
 @end

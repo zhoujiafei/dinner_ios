@@ -209,6 +209,17 @@
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger rowNo = indexPath.row;
+    NSDictionary *order = [_orderData objectAtIndex:rowNo];
+    self.hidesBottomBarWhenPushed = YES;
+    OrderDetailViewController *orderDetail = [[OrderDetailViewController alloc] init];
+    orderDetail.orderInfo = order;
+    [self.navigationController pushViewController:orderDetail animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view

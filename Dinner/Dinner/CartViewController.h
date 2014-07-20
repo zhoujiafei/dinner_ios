@@ -17,5 +17,6 @@
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *cartData;
 @property (nonatomic,strong) UILabel *totalPrice;
+@property (nonatomic,strong) UIView *emptyBgView;
 
 @end

@@ -11,6 +11,7 @@
 #import "OrderTableViewCell.h"
 #import "EGORefreshTableHeaderView.h"
 #import "LoginViewController.h"
+#import "OrderDetailViewController.h"
 
 @interface HistoryOrderViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 

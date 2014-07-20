@@ -16,6 +16,7 @@
 @synthesize reloading               = _reloading;
 @synthesize menusData               = _menusData;
 @synthesize cartBtn                 = _cartBtn;
+@synthesize emptyBgView             = _emptyBgView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +65,26 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
+    
+    /****************************没有菜时候的背景***************************/
+    //提示图片
+    _emptyBgView = [[UIView alloc] initWithFrame:self.view.frame];
+    UIImageView *noDataIcon = [[UIImageView alloc] initWithFrame:CGRectMake(133, 128, 54, 54)];
+    noDataIcon.image = [UIImage imageNamed:@"nearby_error_order"];
+    //提示文字
+    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 190, 180, 45)];
+    tipLabel.font = [UIFont systemFontOfSize:16];
+    tipLabel.textColor = [UIColor grayColor];
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    tipLabel.numberOfLines = 0;
+    tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    tipLabel.text = @"亲！这家餐厅暂时还没有菜哦！@_@";
+    [_emptyBgView addSubview:noDataIcon];
+    [_emptyBgView addSubview:tipLabel];
+    _emptyBgView.hidden = YES;
+    [_tableView addSubview:_emptyBgView];
+    /****************************没有菜时候的背景***************************/
+    
     [self.view addSubview:_tableView];
     //刷新控件
     if (_refreshTableHeaderView == nil)
@@ -114,6 +135,7 @@
         [[DataManage shareDataManage] insertData:CACHE_NAME withNetworkApi:[NSString stringWithFormat:GET_MENUS_API,_shopId] withObject:menus];
         [_menusData removeAllObjects];
         [_menusData addObjectsFromArray:menus];
+        [self changeBgColor];
         [_tableView reloadData];
         
     }];
@@ -121,6 +143,19 @@
         [ProgressHUD showError:@"网络连接错误"];
     }];
     [request startAsynchronous];
+}
+
+//处理tableView背景颜色
+-(void)changeBgColor
+{
+    if ([_menusData count] <= 0)
+    {
+        _emptyBgView.hidden = NO;
+    }
+    else
+    {
+        _emptyBgView.hidden = YES;
+    }
 }
 
 #pragma mark -
@@ -272,6 +307,7 @@
 {
     _reloading = NO;
     [_refreshTableHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    [self changeBgColor];
     [_tableView reloadData];
 }
 

@@ -20,5 +20,6 @@
 @property (nonatomic,assign) BOOL reloading;
 @property (nonatomic,strong) NSMutableArray *menusData;
 @property (nonatomic,strong) UIButton *cartBtn;
+@property (nonatomic,strong) UIView *emptyBgView;
 
 @end
