@@ -11,6 +11,7 @@
 @interface MoreViewController ()
 
 @property (nonatomic,strong) NSArray *labelArr;
+@property (nonatomic,strong) NSArray *labelIcon;
 
 @end
 
@@ -22,7 +23,8 @@
     if (self)
     {
         self.title = @"更多";
-        self.labelArr = @[@"公告",@"订餐提醒",@"清除缓存",@"关于我们",@"版本更新"];
+        self.labelArr = [NSArray arrayWithObjects:@[@"公告"],@[@"设置",@"关于我们",@"反馈意见",@"版本更新"], nil];
+        self.labelIcon = [NSArray arrayWithObjects:@[@""],@[@"more_setting",@"more_about",@"more_feedback",@""], nil];
     }
     return self;
 }
@@ -56,7 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return [[self.labelArr objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +70,10 @@
     {
         cell = [[MoreTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
     }
+    
+    NSInteger rowNo = indexPath.row;
+    cell.textLabel.text = [[self.labelArr objectAtIndex:indexPath.section] objectAtIndex:rowNo];
+    cell.imageView.image = [UIImage imageNamed:[[self.labelIcon objectAtIndex:indexPath.section] objectAtIndex:rowNo]];
     return cell;
 }
 
@@ -76,7 +82,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    if (section == 0)
+    {
+        return 100;
+    }
+    else
+    {
+        return 20;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -92,7 +105,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.labelArr count];
 }
 
 @end

@@ -91,7 +91,7 @@
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220)];
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"banner"]];
-    [_pathCover setAvatarImage:[UIImage imageNamed:@"meicon.png"]];
+    [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
     
     if ([_userInfo objectForKey:@"name"])
     {

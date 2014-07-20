@@ -168,6 +168,12 @@
 		8BB1016919795AD200D97B96 /* banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB1016719795AD200D97B96 /* banner.png */; };
 		8BB1016A19795AD200D97B96 /* banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BB1016819795AD200D97B96 /* banner@2x.png */; };
 		8BC6FF3F196C2D6B0093A476 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6FF3E196C2D6B0093A476 /* CartViewController.m */; };
+		8BCA83A7197B39A400DF2789 /* avatar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8BCA83A6197B39A400DF2789 /* avatar@2x.jpg */; };
+		8BCA83A9197B3B0900DF2789 /* remind_clean@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCA83A8197B3B0900DF2789 /* remind_clean@2x.png */; };
+		8BCA83AB197B3B1800DF2789 /* remind_expired@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCA83AA197B3B1800DF2789 /* remind_expired@2x.png */; };
+		8BCA83AD197B3D4300DF2789 /* more_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCA83AC197B3D4300DF2789 /* more_setting@2x.png */; };
+		8BCA83AF197B3EF500DF2789 /* more_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCA83AE197B3EF500DF2789 /* more_about@2x.png */; };
+		8BCA83B1197B404300DF2789 /* more_feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCA83B0197B404300DF2789 /* more_feedback@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -414,6 +420,12 @@
 		8BB1016819795AD200D97B96 /* banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner@2x.png"; sourceTree = "<group>"; };
 		8BC6FF3D196C2D6B0093A476 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		8BC6FF3E196C2D6B0093A476 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		8BCA83A6197B39A400DF2789 /* avatar@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "avatar@2x.jpg"; sourceTree = "<group>"; };
+		8BCA83A8197B3B0900DF2789 /* remind_clean@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remind_clean@2x.png"; sourceTree = "<group>"; };
+		8BCA83AA197B3B1800DF2789 /* remind_expired@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remind_expired@2x.png"; sourceTree = "<group>"; };
+		8BCA83AC197B3D4300DF2789 /* more_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_setting@2x.png"; sourceTree = "<group>"; };
+		8BCA83AE197B3EF500DF2789 /* more_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_about@2x.png"; sourceTree = "<group>"; };
+		8BCA83B0197B404300DF2789 /* more_feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_feedback@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -480,6 +492,12 @@
 		663C9A21196CC1B600BEDC4A /* image */ = {
 			isa = PBXGroup;
 			children = (
+				8BCA83B0197B404300DF2789 /* more_feedback@2x.png */,
+				8BCA83AE197B3EF500DF2789 /* more_about@2x.png */,
+				8BCA83AC197B3D4300DF2789 /* more_setting@2x.png */,
+				8BCA83AA197B3B1800DF2789 /* remind_expired@2x.png */,
+				8BCA83A8197B3B0900DF2789 /* remind_clean@2x.png */,
+				8BCA83A6197B39A400DF2789 /* avatar@2x.jpg */,
 				8B1E76F5197A43F200CFD679 /* tab_more@2x.png */,
 				8BB1016719795AD200D97B96 /* banner.png */,
 				8BB1016819795AD200D97B96 /* banner@2x.png */,
@@ -991,6 +1009,7 @@
 				66E9AE8E196A806F00558097 /* blackArrow.png in Resources */,
 				66A020FF1975104800A048BE /* Position@2x.png in Resources */,
 				66CFE35A19778CB2002DF1E6 /* MemCardTipBg@2x.png in Resources */,
+				8BCA83AD197B3D4300DF2789 /* more_setting@2x.png in Resources */,
 				6678219A197601C300A6371B /* tab_all_hilight@2x.png in Resources */,
 				6605237719763F70005DD835 /* center_order@2x.png in Resources */,
 				66BA4BCC196F66DE0072A4FC /* meicon.png in Resources */,
@@ -1010,6 +1029,7 @@
 				660523831976437F005DD835 /* personal_account@2x.png in Resources */,
 				6605238A197643EB005DD835 /* order_all.png in Resources */,
 				6678218D1975FF3700A6371B /* account@2x.png in Resources */,
+				8BCA83AB197B3B1800DF2789 /* remind_expired@2x.png in Resources */,
 				66E9AE91196A806F00558097 /* blueArrow@2x.png in Resources */,
 				66DEBD5C197924CB00F6172A /* cm_center_sv_bg@2x.png in Resources */,
 				8BB1016919795AD200D97B96 /* banner.png in Resources */,
@@ -1025,6 +1045,7 @@
 				6605238B197643EB005DD835 /* order_all@2x.png in Resources */,
 				8B217E5819756EA3005CEDC2 /* defaultFood@2x.jpg in Resources */,
 				8B1E76F6197A43F200CFD679 /* tab_more@2x.png in Resources */,
+				8BCA83A9197B3B0900DF2789 /* remind_clean@2x.png in Resources */,
 				66F0860C196CE5E100AD70B1 /* star.png in Resources */,
 				66AE41AE196D12F5001F5640 /* cart_full_show@2x.png in Resources */,
 				66CFE35619778B9B002DF1E6 /* cell_buttom_rec@2x.png in Resources */,
@@ -1033,6 +1054,7 @@
 				66A020F31974DA1500A048BE /* icon_delete@2x.png in Resources */,
 				6605238E1976441C005DD835 /* personal_recharge.png in Resources */,
 				66CFE35819778B9B002DF1E6 /* cell_top_rec@2x.png in Resources */,
+				8BCA83AF197B3EF500DF2789 /* more_about@2x.png in Resources */,
 				66A020FA19750FE500A048BE /* Phone.png in Resources */,
 				66CFE35719778B9B002DF1E6 /* cell_mid_rec@2x.png in Resources */,
 				66A020FB19750FE500A048BE /* Position.png in Resources */,
@@ -1052,6 +1074,7 @@
 				66F08614196CF6D400AD70B1 /* user@2x.png in Resources */,
 				66CFE35519778B9B002DF1E6 /* cell_buttom_line@2x.png in Resources */,
 				663C9A29196CC1F100BEDC4A /* house@2x.png in Resources */,
+				8BCA83B1197B404300DF2789 /* more_feedback@2x.png in Resources */,
 				6678218C1975FF3700A6371B /* account.png in Resources */,
 				6678218E1975FF3700A6371B /* login_pw.png in Resources */,
 				6605238F1976441C005DD835 /* personal_recharge@2x.png in Resources */,
@@ -1066,6 +1089,7 @@
 				66A020F21974DA1500A048BE /* icon_delete.png in Resources */,
 				66AE41AD196D12F5001F5640 /* cart_full_show.png in Resources */,
 				667821971976014C00A6371B /* tab_setting_normal@2x.png in Resources */,
+				8BCA83A7197B39A400DF2789 /* avatar@2x.jpg in Resources */,
 				6605237A197642BC005DD835 /* order_date.png in Resources */,
 				8B33DF82196994C90080E7FD /* ProgressHUD.bundle in Resources */,
 			);
