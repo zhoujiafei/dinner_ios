@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "config.h"
 #import "MoreTableViewCell.h"
+#import "NoticeViewController.h"
+#import "ScanViewController.h"
+#import "AboutUsViewController.h"
+#import "FeedbackViewController.h"
+#import "SettingViewController.h"
 
 @interface MoreViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 

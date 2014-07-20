@@ -1,5 +1,5 @@
 //
-//  PersonalViewController.m
+//  MoreViewController.m
 //  Dinner
 //
 //  Created by 周 加飞 on 14-7-16.
@@ -23,8 +23,8 @@
     if (self)
     {
         self.title = @"更多";
-        self.labelArr = [NSArray arrayWithObjects:@[@"公告"],@[@"设置",@"关于我们",@"反馈意见",@"版本更新"], nil];
-        self.labelIcon = [NSArray arrayWithObjects:@[@""],@[@"more_setting",@"more_about",@"more_feedback",@""], nil];
+        self.labelArr = [NSArray arrayWithObjects:@[@"公告",@"扫描"],@[@"设置",@"关于我们",@"反馈意见",@"版本更新"], nil];
+        self.labelIcon = [NSArray arrayWithObjects:@[@"more_shake",@"more_scan"],@[@"more_setting",@"more_about",@"more_feedback",@"seller_navi"], nil];
     }
     return self;
 }
@@ -106,6 +106,56 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.labelArr count];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                [self goToTargetInterface:[[NoticeViewController alloc] init]];
+                break;
+            case 1:
+                [self goToTargetInterface:[[ScanViewController alloc] init]];
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                [self goToTargetInterface:[[SettingViewController alloc] init]];
+                break;
+            case 1:
+                [self goToTargetInterface:[[AboutUsViewController alloc] init]];
+                break;
+            case 2:
+                [self goToTargetInterface:[[FeedbackViewController alloc] init]];
+                break;
+            case 3:
+                [ProgressHUD showSuccess:@"当前已是最新版本"];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark Go To Interface
+
+//跳到指定的界面
+-(void)goToTargetInterface:(BaseViewController *)viewController
+{
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:viewController animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end

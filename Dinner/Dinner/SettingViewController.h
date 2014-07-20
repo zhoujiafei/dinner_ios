@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "MoreTableViewCell.h"
+#import "ClockViewController.h"
 
-@interface SettingViewController : BaseViewController
+@interface SettingViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong) UITableView *tableView;
 
 @end
