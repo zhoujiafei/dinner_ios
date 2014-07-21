@@ -175,6 +175,17 @@
     cell.status.text = statusText;
     cell.address.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"address"];
     cell.phone.text = [[_shopData objectAtIndex:rowNo] objectForKey:@"tel"];
+
+    NSString *flatImage = @"";
+    if (_isOnTime)
+    {
+        flatImage = @"deal_flag_free";
+    }
+    else
+    {
+        flatImage = @"deal_flag_end";
+    }
+    cell.flatFree.image = [UIImage imageNamed:flatImage];
     return cell;
 }
 

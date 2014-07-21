@@ -17,5 +17,6 @@
 @property (nonatomic,strong) UIImageView *commentView;//评论小图标
 @property (nonatomic,strong) UILabel *address;//地址
 @property (nonatomic,strong) UILabel *phone;//电话
+@property (nonatomic,strong) UIImageView *flatFree;//餐厅状态标志图
 
 @end

@@ -64,7 +64,18 @@
 //发送意见
 -(void)sendMsg
 {
-    NSLog(@"sendmsg");
+    NSString *content = _feedbackView.text;
+    if ([content length] == 0)
+    {
+        [ProgressHUD showError:@"亲！意见不能空哦！"];
+        return;
+    }
+    
+    [ProgressHUD show:@"正在发送..."];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [ProgressHUD showSuccess:@"发送成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 #pragma mark -
