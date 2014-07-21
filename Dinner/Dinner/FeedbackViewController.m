@@ -35,7 +35,7 @@
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 65, self.view.frame.size.width - 20, 45)];
     titleLabel.font = [UIFont systemFontOfSize:16];
     titleLabel.textColor = [UIColor grayColor];
-    titleLabel.text = @"亲！很高兴您写意见给我们哦~~";
+    titleLabel.text = @"亲！有意见你说~我虚心接受，努力改正！";
     
     //意见反馈
     _feedbackView = [[UITextView alloc] initWithFrame:CGRectMake(10, 110, self.view.frame.size.width - 20, 100)];

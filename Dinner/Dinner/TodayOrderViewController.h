@@ -19,5 +19,6 @@
 @property (nonatomic,assign) BOOL reloading;
 @property (nonatomic,strong) NSMutableArray *orderData;
 @property (nonatomic,strong) NSString *accessToken;
+@property (nonatomic,strong) UIView *emptyBgView;
 
 @end
