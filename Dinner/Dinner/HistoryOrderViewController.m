@@ -85,7 +85,7 @@
     tipLabel.textAlignment = NSTextAlignmentCenter;
     tipLabel.numberOfLines = 0;
     tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    tipLabel.text = @"亲！您今天还没有订单哦！@_@";
+    tipLabel.text = @"亲！您还没有下过单哦！@_@";
     [_emptyBgView addSubview:noDataIcon];
     [_emptyBgView addSubview:tipLabel];
     _emptyBgView.hidden = YES;
