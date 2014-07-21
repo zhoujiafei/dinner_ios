@@ -409,9 +409,31 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     _birthdayLabel.shadowOffset = CGSizeMake(0, 2);
     _birthdayLabel.font = [UIFont systemFontOfSize:14.0f];
     
+    //登陆按钮
+    _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _loginButton.frame = CGRectMake(110, 10, 100, 35);
+    [_loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+    [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _loginButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    _loginButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:102/255.0 blue:143.0/255.0 alpha:1.0];
+    _loginButton.layer.cornerRadius = 5.0;
+    _loginButton.hidden = YES;
+    
+    //退出按钮
+    _logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _logoutButton.frame = CGRectMake(210, 10, 100, 35);
+    [_logoutButton setTitle:@"退出" forState:UIControlStateNormal];
+    [_logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _logoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    _logoutButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:102/255.0 blue:143.0/255.0 alpha:1.0];
+    _logoutButton.layer.cornerRadius = 5.0;
+    _logoutButton.hidden = YES;
+    
     [_showView addSubview:self.avatarButton];
     [_showView addSubview:self.userNameLabel];
     [_showView addSubview:self.birthdayLabel];
+    [_showView addSubview:self.loginButton];
+    [_showView addSubview:self.logoutButton];
     
     [self addSubview:self.showView];
 }

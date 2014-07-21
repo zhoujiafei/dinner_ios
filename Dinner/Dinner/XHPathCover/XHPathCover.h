@@ -23,6 +23,10 @@ extern NSString *const XHBirthdayKey;
 @property (nonatomic, strong) UILabel *userNameLabel;
 @property (nonatomic, strong) UILabel *birthdayLabel;
 
+//login btn
+@property (nonatomic,strong) UIButton *loginButton;
+@property (nonatomic,strong) UIButton *logoutButton;
+
 
 //scrollView call back
 @property (nonatomic) BOOL touching;

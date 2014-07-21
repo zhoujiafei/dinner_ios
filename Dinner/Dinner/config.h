@@ -43,6 +43,7 @@
 //#define GET_TODAY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/todayorder&access_token=%@" //获取今日订单接口
 //#define MODIFY_PASSWORD_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/modifypassword" //修改密码接口
 //#define GET_NOTICE_API @"http://localhost/dinner/branches/beta/index.php?r=api/notice" //获取公告接口
+//#define LOGOUT_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/Logout" //退出登陆接口
 
 
 #define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
@@ -54,6 +55,7 @@
 #define GET_TODAY_ORDER_API @"http://localhost/dinner/index.php?r=api/center/todayorder&access_token=%@" //获取今日订单接口
 #define MODIFY_PASSWORD_API @"http://localhost/dinner/index.php?r=api/center/modifypassword" //修改密码接口
 #define GET_NOTICE_API @"http://localhost/dinner/index.php?r=api/notice" //获取公告接口
+#define LOGOUT_API @"http://localhost/dinner/index.php?r=api/login/Logout" //退出登陆接口
 
 
 #endif
