@@ -8,10 +8,6 @@
 
 #import "ClockViewController.h"
 
-@interface ClockViewController ()
-
-@end
-
 @implementation ClockViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,6 +23,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self showClock];
+}
+
+//显示提醒界面
+-(void)showClock
+{
+    UISwitch *clockSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(54.0f, 84.0f, 0.0f, 0.0f)];
+    clockSwitch.on = YES;
+    clockSwitch.onTintColor = APP_BASE_COLOR;
+    
+    [self.view addSubview:clockSwitch];
+    
+    
+    
+    
     
 }
 
