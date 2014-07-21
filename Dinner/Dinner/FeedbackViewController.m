@@ -41,6 +41,9 @@
     _feedbackView = [[UITextView alloc] initWithFrame:CGRectMake(10, 110, self.view.frame.size.width - 20, 100)];
     _feedbackView.font = [UIFont systemFontOfSize:16];
     _feedbackView.textColor = [UIColor grayColor];
+    _feedbackView.layer.borderColor = SYSTEM_BG_COLOR.CGColor;
+    _feedbackView.layer.borderWidth = 1.0;
+    _feedbackView.layer.cornerRadius = 5.0;
     
     
     //发送按钮
@@ -48,7 +51,7 @@
     sendBtn.frame = CGRectMake(10, 220, self.view.frame.size.width - 20, 45);
     sendBtn.backgroundColor = APP_BASE_COLOR;
     sendBtn.layer.cornerRadius = 5.0f;
-    [sendBtn setTitle:@"发送意见" forState:UIControlStateNormal];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
     [sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     sendBtn.titleLabel.font = [UIFont systemFontOfSize:20];
     [sendBtn addTarget:self action:@selector(sendMsg) forControlEvents:UIControlEventTouchUpInside];
