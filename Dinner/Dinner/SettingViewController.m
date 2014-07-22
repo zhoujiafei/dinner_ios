@@ -131,4 +131,97 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+#pragma mark -
+#pragma mark Clear Caches
+
+//获取本地缓存大小
+- (void)loadCacheSize
+{
+//    int totalSize = 0;
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    BOOL isDirExist = [fileManager fileExistsAtPath:[PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"]];
+//    if(isDirExist) {
+//        NSString *cachesFoldPath = [PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"];
+//        NSString *ASIHTTPFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"ASIHTTPRequestCache"];
+//        NSString *ImageCacheFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"ImageCache"];
+//        NSString *NewsPictureFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"NewsPicture"];
+//        NSString *WirlessDataFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"wirlessData"];
+//        
+//        BOOL isSaveFoldExist = [fileManager fileExistsAtPath:ASIHTTPFoldPath];
+//        if (isSaveFoldExist) {
+//            totalSize = [self sizeOfFolder:ASIHTTPFoldPath];
+//        }
+//        BOOL isImageCacheFoldExist = [fileManager fileExistsAtPath:ImageCacheFoldPath];
+//        if (isImageCacheFoldExist) {
+//            totalSize = totalSize + [self sizeOfFolder:ImageCacheFoldPath];
+//        }
+//        BOOL isNewsPictureFoldExist = [fileManager fileExistsAtPath:NewsPictureFoldPath];
+//        if (isNewsPictureFoldExist) {
+//            totalSize = totalSize + [self sizeOfFolder:NewsPictureFoldPath];
+//        }
+//        BOOL isWirlessDataFoldExist = [fileManager fileExistsAtPath:WirlessDataFoldPath];
+//        if (isWirlessDataFoldExist) {
+//            totalSize = totalSize + [self sizeOfFolder:WirlessDataFoldPath];
+//        }
+//        NSArray *contents = [[NSFileManager defaultManager] subpathsAtPath:cachesFoldPath];
+//        NSEnumerator *enumerator = [contents objectEnumerator];;
+//        NSString *path;
+//        while (path = [enumerator nextObject]) {
+//            if ([[path pathExtension] isEqualToString:@"localstorage"])
+//            {
+//                NSError *error =nil;
+//                NSDictionary *fattrib = [[NSFileManager defaultManager] attributesOfItemAtPath:[cachesFoldPath stringByAppendingPathComponent:path] error:&error];
+//                
+//                totalSize  = totalSize + (int)[fattrib fileSize];
+//            }
+//            
+//        }
+//        
+//    }
+//    else {
+//        totalSize = [[SDImageCache sharedImageCache] getSize]+[self sizeOfFolder:PATH_OF_TEMP];
+//    }
+//    NSString *str = [self stringFromFileSize:totalSize];
+//    sizeLabel.text = str;
+//    CGSize size = [str sizeWithFont:sizeLabel.font constrainedToSize:CGSizeMake(150, 45)];
+//    sizeLabel.frame = CGRectMake(274-size.width, 0, size.width, 45);
+//    [activity stopAnimating];
+//    [activity removeFromSuperview];
+}
+
+//单位转换
+- (NSString *)stringFromFileSize:(int)theSize
+{
+    float floatSize = theSize;
+    if (theSize<1023)
+        return @"0.0 K";
+    floatSize = floatSize / 1024;
+    if (floatSize<1023)
+        return([NSString stringWithFormat:@"%1.1f K",floatSize]);
+    floatSize = floatSize / 1024;
+    if (floatSize<1023)
+        return([NSString stringWithFormat:@"%1.1f M",floatSize]);
+    floatSize = floatSize / 1024;
+    
+    return([NSString stringWithFormat:@"%1.1f G",floatSize]);
+}
+
+//计算文件夹的大小
+- (int)sizeOfFolder:(NSString*)folderPath
+{
+    NSArray *contents;
+    NSEnumerator *enumerator;
+    NSString *path;
+    contents = [[NSFileManager defaultManager] subpathsAtPath:folderPath];
+    enumerator = [contents objectEnumerator];
+    int fileSizeInt = 0;
+    while (path = [enumerator nextObject]) {
+        NSError *error =nil;
+        NSDictionary *fattrib = [[NSFileManager defaultManager] attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:path] error:&error];
+        
+        fileSizeInt +=[fattrib fileSize];
+    }
+    return fileSizeInt;
+}
+
 @end

@@ -113,4 +113,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//接收到通知
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIAlertView *remind = [[UIAlertView alloc] initWithTitle:@"提醒" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    [remind show];
+}
+
 @end
