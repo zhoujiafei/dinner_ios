@@ -14,7 +14,7 @@
 
 @interface LoginViewController : BaseViewController
 
-@property (nonatomic,strong) UITextField *username;
-@property (nonatomic,strong) UITextField *password;
+@property (nonatomic,strong) LoginTextField *username;
+@property (nonatomic,strong) LoginTextField *password;
 
 @end

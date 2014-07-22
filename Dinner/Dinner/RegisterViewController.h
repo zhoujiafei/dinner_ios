@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "config.h"
+#import "LoginTextField.h"
 
-@interface RegisterViewController : BaseViewController
+@interface RegisterViewController : BaseViewController <UIAlertViewDelegate>
+
+@property (nonatomic,strong) LoginTextField *username;
+@property (nonatomic,strong) LoginTextField *firstPassword;
+@property (nonatomic,strong) LoginTextField *secondPassword;
 
 @end
