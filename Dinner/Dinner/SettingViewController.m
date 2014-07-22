@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) NSArray *labelArr;
 @property (nonatomic,strong) NSArray *labelIcon;
+@property (nonatomic,assign) BOOL isOpenRemind;
 
 @end
 
@@ -25,6 +26,7 @@
         self.title = @"设置";
         self.labelArr = [NSArray arrayWithObjects:@[@"订餐提醒",@"清除缓存"], nil];
         self.labelIcon = [NSArray arrayWithObjects:@[@"remind_expired",@"remind_clean"], nil];
+        self.isOpenRemind   = [[[NSUserDefaults standardUserDefaults] objectForKey:@"is_open_remind"] boolValue];
     }
     return self;
 }
@@ -33,6 +35,13 @@
 {
     [super viewDidLoad];
     [self showSetting];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.isOpenRemind   = [[[NSUserDefaults standardUserDefaults] objectForKey:@"is_open_remind"] boolValue];
+    [_tableView reloadData];
 }
 
 #pragma mark -
@@ -74,6 +83,21 @@
     NSInteger rowNo = indexPath.row;
     cell.textLabel.text = [[self.labelArr objectAtIndex:indexPath.section] objectAtIndex:rowNo];
     cell.imageView.image = [UIImage imageNamed:[[self.labelIcon objectAtIndex:indexPath.section] objectAtIndex:rowNo]];
+    
+    if (rowNo == 0)
+    {
+        if (self.isOpenRemind)
+        {
+            cell.detailTextLabel.text = @"已开启";
+            cell.detailTextLabel.textColor = APP_BASE_COLOR;
+        }
+        else
+        {
+            cell.detailTextLabel.text = @"已关闭";
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        }
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
+    }
     return cell;
 }
 

@@ -16,6 +16,11 @@
     if (self)
     {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        
+        
+        
+        
     }
     return self;
 }
