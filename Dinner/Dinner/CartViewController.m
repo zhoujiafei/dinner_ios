@@ -296,16 +296,13 @@
         }
         else
         {
-            [ProgressHUD dismiss];
+            [ProgressHUD showSuccess:@"下单成功"];
             //清空美食框
+            [_cartData removeAllObjects];
             [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
             [self sendNotificationForCartChanged];
-            //跳转到下单成功界面
-            self.hidesBottomBarWhenPushed = YES;
-            OrderSuccessViewController *orderOk = [[OrderSuccessViewController alloc] init];
-            [self.navigationController pushViewController:orderOk animated:YES];
-            self.hidesBottomBarWhenPushed = NO;
-            
+            [self changeBgColor];//改背景色
+            [_tableView reloadData];
         }
     }];
     [request setFailedBlock:^{
