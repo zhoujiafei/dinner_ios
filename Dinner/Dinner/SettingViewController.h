@@ -11,7 +11,7 @@
 #import "MoreTableViewCell.h"
 #import "ClockViewController.h"
 
-@interface SettingViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+@interface SettingViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
 

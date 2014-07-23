@@ -98,6 +98,11 @@
         }
         cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
     }
+    else
+    {
+        cell.detailTextLabel.text = [self getCurrentCacheSize];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+    }
     return cell;
 }
 
@@ -133,16 +138,12 @@
             [self goToTargetInterface:[[ClockViewController alloc] init]];
             break;
         case 1:
-            
+            [self confirmClearCache];
             break;
         default:
             break;
     }
 }
-
-#pragma mark -
-#pragma mark Get Cache Size
-
 
 #pragma mark -
 #pragma mark Go To Interface
@@ -156,61 +157,72 @@
 }
 
 #pragma mark -
-#pragma mark Clear Caches
+#pragma mark Clear All Caches
 
-//获取本地缓存大小
-- (void)loadCacheSize
+//弹出提示是否确认清除缓存
+-(void)confirmClearCache
 {
-//    int totalSize = 0;
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    BOOL isDirExist = [fileManager fileExistsAtPath:[PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"]];
-//    if(isDirExist) {
-//        NSString *cachesFoldPath = [PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"];
-//        NSString *ASIHTTPFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"ASIHTTPRequestCache"];
-//        NSString *ImageCacheFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"ImageCache"];
-//        NSString *NewsPictureFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"NewsPicture"];
-//        NSString *WirlessDataFoldPath = [cachesFoldPath stringByAppendingPathComponent:@"wirlessData"];
-//        
-//        BOOL isSaveFoldExist = [fileManager fileExistsAtPath:ASIHTTPFoldPath];
-//        if (isSaveFoldExist) {
-//            totalSize = [self sizeOfFolder:ASIHTTPFoldPath];
-//        }
-//        BOOL isImageCacheFoldExist = [fileManager fileExistsAtPath:ImageCacheFoldPath];
-//        if (isImageCacheFoldExist) {
-//            totalSize = totalSize + [self sizeOfFolder:ImageCacheFoldPath];
-//        }
-//        BOOL isNewsPictureFoldExist = [fileManager fileExistsAtPath:NewsPictureFoldPath];
-//        if (isNewsPictureFoldExist) {
-//            totalSize = totalSize + [self sizeOfFolder:NewsPictureFoldPath];
-//        }
-//        BOOL isWirlessDataFoldExist = [fileManager fileExistsAtPath:WirlessDataFoldPath];
-//        if (isWirlessDataFoldExist) {
-//            totalSize = totalSize + [self sizeOfFolder:WirlessDataFoldPath];
-//        }
-//        NSArray *contents = [[NSFileManager defaultManager] subpathsAtPath:cachesFoldPath];
-//        NSEnumerator *enumerator = [contents objectEnumerator];;
-//        NSString *path;
-//        while (path = [enumerator nextObject]) {
-//            if ([[path pathExtension] isEqualToString:@"localstorage"])
-//            {
-//                NSError *error =nil;
-//                NSDictionary *fattrib = [[NSFileManager defaultManager] attributesOfItemAtPath:[cachesFoldPath stringByAppendingPathComponent:path] error:&error];
-//                
-//                totalSize  = totalSize + (int)[fattrib fileSize];
-//            }
-//            
-//        }
-//        
-//    }
-//    else {
-//        totalSize = [[SDImageCache sharedImageCache] getSize]+[self sizeOfFolder:PATH_OF_TEMP];
-//    }
-//    NSString *str = [self stringFromFileSize:totalSize];
-//    sizeLabel.text = str;
-//    CGSize size = [str sizeWithFont:sizeLabel.font constrainedToSize:CGSizeMake(150, 45)];
-//    sizeLabel.frame = CGRectMake(274-size.width, 0, size.width, 45);
-//    [activity stopAnimating];
-//    [activity removeFromSuperview];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"要清除所有缓存吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSLog(@"清空");
+    }
+}
+
+#pragma mark -
+#pragma mark Get Cache Size
+
+//获取单签app的缓存大小
+-(NSString *)getCurrentCacheSize
+{
+    int totalSize = 0;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDirExist = [fileManager fileExistsAtPath:[PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"]];
+    if(isDirExist)
+    {
+        NSString *cachesFoldPath = [PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"];
+        totalSize = [self sizeOfFolder:cachesFoldPath];
+    }
+    //加上SDImageCache的缓存客tmp目录
+    totalSize += [[SDImageCache sharedImageCache] getSize]+[self sizeOfFolder:PATH_OF_TEMP];
+    //加上数据库的大小
+    totalSize += [self sizeOfFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"dinner.db"]];
+    NSString *sizeStr = [self stringFromFileSize:totalSize];
+    return sizeStr;
+}
+
+//计算文件夹的大小递归子目录
+- (int)sizeOfFolder:(NSString*)folderPath
+{
+    NSArray *contents;
+    NSEnumerator *enumerator;
+    NSString *path;
+    contents = [[NSFileManager defaultManager] subpathsAtPath:folderPath];
+    enumerator = [contents objectEnumerator];
+    int fileSizeInt = 0;
+    while (path = [enumerator nextObject])
+    {
+        NSError *error =nil;
+        NSDictionary *fattrib = [[NSFileManager defaultManager] attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:path] error:&error];
+        fileSizeInt +=[fattrib fileSize];
+    }
+    return fileSizeInt;
+}
+
+//获取某个文件的大小
+- (long long)sizeOfFile:(NSString*) filePath
+{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath])
+    {
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
 }
 
 //单位转换
@@ -228,24 +240,6 @@
     floatSize = floatSize / 1024;
     
     return([NSString stringWithFormat:@"%1.1f G",floatSize]);
-}
-
-//计算文件夹的大小
-- (int)sizeOfFolder:(NSString*)folderPath
-{
-    NSArray *contents;
-    NSEnumerator *enumerator;
-    NSString *path;
-    contents = [[NSFileManager defaultManager] subpathsAtPath:folderPath];
-    enumerator = [contents objectEnumerator];
-    int fileSizeInt = 0;
-    while (path = [enumerator nextObject]) {
-        NSError *error =nil;
-        NSDictionary *fattrib = [[NSFileManager defaultManager] attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:path] error:&error];
-        
-        fileSizeInt +=[fattrib fileSize];
-    }
-    return fileSizeInt;
 }
 
 @end

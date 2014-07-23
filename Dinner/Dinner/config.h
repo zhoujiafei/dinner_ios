@@ -18,6 +18,13 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 
+//定义一些文件目录
+
+#define PATH_OF_APP_HOME           NSHomeDirectory()
+#define PATH_OF_TEMP               NSTemporaryDirectory()
+#define PATH_OF_LIBRARY            [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+#define PATH_OF_DOCUMENT           [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)objectAtIndex:0]
+
 //定义该app主基调颜色风格
 #define APP_BASE_COLOR ([UIColor colorWithRed:255/255.0 green:102/255.0 blue:143.0/255.0 alpha:1])
 //定义系统背景色
@@ -34,30 +41,30 @@
 #define FOOD_NUM_CHANGED_NOTICE @"foodCartChangedNotice"
 
 //接口地址
-//#define GET_SHOPS_API @"http://localhost/dinner/branches/beta/index.php?r=api" //获取餐厅列表数据
-//#define GET_MENUS_API @"http://localhost/dinner/branches/beta/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
-//#define LOGIN_API @"http://localhost/dinner/branches/beta/index.php?r=api/login" //用户登陆接口
-//#define ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/confirmorder" //确认下单接口
-//#define GET_USERINFO_API @"http://localhost/dinner/branches/beta/index.php?r=api/center" //获取用户信息接口
-//#define GET_HISTORY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/historyorder&access_token=%@" //获取历史订单接口
-//#define GET_TODAY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/todayorder&access_token=%@" //获取今日订单接口
-//#define MODIFY_PASSWORD_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/modifypassword" //修改密码接口
-//#define GET_NOTICE_API @"http://localhost/dinner/branches/beta/index.php?r=api/notice" //获取公告接口
-//#define LOGOUT_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/Logout" //退出登陆接口
-//#define REGISTER_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/register" //注册接口
+#define GET_SHOPS_API @"http://localhost/dinner/branches/beta/index.php?r=api" //获取餐厅列表数据
+#define GET_MENUS_API @"http://localhost/dinner/branches/beta/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
+#define LOGIN_API @"http://localhost/dinner/branches/beta/index.php?r=api/login" //用户登陆接口
+#define ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/confirmorder" //确认下单接口
+#define GET_USERINFO_API @"http://localhost/dinner/branches/beta/index.php?r=api/center" //获取用户信息接口
+#define GET_HISTORY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/historyorder&access_token=%@" //获取历史订单接口
+#define GET_TODAY_ORDER_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/todayorder&access_token=%@" //获取今日订单接口
+#define MODIFY_PASSWORD_API @"http://localhost/dinner/branches/beta/index.php?r=api/center/modifypassword" //修改密码接口
+#define GET_NOTICE_API @"http://localhost/dinner/branches/beta/index.php?r=api/notice" //获取公告接口
+#define LOGOUT_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/Logout" //退出登陆接口
+#define REGISTER_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/register" //注册接口
 
 
-#define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
-#define GET_MENUS_API @"http://localhost/dinner/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
-#define LOGIN_API @"http://localhost/dinner/index.php?r=api/login" //用户登陆接口
-#define ORDER_API @"http://localhost/dinner/index.php?r=api/center/confirmorder" //确认下单接口
-#define GET_USERINFO_API @"http://localhost/dinner/index.php?r=api/center" //获取用户信息接口
-#define GET_HISTORY_ORDER_API @"http://localhost/dinner/index.php?r=api/center/historyorder&access_token=%@" //获取历史订单接口
-#define GET_TODAY_ORDER_API @"http://localhost/dinner/index.php?r=api/center/todayorder&access_token=%@" //获取今日订单接口
-#define MODIFY_PASSWORD_API @"http://localhost/dinner/index.php?r=api/center/modifypassword" //修改密码接口
-#define GET_NOTICE_API @"http://localhost/dinner/index.php?r=api/notice" //获取公告接口
-#define LOGOUT_API @"http://localhost/dinner/index.php?r=api/login/Logout" //退出登陆接口
-#define REGISTER_API @"http://localhost/dinner/index.php?r=api/login/register" //注册接口
+//#define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
+//#define GET_MENUS_API @"http://localhost/dinner/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
+//#define LOGIN_API @"http://localhost/dinner/index.php?r=api/login" //用户登陆接口
+//#define ORDER_API @"http://localhost/dinner/index.php?r=api/center/confirmorder" //确认下单接口
+//#define GET_USERINFO_API @"http://localhost/dinner/index.php?r=api/center" //获取用户信息接口
+//#define GET_HISTORY_ORDER_API @"http://localhost/dinner/index.php?r=api/center/historyorder&access_token=%@" //获取历史订单接口
+//#define GET_TODAY_ORDER_API @"http://localhost/dinner/index.php?r=api/center/todayorder&access_token=%@" //获取今日订单接口
+//#define MODIFY_PASSWORD_API @"http://localhost/dinner/index.php?r=api/center/modifypassword" //修改密码接口
+//#define GET_NOTICE_API @"http://localhost/dinner/index.php?r=api/notice" //获取公告接口
+//#define LOGOUT_API @"http://localhost/dinner/index.php?r=api/login/Logout" //退出登陆接口
+//#define REGISTER_API @"http://localhost/dinner/index.php?r=api/login/register" //注册接口
 
 
 #endif
