@@ -18,6 +18,9 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 
+//定义当前应用的版本
+#define APP_VERSION                 ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"])
+
 //定义一些文件目录
 
 #define PATH_OF_APP_HOME           NSHomeDirectory()
@@ -52,7 +55,7 @@
 #define GET_NOTICE_API @"http://localhost/dinner/branches/beta/index.php?r=api/notice" //获取公告接口
 #define LOGOUT_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/Logout" //退出登陆接口
 #define REGISTER_API @"http://localhost/dinner/branches/beta/index.php?r=api/login/register" //注册接口
-
+#define CHECK_VERSION_API @"http://localhost/dinner/branches/beta/index.php?r=api/index/getversion" //检查更新接口
 
 //#define GET_SHOPS_API @"http://localhost/dinner/index.php?r=api" //获取餐厅列表数据
 //#define GET_MENUS_API @"http://localhost/dinner/index.php?r=api/menu&shop_id=%@" //获取某个餐厅的菜单
@@ -65,6 +68,7 @@
 //#define GET_NOTICE_API @"http://localhost/dinner/index.php?r=api/notice" //获取公告接口
 //#define LOGOUT_API @"http://localhost/dinner/index.php?r=api/login/Logout" //退出登陆接口
 //#define REGISTER_API @"http://localhost/dinner/index.php?r=api/login/register" //注册接口
+//#define CHECK_VERSION_API @"http://localhost/dinner/index.php?r=api/index/getversion" //检查更新接口
 
 
 #endif

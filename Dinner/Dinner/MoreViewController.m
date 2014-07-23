@@ -138,7 +138,7 @@
                 [self goToTargetInterface:[[FeedbackViewController alloc] init]];
                 break;
             case 3:
-                [ProgressHUD showSuccess:@"当前已是最新版本"];
+                [self checkNewVersion];
                 break;
                 
             default:
@@ -156,6 +156,41 @@
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:viewController animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+}
+
+#pragma mark -
+#pragma mark Check New Version
+
+-(void)checkNewVersion
+{
+    [ProgressHUD show:@"正在检测..."];
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:CHECK_VERSION_API]];
+    [request setCompletionBlock:^{
+        if ([request responseStatusCode] != 200)
+        {
+            return;
+        }
+        
+        if (isNilNull([request responseData]))
+        {
+            return;
+        }
+        
+        NSDictionary *returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:nil];
+        if (returnData)
+        {
+            if ([[returnData objectForKey:@"app_version"] isEqualToString:APP_VERSION])
+            {
+                [ProgressHUD showSuccess:@"检测到有新版本"];
+            }
+        }
+        
+        [ProgressHUD showSuccess:@"当前已是最新版本"];
+    }];
+    [request setFailedBlock:^{
+        [ProgressHUD showError:@"网络连接错误"];
+    }];
+    [request startAsynchronous];
 }
 
 @end

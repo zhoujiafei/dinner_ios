@@ -41,7 +41,7 @@
     
     //版本号
     UILabel *version = [[UILabel alloc] initWithFrame:CGRectMake(125, 255, 70, 20)];
-    version.text = @"v1.0.0";
+    version.text = APP_VERSION;
     version.textAlignment = NSTextAlignmentCenter;
     version.font = [UIFont systemFontOfSize:12];
     version.textColor = [UIColor grayColor];
