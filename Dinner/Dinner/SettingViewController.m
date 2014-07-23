@@ -166,11 +166,31 @@
     [alert show];
 }
 
+//执行清除操作
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1)
     {
-        NSLog(@"清空");
+        [ProgressHUD show:@"正在清理..."];
+        //清除SDImageCache
+        [[SDImageCache sharedImageCache] clearMemory];
+        [[SDImageCache sharedImageCache] clearDisk];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        BOOL isDirExist = [fileManager fileExistsAtPath:[PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"]];
+        if(isDirExist)
+        {
+            NSString *cachesFoldPath = [PATH_OF_LIBRARY stringByAppendingPathComponent:@"Caches"];
+            NSArray *contents = [fileManager contentsOfDirectoryAtPath:cachesFoldPath error:NULL];
+            NSEnumerator *e = [contents objectEnumerator];
+            NSString *filename;
+            while ((filename = [e nextObject]))
+            {
+                [fileManager removeItemAtPath:[cachesFoldPath stringByAppendingPathComponent:filename] error:NULL];
+            }
+        }
+        [ProgressHUD showSuccess:@"清理完成"];
+        [_tableView reloadData];
     }
 }
 
@@ -191,7 +211,7 @@
     //加上SDImageCache的缓存客tmp目录
     totalSize += [[SDImageCache sharedImageCache] getSize]+[self sizeOfFolder:PATH_OF_TEMP];
     //加上数据库的大小
-    totalSize += [self sizeOfFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"dinner.db"]];
+//    totalSize += [self sizeOfFile:[PATH_OF_DOCUMENT stringByAppendingPathComponent:@"dinner.db"]];
     NSString *sizeStr = [self stringFromFileSize:totalSize];
     return sizeStr;
 }
