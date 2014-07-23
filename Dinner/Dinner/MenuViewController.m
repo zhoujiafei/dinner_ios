@@ -38,6 +38,12 @@
     [self requestMenuData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
+}
+
 #pragma mark -
 #pragma mark Show Menus Table
 
@@ -175,8 +181,6 @@
 //添加菜到美食框
 -(void)addMenuToFoodCart:(UIButton *)btn
 {
-    btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
-    
     //获取所选的菜的基本信息
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[_menusData objectAtIndex:btn.tag]];
     [dic setObject:@"1" forKey:@"food_num"];
@@ -202,12 +206,78 @@
         }
     }
     
+    //改变按钮颜色
+    btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
     //添加到购物车里面
     [foodCart addObject:dic];
     //再将添加之后的数据保存到购物车里面
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:foodCart];
     //保存数据之后发通知
     [self sendNotificationForCartChanged];
+}
+
+//添加到购物车的动画(参考系是self.view)
+-(void)addCartAnimation:(UIButton *)btn
+{
+    //首先创建动画的图片
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cm_center_discount"]];
+    imageView.contentMode = UIViewContentModeScaleToFill;
+    imageView.frame = CGRectMake(0, 0, 20, 20);
+    imageView.hidden = YES;
+    CALayer *layer = [[CALayer alloc]init];
+    layer.contents = imageView.layer.contents;
+    layer.frame = imageView.frame;
+    layer.opacity = 1;
+    [self.view.layer addSublayer:layer];
+    
+    //获取起点位置
+    CGPoint startPoint = [self.view convertPoint:btn.center fromView:btn.superview];
+    //获取终点位置
+    CGPoint endPoint = [self.view convertPoint:_cartBtn.center fromView:self.view];
+    
+    //创建贝塞尔曲线
+    UIBezierPath *bezierPath=[UIBezierPath bezierPath];
+    [bezierPath moveToPoint:startPoint];
+    //贝塞尔曲线中间点
+    float sx = startPoint.x;
+    float sy = startPoint.y;
+    float ex = endPoint.x;
+    float ey = endPoint.y;
+    float x  = sx+(ex-sx)/3;
+    float y  = sy+(ey-sy) * 0.5-400;
+    CGPoint centerPoint=CGPointMake(x,y);
+    [bezierPath addQuadCurveToPoint:endPoint controlPoint:centerPoint];
+    
+    CAKeyframeAnimation *animation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.path = bezierPath.CGPath;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.duration = 0.5;
+    animation.delegate = self;
+    animation.autoreverses = NO;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [animation setValue:btn forKey:@"button"];
+    [animation setValue:layer forKeyPath:@"layer"];
+    [animation setValue:imageView forKeyPath:@"animationView"];
+    [layer addAnimation:animation forKey:@"buy"];
+}
+
+//动画结束
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    UIButton *btn = [anim valueForKey:@"button"];
+    CALayer *layer = [anim valueForKey:@"layer"];
+    if (layer)
+    {
+        [layer removeFromSuperlayer];
+    }
+    
+    UIImageView *view = [anim valueForKey:@"animationView"];
+    if (view)
+    {
+        [view removeFromSuperview];
+    }
+    [self addMenuToFoodCart:btn];
 }
 
 #pragma mark -
@@ -271,7 +341,17 @@
     cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
     cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     cell.btn.tag = rowNo;
-    [cell.btn addTarget:self action:@selector(addMenuToFoodCart:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //判断当前这道菜是不是已经在美食框里面了，如果已经在就将背景色置
+    if ([self isInFoodCart:[[_menusData objectAtIndex:rowNo] objectForKey:@"id"]])
+    {
+        cell.btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
+    }
+    else
+    {
+        cell.btn.backgroundColor = APP_BASE_COLOR;
+    }
+    [cell.btn addTarget:self action:@selector(addCartAnimation:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
