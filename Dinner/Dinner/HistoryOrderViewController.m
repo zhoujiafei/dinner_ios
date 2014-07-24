@@ -68,7 +68,7 @@
     }
     
     //创建tableView
-    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsZero;//设置cell的分割线不偏移
@@ -178,6 +178,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
+    return [[[_orderData objectAtIndex:section] objectForKey:@"data"] count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return [_orderData count];
 }
 
@@ -192,11 +197,26 @@
     }
     
     NSInteger rowNo = indexPath.row;
-    cell.shopName.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"shop_name"];
-    cell.totalPrice.text = [NSString stringWithFormat:@"花费：￥ %@",[[_orderData objectAtIndex:rowNo] objectForKey:@"total_price"]];
-    cell.orderStatus.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"status_text"];
+    NSInteger sectionNo = indexPath.section;
+    NSArray *allOrderData = [[_orderData objectAtIndex:sectionNo] objectForKey:@"data"];
+    
+    cell.shopName.text      = [[allOrderData objectAtIndex:rowNo] objectForKey:@"shop_name"];
+    cell.menuName.text      = [[[[allOrderData objectAtIndex:rowNo] objectForKey:@"product_info"] objectAtIndex:0] objectForKey:@"Name"];
+    
+    if ([[[allOrderData objectAtIndex:rowNo] objectForKey:@"is_today"] boolValue])
+    {
+        cell.orderDate.text     = @"今天";
+        cell.orderDate.textColor = APP_BASE_COLOR;
+    }
+    else
+    {
+        cell.orderDate.text     = [[allOrderData objectAtIndex:rowNo] objectForKey:@"create_order_date"];
+    }
+    cell.orderStatus.text   = [[allOrderData objectAtIndex:rowNo] objectForKey:@"status_text"];
+    cell.totalPrice.text    = [[allOrderData objectAtIndex:rowNo] objectForKey:@"total_price"];
+    NSInteger status        = [[[allOrderData objectAtIndex:rowNo] objectForKey:@"status"] intValue];
+
     UIColor *color = nil;
-    NSInteger status = [[[_orderData objectAtIndex:rowNo] objectForKey:@"status"] intValue];
     switch (status)
     {
         case 1://待付款
@@ -216,9 +236,6 @@
             break;
     }
     cell.orderStatus.textColor = color;
-    cell.orderTime.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"create_time"];
-    cell.orderDate.text = [[_orderData objectAtIndex:rowNo] objectForKey:@"create_order_date"];
-    cell.orderDate.backgroundColor = APP_BASE_COLOR;
     return cell;
 }
 
@@ -227,28 +244,55 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90.0f;
+    return 70.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 80.0f;
+    if (section == 0)
+    {
+        return 100.0f;
+    }
+    else
+    {
+        return 40.0f;
+    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+    UILabel *date = nil;
+    if (section == 0)
+    {
+        date = [[UILabel alloc] initWithFrame:CGRectMake(10, 75, 200, 20)];
+    }
+    else
+    {
+        date = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 20)];
+    }
+
+    date.textColor = [UIColor grayColor];
+    date.font = [UIFont systemFontOfSize:16];
+    date.text = [NSString stringWithFormat:@"%@     已支出：￥%@",[[_orderData objectAtIndex:section] objectForKey:@"date"],[[_orderData objectAtIndex:section] objectForKey:@"total_price"]];
+    [view addSubview:date];
+    return view;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger rowNo = indexPath.row;
-    NSDictionary *order = [_orderData objectAtIndex:rowNo];
-    self.hidesBottomBarWhenPushed = YES;
-    OrderDetailViewController *orderDetail = [[OrderDetailViewController alloc] init];
-    orderDetail.orderInfo = order;
-    [self.navigationController pushViewController:orderDetail animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+//    NSInteger rowNo = indexPath.row;
+//    NSDictionary *order = [_orderData objectAtIndex:rowNo];
+//    self.hidesBottomBarWhenPushed = YES;
+//    OrderDetailViewController *orderDetail = [[OrderDetailViewController alloc] init];
+//    orderDetail.orderInfo = order;
+//    [self.navigationController pushViewController:orderDetail animated:YES];
+//    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark -

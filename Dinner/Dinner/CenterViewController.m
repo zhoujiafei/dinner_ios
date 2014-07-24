@@ -27,10 +27,10 @@
         //设置项
         _settingLabels = [NSArray arrayWithObjects:
                           @[@"个人资料",@"修改密码"],
-                          @[@"今日订单",@"历史订单"],nil];
+                          @[@"我的订单"],nil];
         
         _settingIcons = [NSArray arrayWithObjects:
-                         @[@"personal_account",@"personal_recharge"],@[@"order_forPay",@"order_all"],nil];
+                         @[@"personal_account",@"personal_recharge"],@[@"order_all"],nil];
     }
     return self;
 }
@@ -168,12 +168,8 @@
         switch (indexPath.row)
         {
             case 0:
-                [self goToTargetInterface:[[TodayOrderViewController alloc] init]];
-                break;
-            case 1:
                 [self goToTargetInterface:[[HistoryOrderViewController alloc] init]];
                 break;
-                
             default:
                 break;
         }

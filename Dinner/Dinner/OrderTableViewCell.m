@@ -10,11 +10,11 @@
 
 @implementation OrderTableViewCell
 
-@synthesize shopName = _shopName;
-@synthesize totalPrice = _totalPrice;
+@synthesize shopName    = _shopName;
+@synthesize totalPrice  = _totalPrice;
 @synthesize orderStatus = _orderStatus;
-@synthesize orderTime = _orderTime;
-@synthesize orderDate = _orderDate;
+@synthesize orderDate   = _orderDate;
+@synthesize menuName    = _menuName;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -22,54 +22,47 @@
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        //上边
-        UIImageView *topRect = [[UIImageView alloc] initWithFrame:CGRectMake(20,8, self.frame.size.width - 30, 3)];
-        topRect.image = [UIImage imageNamed:@"cell_top_rec"];
         
-        //中间
-        UIImageView *midRect = [[UIImageView alloc] initWithFrame:CGRectMake(20,11, self.frame.size.width - 30,65)];
-        midRect.image = [UIImage imageNamed:@"cell_mid_rec"];
+        UIImageView *indexPicView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 30, 30)];
+        indexPicView.image = [UIImage imageNamed:@"defaultShop.jpg"];
+        indexPicView.layer.cornerRadius = 5.0;
+        indexPicView.layer.masksToBounds = YES;
         
-        //下边
-        UIImageView *bottomRect = [[UIImageView alloc] initWithFrame:CGRectMake(20,76, self.frame.size.width - 30, 3)];
-        bottomRect.image = [UIImage imageNamed:@"cell_buttom_rec"];
+        _shopName = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, 40, 15)];
+        _shopName.font = [UIFont systemFontOfSize:10];
+        _shopName.textColor = [UIColor grayColor];
         
-        //书的连接
-        UIImageView *linker = [[UIImageView alloc] initWithFrame:CGRectMake(10, 34, 22, 21)];
-        linker.image = [UIImage imageNamed:@"rec_cell_linker"];
+        //竖直分割线
+        UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(50,15, 1, 45)];
+        verticalLine.image = [UIImage imageNamed:@"detail_line_v"];
         
-        //向右的箭头
-        UIImageView *rightArrow = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width - 30, 37, 8, 13)];
-        rightArrow.image = [UIImage imageNamed:@"orderCellRightArrow"];
+        _menuName = [[UILabel alloc] initWithFrame:CGRectMake(60, 18, 150, 20)];
+        _menuName.font = [UIFont systemFontOfSize:16];
+        _menuName.textColor = [UIColor grayColor];
         
-        _shopName = [[UILabel alloc] initWithFrame:CGRectMake(80, 13, 140, 30)];
-        _shopName.font = [UIFont systemFontOfSize:16];
-
-        _totalPrice = [[UILabel alloc] initWithFrame:CGRectMake(80, 44, 140, 30)];
-        _totalPrice.font = [UIFont systemFontOfSize:14];
-        _totalPrice.textColor = [UIColor grayColor];
-        
-        _orderStatus = [[UILabel alloc] initWithFrame:CGRectMake(220,13, 60, 30)];
-        _orderStatus.font = [UIFont systemFontOfSize:14];
-        
-        _orderTime = [[UILabel alloc] initWithFrame:CGRectMake(220, 44, 80, 30)];
-        _orderTime.font = [UIFont systemFontOfSize:14];
-        _orderTime.textColor = [UIColor grayColor];
-        
-        _orderDate = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 58, 20)];
+        _orderDate = [[UILabel alloc] initWithFrame:CGRectMake(60, 40, 70, 15)];
         _orderDate.font = [UIFont systemFontOfSize:10];
-        _orderDate.textColor = [UIColor whiteColor];
+        _orderDate.textColor = [UIColor grayColor];
         
-        [self.contentView addSubview:topRect];
-        [self.contentView addSubview:midRect];
-        [self.contentView addSubview:bottomRect];
-        [self.contentView addSubview:linker];
-        [self.contentView addSubview:rightArrow];
+        _totalPrice = [[UILabel alloc] initWithFrame:CGRectMake(210, 10, 100, 25)];
+        _totalPrice.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:16];
+        _totalPrice.textAlignment = NSTextAlignmentRight;
+        
+        _orderStatus = [[UILabel alloc] initWithFrame:CGRectMake(210, 38, 100, 15)];
+        _orderStatus.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:14];
+        _orderStatus.textAlignment = NSTextAlignmentRight;
+
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 70-0.5, self.frame.size.width, 0.5)];
+        line.image = [UIImage imageNamed:@"x-line"];
+        
+        [self.contentView addSubview:line];
+        [self.contentView addSubview:verticalLine];
+        [self.contentView addSubview:indexPicView];
         [self.contentView addSubview:_shopName];
+        [self.contentView addSubview:_menuName];
+        [self.contentView addSubview:_orderDate];
         [self.contentView addSubview:_totalPrice];
         [self.contentView addSubview:_orderStatus];
-        [self.contentView addSubview:_orderTime];
-        [self.contentView addSubview:_orderDate];
     }
     return self;
 }

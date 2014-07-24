@@ -46,6 +46,7 @@
 		6678219B197601C300A6371B /* tab_all_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66782199197601C300A6371B /* tab_all_normal@2x.png */; };
 		66811F9E197F793500D4ABC6 /* new_deal.png in Resources */ = {isa = PBXBuildFile; fileRef = 66811F9C197F793500D4ABC6 /* new_deal.png */; };
 		66811F9F197F793500D4ABC6 /* new_deal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66811F9D197F793500D4ABC6 /* new_deal@2x.png */; };
+		668213811980C7040075D796 /* detail_line_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 668213801980C7040075D796 /* detail_line_v@2x.png */; };
 		669FB48B196E807C003BD821 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB48A196E807C003BD821 /* BaseViewController.m */; };
 		669FB4B0196E99E6003BD821 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB494196E99E6003BD821 /* MKAnnotationView+WebCache.m */; };
 		669FB4B1196E99E6003BD821 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 669FB496196E99E6003BD821 /* NSData+ImageContentType.m */; };
@@ -68,8 +69,6 @@
 		669FB876197CABC70076660D /* composeImageFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669FB872197CABC70076660D /* composeImageFrame@2x.png */; };
 		669FB877197CABC70076660D /* composepic_biankuang.png in Resources */ = {isa = PBXBuildFile; fileRef = 669FB873197CABC70076660D /* composepic_biankuang.png */; };
 		669FB878197CABC70076660D /* composepic_biankuang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669FB874197CABC70076660D /* composepic_biankuang@2x.png */; };
-		66A020E91974B20D00A048BE /* OrderSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A020E81974B20D00A048BE /* OrderSuccessViewController.m */; };
-		66A020EC1974C75600A048BE /* TodayOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A020EB1974C75600A048BE /* TodayOrderViewController.m */; };
 		66A020EF1974C77300A048BE /* HistoryOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A020EE1974C77300A048BE /* HistoryOrderViewController.m */; };
 		66A020F21974DA1500A048BE /* icon_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A020F01974DA1500A048BE /* icon_delete.png */; };
 		66A020F31974DA1500A048BE /* icon_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A020F11974DA1500A048BE /* icon_delete@2x.png */; };
@@ -259,6 +258,7 @@
 		66782199197601C300A6371B /* tab_all_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_all_normal@2x.png"; sourceTree = "<group>"; };
 		66811F9C197F793500D4ABC6 /* new_deal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_deal.png; sourceTree = "<group>"; };
 		66811F9D197F793500D4ABC6 /* new_deal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_deal@2x.png"; sourceTree = "<group>"; };
+		668213801980C7040075D796 /* detail_line_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_line_v@2x.png"; sourceTree = "<group>"; };
 		669FB489196E807C003BD821 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		669FB48A196E807C003BD821 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		669FB493196E99E6003BD821 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -299,10 +299,6 @@
 		669FB872197CABC70076660D /* composeImageFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composeImageFrame@2x.png"; sourceTree = "<group>"; };
 		669FB873197CABC70076660D /* composepic_biankuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = composepic_biankuang.png; sourceTree = "<group>"; };
 		669FB874197CABC70076660D /* composepic_biankuang@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "composepic_biankuang@2x.png"; sourceTree = "<group>"; };
-		66A020E71974B20D00A048BE /* OrderSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSuccessViewController.h; sourceTree = "<group>"; };
-		66A020E81974B20D00A048BE /* OrderSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSuccessViewController.m; sourceTree = "<group>"; };
-		66A020EA1974C75600A048BE /* TodayOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayOrderViewController.h; sourceTree = "<group>"; };
-		66A020EB1974C75600A048BE /* TodayOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayOrderViewController.m; sourceTree = "<group>"; };
 		66A020ED1974C77300A048BE /* HistoryOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryOrderViewController.h; sourceTree = "<group>"; };
 		66A020EE1974C77300A048BE /* HistoryOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryOrderViewController.m; sourceTree = "<group>"; };
 		66A020F01974DA1500A048BE /* icon_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_delete.png; sourceTree = "<group>"; };
@@ -559,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				66811F9C197F793500D4ABC6 /* new_deal.png */,
+				668213801980C7040075D796 /* detail_line_v@2x.png */,
 				66811F9D197F793500D4ABC6 /* new_deal@2x.png */,
 				66D04A67197F590800AA9CA9 /* cm_center_discount@2x.png */,
 				8B03AA59197D47C6008B15ED /* deal_flag_end@2x.png */,
@@ -1006,8 +1003,6 @@
 		8BCA83C3197B583C00DF2789 /* foodcart */ = {
 			isa = PBXGroup;
 			children = (
-				66A020E71974B20D00A048BE /* OrderSuccessViewController.h */,
-				66A020E81974B20D00A048BE /* OrderSuccessViewController.m */,
 				8BC6FF3D196C2D6B0093A476 /* CartViewController.h */,
 				8BC6FF3E196C2D6B0093A476 /* CartViewController.m */,
 			);
@@ -1019,8 +1014,6 @@
 			children = (
 				66AE41BA196D37FD001F5640 /* RegisterViewController.h */,
 				66AE41BB196D37FD001F5640 /* RegisterViewController.m */,
-				66A020EA1974C75600A048BE /* TodayOrderViewController.h */,
-				66A020EB1974C75600A048BE /* TodayOrderViewController.m */,
 				66A020ED1974C77300A048BE /* HistoryOrderViewController.h */,
 				66A020EE1974C77300A048BE /* HistoryOrderViewController.m */,
 				6605239019764B70005DD835 /* ModifyPasswordViewController.h */,
@@ -1189,6 +1182,7 @@
 				8B1E76F6197A43F200CFD679 /* tab_more@2x.png in Resources */,
 				8BCA83A9197B3B0900DF2789 /* remind_clean@2x.png in Resources */,
 				66F0860C196CE5E100AD70B1 /* star.png in Resources */,
+				668213811980C7040075D796 /* detail_line_v@2x.png in Resources */,
 				8B1F16BB197BFB9E00C42BDA /* about_version_hl@2x.png in Resources */,
 				66AE41AE196D12F5001F5640 /* cart_full_show@2x.png in Resources */,
 				66CFE35619778B9B002DF1E6 /* cell_buttom_rec@2x.png in Resources */,
@@ -1302,7 +1296,6 @@
 				8B1F16AD197BBFCF00C42BDA /* OrderDetailViewController.m in Sources */,
 				8B33DF83196994C90080E7FD /* ProgressHUD.m in Sources */,
 				8BCA83CA197B5ACA00DF2789 /* ScanViewController.m in Sources */,
-				66A020EC1974C75600A048BE /* TodayOrderViewController.m in Sources */,
 				66E9AEAD196A86E100558097 /* FMResultSet.m in Sources */,
 				66E9AE8D196A806F00558097 /* EGORefreshTableHeaderView.m in Sources */,
 				8B33DF9C196996400080E7FD /* ASIDataCompressor.m in Sources */,
@@ -1313,7 +1306,6 @@
 				669FB4BB196E99E6003BD821 /* UIImage+MultiFormat.m in Sources */,
 				8B1FCFBC1971250400D6BFFF /* MBProgressHUD.m in Sources */,
 				6605239219764B70005DD835 /* ModifyPasswordViewController.m in Sources */,
-				66A020E91974B20D00A048BE /* OrderSuccessViewController.m in Sources */,
 				8B851D0019684125008DC90D /* HomeViewController.m in Sources */,
 				66F08608196CCCD700AD70B1 /* MenuTableViewCell.m in Sources */,
 				6601A9AE197758F4003FBB56 /* OrderTableViewCell.m in Sources */,

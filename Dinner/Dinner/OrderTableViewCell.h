@@ -14,7 +14,7 @@
 @property (nonatomic,strong) UILabel *shopName;
 @property (nonatomic,strong) UILabel *orderStatus;
 @property (nonatomic,strong) UILabel *totalPrice;
-@property (nonatomic,strong) UILabel *orderTime;
 @property (nonatomic,strong) UILabel *orderDate;
+@property (nonatomic,strong) UILabel *menuName;
 
 @end
