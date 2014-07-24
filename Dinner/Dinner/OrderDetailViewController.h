@@ -9,8 +9,9 @@
 #import "BaseViewController.h"
 #import "config.h"
 
-@interface OrderDetailViewController : BaseViewController
+@interface OrderDetailViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSDictionary *orderInfo;
+@property (nonatomic,strong) UITableView *tableView;
 
 @end

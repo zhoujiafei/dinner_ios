@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.title = @"历史订单";
+        self.title = @"我的订单";
         _orderData = [NSMutableArray array];
         [self getAccessToken];
     }
@@ -251,31 +251,47 @@
 {
     if (section == 0)
     {
-        return 100.0f;
+        return 110.0f;
     }
     else
     {
-        return 40.0f;
+        return 30.0f;
     }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, 100)];
     UILabel *date = nil;
     if (section == 0)
     {
-        date = [[UILabel alloc] initWithFrame:CGRectMake(10, 75, 200, 20)];
+        date = [[UILabel alloc] initWithFrame:CGRectMake(10, 80, 150, 20)];
     }
     else
     {
-        date = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 20)];
+        date = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 150, 20)];
     }
 
     date.textColor = [UIColor grayColor];
     date.font = [UIFont systemFontOfSize:16];
-    date.text = [NSString stringWithFormat:@"%@     已支出：￥%@",[[_orderData objectAtIndex:section] objectForKey:@"date"],[[_orderData objectAtIndex:section] objectForKey:@"total_price"]];
+    date.text = [NSString stringWithFormat:@"%@",[[_orderData objectAtIndex:section] objectForKey:@"date"]];
+    
+    UILabel *priceLabel = nil;
+    if (section == 0)
+    {
+        priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 80, 150, 20)];
+    }
+    else
+    {
+        priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 0, 150, 20)];
+    }
+    
+    priceLabel.textAlignment = NSTextAlignmentRight;
+    priceLabel.text = [NSString stringWithFormat:@"已消费：￥%@",[[_orderData objectAtIndex:section] objectForKey:@"total_price"]];
+    priceLabel.font = [UIFont systemFontOfSize:16];
+    priceLabel.textColor = APP_BASE_COLOR;
     [view addSubview:date];
+    [view addSubview:priceLabel];
     return view;
 }
 
@@ -286,13 +302,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSInteger rowNo = indexPath.row;
-//    NSDictionary *order = [_orderData objectAtIndex:rowNo];
-//    self.hidesBottomBarWhenPushed = YES;
-//    OrderDetailViewController *orderDetail = [[OrderDetailViewController alloc] init];
-//    orderDetail.orderInfo = order;
-//    [self.navigationController pushViewController:orderDetail animated:YES];
-//    self.hidesBottomBarWhenPushed = NO;
+    NSInteger rowNo = indexPath.row;
+    NSInteger sectionNo = indexPath.section;
+    NSDictionary *order = [[[_orderData objectAtIndex:sectionNo] objectForKey:@"data"] objectAtIndex:rowNo];
+    self.hidesBottomBarWhenPushed = YES;
+    OrderDetailViewController *orderDetail = [[OrderDetailViewController alloc] init];
+    orderDetail.orderInfo = order;
+    [self.navigationController pushViewController:orderDetail animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark -

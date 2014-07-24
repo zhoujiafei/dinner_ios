@@ -28,7 +28,7 @@
         indexPicView.layer.cornerRadius = 5.0;
         indexPicView.layer.masksToBounds = YES;
         
-        _shopName = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, 40, 15)];
+        _shopName = [[UILabel alloc] initWithFrame:CGRectMake(5, 50, 45, 15)];
         _shopName.font = [UIFont systemFontOfSize:10];
         _shopName.textColor = [UIColor grayColor];
         
@@ -44,11 +44,11 @@
         _orderDate.font = [UIFont systemFontOfSize:10];
         _orderDate.textColor = [UIColor grayColor];
         
-        _totalPrice = [[UILabel alloc] initWithFrame:CGRectMake(210, 10, 100, 25)];
+        _totalPrice = [[UILabel alloc] initWithFrame:CGRectMake(210, 14, 100, 25)];
         _totalPrice.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:16];
         _totalPrice.textAlignment = NSTextAlignmentRight;
         
-        _orderStatus = [[UILabel alloc] initWithFrame:CGRectMake(210, 38, 100, 15)];
+        _orderStatus = [[UILabel alloc] initWithFrame:CGRectMake(210, 42, 100, 12)];
         _orderStatus.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:14];
         _orderStatus.textAlignment = NSTextAlignmentRight;
 
