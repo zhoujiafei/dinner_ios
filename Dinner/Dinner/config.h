@@ -37,10 +37,10 @@
 
 //缓存表名
 #define CACHE_NAME @"cacheData"
-//美食框的表名
+//美食筐的表名
 #define FOOD_CART @"foodCart"
 
-//定义美食框数量发生变化的通知名称
+//定义美食筐数量发生变化的通知名称
 #define FOOD_NUM_CHANGED_NOTICE @"foodCartChangedNotice"
 
 //接口地址

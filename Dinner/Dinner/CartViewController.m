@@ -20,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.title = @"美食框";
+        self.title = @"美食筐";
         _cartData = [NSMutableArray array];
     }
     return self;
@@ -34,7 +34,7 @@
 }
 
 #pragma mark -
-#pragma mark 目的是让每次进入美食框都刷新数据
+#pragma mark 目的是让每次进入美食筐都刷新数据
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -58,7 +58,7 @@
     }
 }
 
-//显示美食框列表
+//显示美食筐列表
 -(void)showCart
 {
     UIBarButtonItem *clearCartItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_delete"] style:UIBarButtonItemStylePlain target:self action:@selector(clearFoodCart)];
@@ -84,7 +84,7 @@
     tipLabel.textAlignment = NSTextAlignmentCenter;
     tipLabel.numberOfLines = 0;
     tipLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    tipLabel.text = @"亲！您还没有添加菜到美食框哦！@_@";
+    tipLabel.text = @"亲！您还没有添加菜到美食筐哦！@_@";
     
     [_emptyBgView addSubview:noDataIcon];
     [_emptyBgView addSubview:tipLabel];
@@ -213,7 +213,7 @@
     NSInteger newNum = [menuNum.text intValue] - 1;
     if (newNum <= 0)
     {
-        //从美食框里面移除这道菜
+        //从美食筐里面移除这道菜
         [_cartData removeObjectAtIndex:btn.tag];
         //保存数据库
         [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:_cartData];
@@ -244,7 +244,7 @@
         return;
     }
     
-    //获取美食框里面的数据构造提交订单的json数据
+    //获取美食筐里面的数据构造提交订单的json数据
     if ([_cartData count] <= 0)
     {
         [ProgressHUD showError:@"您还未选择美食，不能下单！"];
@@ -297,7 +297,7 @@
         else
         {
             [ProgressHUD showSuccess:@"下单成功"];
-            //清空美食框
+            //清空美食筐
             [_cartData removeAllObjects];
             [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
             [self sendNotificationForCartChanged];
@@ -332,14 +332,14 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-//清空美食框
+//清空美食筐
 -(void)clearFoodCart
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您确定要清空美食框吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您确定要清空美食筐吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
 }
 
-//确认要清空美食框
+//确认要清空美食筐
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //确认
@@ -350,7 +350,7 @@
         [self sendNotificationForCartChanged];
         [self changeBgColor];
         [self.tableView reloadData];
-        [ProgressHUD showSuccess:@"美食框已清空"];
+        [ProgressHUD showSuccess:@"美食筐已清空"];
     }
 }
 

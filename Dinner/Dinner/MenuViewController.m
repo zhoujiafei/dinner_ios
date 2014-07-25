@@ -106,7 +106,7 @@
     _cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
     _cartBtn.backgroundColor = APP_BASE_COLOR;
-    [_cartBtn setTitle:@"美食框" forState:UIControlStateNormal];
+    [_cartBtn setTitle:@"美食筐" forState:UIControlStateNormal];
     [_cartBtn addTarget:self action:@selector(lookCart:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cartBtn];
 }
@@ -178,7 +178,7 @@
 #pragma mark -
 #pragma mark Add Food To Cart
 
-//添加菜到美食框
+//添加菜到美食筐
 -(void)addMenuToFoodCart:(UIButton *)btn
 {
     //获取所选的菜的基本信息
@@ -192,7 +192,7 @@
         //首先判断购物车里面的菜所属的商家与当前的商家是不是同一家
         if (![_shopId isEqualToString:[[foodCart objectAtIndex:0] objectForKey:@"shop_id"]])
         {
-            NSString *msg = [NSString stringWithFormat:@"当前美食框里面的菜来自:《%@》，请清空美食框之后再选菜",[[foodCart objectAtIndex:0] objectForKey:@"shop_name"]];
+            NSString *msg = [NSString stringWithFormat:@"当前美食筐里面的菜来自:《%@》，请清空美食筐之后再选菜",[[foodCart objectAtIndex:0] objectForKey:@"shop_name"]];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"清空", nil];
             [alert show];
             return;
@@ -201,7 +201,7 @@
         //判断添加的这道菜是不是已经存在于购物车
         if ([self isInFoodCart:[dic objectForKey:@"id"]])
         {
-            [ProgressHUD showSuccess:@"这道菜已经存在美食框"];
+            [ProgressHUD showSuccess:@"这道菜已经存在美食筐"];
             return;
         }
     }
@@ -304,15 +304,15 @@
 #pragma mark -
 #pragma mark UIAlertViewDelegate
 
-//主要是用于清空美食框
+//主要是用于清空美食筐
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    //如果用户点击确认，则清空美食框
+    //如果用户点击确认，则清空美食筐
     if (buttonIndex == 1)
     {
         [[DataManage shareDataManage] deleteData:FOOD_CART withNetworkApi:@"cart"];
         [self sendNotificationForCartChanged];
-        [ProgressHUD showSuccess:@"美食框已清空"];
+        [ProgressHUD showSuccess:@"美食筐已清空"];
     }
 }
 
@@ -342,7 +342,7 @@
     cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     cell.btn.tag = rowNo;
     
-    //判断当前这道菜是不是已经在美食框里面了，如果已经在就将背景色置
+    //判断当前这道菜是不是已经在美食筐里面了，如果已经在就将背景色置
     if ([self isInFoodCart:[[_menusData objectAtIndex:rowNo] objectForKey:@"id"]])
     {
         cell.btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];

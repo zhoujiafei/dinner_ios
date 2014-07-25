@@ -431,7 +431,7 @@
 		8B33DF98196996400080E7FD /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		8B33DF99196996400080E7FD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8B33DF9A196996400080E7FD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		8B851CC219683A29008DC90D /* Dinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B851CC219683A29008DC90D /* 阿吃啦.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "阿吃啦.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B851CC519683A29008DC90D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8B851CC719683A29008DC90D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8B851CC919683A29008DC90D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -868,7 +868,7 @@
 		8B851CC319683A29008DC90D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B851CC219683A29008DC90D /* Dinner.app */,
+				8B851CC219683A29008DC90D /* 阿吃啦.app */,
 				8B851CDD19683A29008DC90D /* DinnerTests.xctest */,
 			);
 			name = Products;
@@ -1069,7 +1069,7 @@
 			);
 			name = Dinner;
 			productName = Dinner;
-			productReference = 8B851CC219683A29008DC90D /* Dinner.app */;
+			productReference = 8B851CC219683A29008DC90D /* 阿吃啦.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8B851CDC19683A29008DC90D /* DinnerTests */ = {
@@ -1448,7 +1448,7 @@
 				GCC_PREFIX_HEADER = "Dinner/Dinner-Prefix.pch";
 				INFOPLIST_FILE = "Dinner/Dinner-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "阿吃啦";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1614CB86-0863-4DE9-A0EC-CAB9C6AFEFD5";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1469,7 +1469,7 @@
 				GCC_PREFIX_HEADER = "Dinner/Dinner-Prefix.pch";
 				INFOPLIST_FILE = "Dinner/Dinner-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "阿吃啦";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};

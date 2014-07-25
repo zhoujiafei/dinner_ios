@@ -25,10 +25,10 @@
     
     //创建缓存数据表
     [[DataManage shareDataManage] createTableName:CACHE_NAME];
-    //创建美食框的数据表
+    //创建美食筐的数据表
     [[DataManage shareDataManage] createTableName:FOOD_CART];
     
-    //获取美食框里面美食菜种类的个数
+    //获取美食筐里面美食菜种类的个数
     NSArray *foodCart = [[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"];
     NSInteger foodNum = 0;
     if (![foodCart isEqual:nil] && [foodCart count] > 0)
@@ -41,10 +41,10 @@
     _homeNav = [[BaseNavigationController alloc] initWithRootViewController:home];
     _homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"tab_all_normal"] tag:1];
     
-    //美食框
+    //美食筐
     CartViewController *cart = [[CartViewController alloc] init];
     _cartNav = [[BaseNavigationController alloc] initWithRootViewController:cart];
-    _cartNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"美食框" image:[UIImage imageNamed:@"trolley"] tag:2];
+    _cartNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"美食筐" image:[UIImage imageNamed:@"trolley"] tag:2];
     
     if (foodNum > 0)
     {
@@ -68,7 +68,7 @@
     
     //加入到窗口
     self.window.rootViewController = tab;
-    //注册通知，一旦美食框里面的数量发生变化，就更改 _cartNav.tabBarItem.badgeValue 的值
+    //注册通知，一旦美食筐里面的数量发生变化，就更改 _cartNav.tabBarItem.badgeValue 的值
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCartNum:) name:FOOD_NUM_CHANGED_NOTICE object:nil];
     return YES;
 }
