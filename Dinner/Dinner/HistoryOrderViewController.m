@@ -36,6 +36,14 @@
     [self requestOrderData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getCacheData];
+    [self requestOrderData];
+    [_tableView reloadData];
+}
+
 -(void)getAccessToken
 {
     _accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];

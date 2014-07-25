@@ -8,10 +8,15 @@
 
 #import "BaseViewController.h"
 #import "config.h"
+#import "OrderDetaiHeaderCellTableViewCell.h"
+#import "OrderDetailPriceCell.h"
+#import "OrderDetailInfoCell.h"
+#import "OrderDetailFooterCell.h"
 
 @interface OrderDetailViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSDictionary *orderInfo;
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) UIButton *cancelBtn;
 
 @end
