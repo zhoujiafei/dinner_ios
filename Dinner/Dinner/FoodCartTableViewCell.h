@@ -19,5 +19,6 @@
 @property (nonatomic,strong) UIButton *leftBtn;//减按钮
 @property (nonatomic,strong) UIButton *rightBtn;//加按钮
 @property (nonatomic,strong) UILabel *menuNum;//显示某一道菜所选的个数
+@property (nonatomic,strong) UILabel *shopName;//商家名称
 
 @end

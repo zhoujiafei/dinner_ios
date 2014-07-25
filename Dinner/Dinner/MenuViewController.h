@@ -11,6 +11,7 @@
 #import "EGORefreshTableHeaderView.h"
 #import "MenuTableViewCell.h"
 #import "CartViewController.h"
+#import "FoodCartBtn.h"
 
 @interface MenuViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate>
 
@@ -19,7 +20,7 @@
 @property (nonatomic,strong) EGORefreshTableHeaderView *refreshTableHeaderView;
 @property (nonatomic,assign) BOOL reloading;
 @property (nonatomic,strong) NSMutableArray *menusData;
-@property (nonatomic,strong) UIButton *cartBtn;
+@property (nonatomic,strong) FoodCartBtn *cartBtn;
 @property (nonatomic,strong) UIView *emptyBgView;
 
 @end

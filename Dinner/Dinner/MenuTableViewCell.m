@@ -52,7 +52,7 @@
         _btn.frame = CGRectMake(230, 60, 80, 30);
         [_btn.layer setCornerRadius:5.0];
         [_btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_btn setTitle:@"吃一份" forState:UIControlStateNormal];
+        [_btn setTitle:@"加入" forState:UIControlStateNormal];
         _btn.backgroundColor = APP_BASE_COLOR;
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 100.0-0.5, self.frame.size.width, 0.5)];

@@ -162,6 +162,7 @@
 		8B33DFA1196996400080E7FD /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B33DF95196996400080E7FD /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B33DFA2196996400080E7FD /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B33DF97196996400080E7FD /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8B33DFA3196996400080E7FD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B33DF9A196996400080E7FD /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8B38BA1C19829B860013C424 /* FoodCartBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B38BA1B19829B860013C424 /* FoodCartBtn.m */; };
 		8B851CC619683A29008DC90D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC519683A29008DC90D /* Foundation.framework */; };
 		8B851CC819683A29008DC90D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC719683A29008DC90D /* CoreGraphics.framework */; };
 		8B851CCA19683A29008DC90D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B851CC919683A29008DC90D /* UIKit.framework */; };
@@ -431,6 +432,8 @@
 		8B33DF98196996400080E7FD /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		8B33DF99196996400080E7FD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8B33DF9A196996400080E7FD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8B38BA1A19829B860013C424 /* FoodCartBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCartBtn.h; sourceTree = "<group>"; };
+		8B38BA1B19829B860013C424 /* FoodCartBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCartBtn.m; sourceTree = "<group>"; };
 		8B851CC219683A29008DC90D /* 阿吃啦.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "阿吃啦.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B851CC519683A29008DC90D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8B851CC719683A29008DC90D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -855,6 +858,15 @@
 			path = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
+		8B38BA16198299650013C424 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8B38BA1A19829B860013C424 /* FoodCartBtn.h */,
+				8B38BA1B19829B860013C424 /* FoodCartBtn.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		8B851CB919683A29008DC90D = {
 			isa = PBXGroup;
 			children = (
@@ -939,6 +951,7 @@
 		8B851CF419683A60008DC90D /* class */ = {
 			isa = PBXGroup;
 			children = (
+				8B38BA16198299650013C424 /* view */,
 				660721F31978AB2900F0F0AC /* textField */,
 				660721F21978AB1D00F0F0AC /* cell */,
 			);
@@ -1288,6 +1301,7 @@
 				8BC6FF3F196C2D6B0093A476 /* CartViewController.m in Sources */,
 				66E9AEAB196A86E100558097 /* FMDatabasePool.m in Sources */,
 				8B33DFA3196996400080E7FD /* Reachability.m in Sources */,
+				8B38BA1C19829B860013C424 /* FoodCartBtn.m in Sources */,
 				8B1E76F4197A41BF00CFD679 /* MoreViewController.m in Sources */,
 				8B1F16AD197BBFCF00C42BDA /* OrderDetailViewController.m in Sources */,
 				8B33DF83196994C90080E7FD /* ProgressHUD.m in Sources */,

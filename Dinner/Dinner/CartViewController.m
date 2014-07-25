@@ -126,6 +126,7 @@
                            placeholderImage:[UIImage imageNamed:@"defaultFood.jpg"]];
         cell.menuPrice.text = [[[_cartData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
         cell.menuNum.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"food_num"];
+        cell.shopName.text = [[_cartData objectAtIndex:rowNo] objectForKey:@"shop_name"];
         cell.menuNum.tag = rowNo + kMenuNumTag;
         cell.leftBtn.tag = rowNo;
         cell.rightBtn.tag = rowNo;

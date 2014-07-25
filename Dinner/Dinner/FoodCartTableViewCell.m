@@ -16,6 +16,7 @@
 @synthesize leftBtn         = _leftBtn;
 @synthesize rightBtn        = _rightBtn;
 @synthesize menuNum         = _menuNum;
+@synthesize shopName        = _shopName;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -34,10 +35,15 @@
         _menuName.font = [UIFont fontWithName:@"Verdana" size:16];
         
         //菜的价格
-        _menuPrice = [[UILabel alloc] initWithFrame:CGRectMake(80, 30, 100, 30)];
+        _menuPrice = [[UILabel alloc] initWithFrame:CGRectMake(80, 33, 100, 25)];
         _menuPrice.textColor = APP_BASE_COLOR;
         _menuPrice.font = [UIFont systemFontOfSize:12];
         
+        //商家名称
+        _shopName = [[UILabel alloc] initWithFrame:CGRectMake(80, 55, 100, 20)];
+        _shopName.textColor = [UIColor grayColor];
+        _shopName.font = [UIFont systemFontOfSize:10];
+
         //减按钮
         _leftBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _leftBtn.frame = CGRectMake(220, 12, 30, 30);
@@ -64,6 +70,7 @@
         [self.contentView addSubview:_menuImageView];
         [self.contentView addSubview:_menuName];
         [self.contentView addSubview:_menuPrice];
+        [self.contentView addSubview:_shopName];
         [self.contentView addSubview:_leftBtn];
         [self.contentView addSubview:_rightBtn];
         [self.contentView addSubview:_menuNum];

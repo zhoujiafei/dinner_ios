@@ -41,6 +41,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [_cartBtn setFoodCartNum:[[[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"] count]];
     [_tableView reloadData];
 }
 
@@ -103,11 +104,9 @@
     [_refreshTableHeaderView refreshLastUpdatedDate];
     
     //增加一个购物车
-    _cartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _cartBtn.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40);
-    _cartBtn.backgroundColor = APP_BASE_COLOR;
-    [_cartBtn setTitle:@"美食筐" forState:UIControlStateNormal];
+    _cartBtn = [[FoodCartBtn alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 80, 150, 40)];
     [_cartBtn addTarget:self action:@selector(lookCart:) forControlEvents:UIControlEventTouchUpInside];
+    [_cartBtn setFoodCartNum:[[[DataManage shareDataManage] getData:FOOD_CART withNetworkApi:@"cart"] count]];
     [self.view addSubview:_cartBtn];
 }
 
@@ -210,6 +209,11 @@
     btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
     //添加到购物车里面
     [foodCart addObject:dic];
+    //改变购物车里面的数量
+    [_cartBtn setFoodCartNum:[foodCart count]];
+    //改变button的样式
+    [btn setTitle:@"已加入" forState:UIControlStateNormal];
+    [btn removeTarget:self action:@selector(addCartAnimation:) forControlEvents:UIControlEventTouchUpInside];
     //再将添加之后的数据保存到购物车里面
     [[DataManage shareDataManage] insertData:FOOD_CART withNetworkApi:@"cart" withObject:foodCart];
     //保存数据之后发通知
@@ -346,12 +350,14 @@
     if ([self isInFoodCart:[[_menusData objectAtIndex:rowNo] objectForKey:@"id"]])
     {
         cell.btn.backgroundColor = [UIColor colorWithRed:125.0/255.0 green:181.0/255.0 blue:0.0 alpha:1];
+        [cell.btn setTitle:@"已加入" forState:UIControlStateNormal];
     }
     else
     {
         cell.btn.backgroundColor = APP_BASE_COLOR;
+        [cell.btn setTitle:@"加入" forState:UIControlStateNormal];
+        [cell.btn addTarget:self action:@selector(addCartAnimation:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [cell.btn addTarget:self action:@selector(addCartAnimation:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 

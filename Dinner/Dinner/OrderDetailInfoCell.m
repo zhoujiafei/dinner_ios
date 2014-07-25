@@ -23,15 +23,12 @@
         infoLabel.textColor = APP_BASE_COLOR;
         infoLabel.font = [UIFont systemFontOfSize:16];
         infoLabel.text = @"商品信息";
-
-        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, self.frame.size.width, 0.5)];
-        line.image = [UIImage imageNamed:@"x-line"];
-        [self.contentView addSubview:line];
         [self.contentView addSubview:infoLabel];
     }
     return self;
 }
 
+//动态添加商品信息
 -(void)addProductInfo:(NSArray *)productInfo
 {
     if (productInfo != nil && [productInfo count] > 0)
@@ -56,11 +53,20 @@
             UILabel *smallTotal = [[UILabel alloc] initWithFrame:CGRectMake(230, 35 + i * 20, 80, 20)];
             smallTotal.textColor = [UIColor grayColor];
             smallTotal.font = [UIFont systemFontOfSize:12];
-            smallTotal.text = [NSString stringWithFormat:@"￥ %@",[[productInfo objectAtIndex:i] objectForKey:@"smallTotal"]];
+            smallTotal.text = [NSString stringWithFormat:@"￥ %.1f",[[[productInfo objectAtIndex:i] objectForKey:@"smallTotal"] floatValue]];
             smallTotal.textAlignment = NSTextAlignmentRight;
             [self.contentView addSubview:smallTotal];
         }
     }
+}
+
+//动态改变底部的line
+-(void)changeFooterLine:(NSInteger)menuNum
+{
+    CGFloat height = 50.0f + 20 * menuNum;
+    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, height - 0.5, self.frame.size.width, 0.5)];
+    line.image = [UIImage imageNamed:@"x-line"];
+    [self.contentView addSubview:line];
 }
 
 @end

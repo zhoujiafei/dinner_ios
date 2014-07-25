@@ -67,9 +67,24 @@
         }
         else
         {
-            UIImageView *successView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 20, 25, 25)];
+            CGRect imageRect;
+            CGRect statusRect;
+            
+            //已付款
+            if ([[_orderInfo objectForKey:@"status"] intValue] == 2)
+            {
+                imageRect = CGRectMake(120, 20, 25, 25);
+                statusRect = CGRectMake(155, 20, 150, 25);
+            }
+            else
+            {
+                imageRect = CGRectMake(80, 20, 25, 25);
+                statusRect = CGRectMake(115, 20, 150, 25);
+            }
+            
+            UIImageView *successView = [[UIImageView alloc] initWithFrame:imageRect];
             successView.image = [UIImage imageNamed:@"success_ok"];
-            UILabel *statusText = [[UILabel alloc] initWithFrame:CGRectMake(155, 20, 150, 25)];
+            UILabel *statusText = [[UILabel alloc] initWithFrame:statusRect];
             statusText.text = [_orderInfo objectForKey:@"status_text"];
             statusText.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:20];
             [footerView addSubview:successView];
@@ -111,7 +126,7 @@
             cell = [[OrderDetailPriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2"];
         }
         
-        cell.priceNum.text = [_orderInfo objectForKey:@"total_price"];
+        cell.priceNum.text = [NSString stringWithFormat:@"-%@",[_orderInfo objectForKey:@"total_price"]];
         return cell;
     }
     else if(rowNo == 2)
@@ -122,6 +137,7 @@
             cell = [[OrderDetailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell3"];
         }
         [cell addProductInfo:[_orderInfo objectForKey:@"product_info"]];
+        [cell changeFooterLine:[[_orderInfo objectForKey:@"product_info"] count]];
         return cell;
     }
     else
@@ -155,7 +171,8 @@
     }
     else if(indexPath.row == 2)
     {
-        return 100.5f;
+        NSInteger menuNum = [[_orderInfo objectForKey:@"product_info"] count];
+        return 50.5f + 20 * menuNum;
     }
     else
     {

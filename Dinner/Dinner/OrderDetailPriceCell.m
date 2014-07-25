@@ -24,7 +24,7 @@
         priceLabel.font = [UIFont systemFontOfSize:16];
         priceLabel.text = @"消费金额";
         
-        _priceNum = [[UILabel alloc] initWithFrame:CGRectMake(190, 40, 120, 50)];
+        _priceNum = [[UILabel alloc] initWithFrame:CGRectMake(150, 40, 160, 50)];
         _priceNum.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:40];
         _priceNum.textAlignment = NSTextAlignmentRight;
         

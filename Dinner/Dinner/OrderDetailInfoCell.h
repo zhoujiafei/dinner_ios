@@ -15,5 +15,6 @@
 
 //渲染商品列表
 -(void)addProductInfo:(NSArray *)productInfo;
+-(void)changeFooterLine:(NSInteger)menuNum;
 
 @end
