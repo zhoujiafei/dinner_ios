@@ -1505,6 +1505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: NanJing HOGE Software Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/zhoujiafei/Downloads,
@@ -1516,7 +1517,7 @@
 				INFOPLIST_FILE = "Dinner/Dinner-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "阿吃啦";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C08F4BC4-360D-4E21-93B0-97D0107A373E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
