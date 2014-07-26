@@ -21,6 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    [NSThread sleepForTimeInterval:2.0];
     [self.window makeKeyAndVisible];
     
     //创建缓存数据表
