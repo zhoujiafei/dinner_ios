@@ -31,7 +31,7 @@
 {
     //应用图标图片
     UIImageView *appIconView = [[UIImageView alloc] initWithFrame:CGRectMake(120, 150, 80, 80)];
-    appIconView.image = [UIImage imageNamed:@"avatar.jpg"];
+    appIconView.image = [UIImage imageNamed:@"Icon.png"];
     
     //应用名称
     UILabel *appName = [[UILabel alloc] initWithFrame:CGRectMake(115, 230, 90, 25)];
