@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B851CC119683A29008DC90D"
-               BuildableName = "Dinner.app"
+               BuildableName = "&#x963f;&#x5403;&#x5566;.app"
                BlueprintName = "Dinner"
                ReferencedContainer = "container:Dinner.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8B851CC119683A29008DC90D"
-            BuildableName = "Dinner.app"
+            BuildableName = "&#x963f;&#x5403;&#x5566;.app"
             BlueprintName = "Dinner"
             ReferencedContainer = "container:Dinner.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8B851CC119683A29008DC90D"
-            BuildableName = "Dinner.app"
+            BuildableName = "&#x963f;&#x5403;&#x5566;.app"
             BlueprintName = "Dinner"
             ReferencedContainer = "container:Dinner.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8B851CC119683A29008DC90D"
-            BuildableName = "Dinner.app"
+            BuildableName = "&#x963f;&#x5403;&#x5566;.app"
             BlueprintName = "Dinner"
             ReferencedContainer = "container:Dinner.xcodeproj">
          </BuildableReference>
