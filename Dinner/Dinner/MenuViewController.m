@@ -114,7 +114,7 @@
 -(void)requestMenuData
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]];
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setCompletionBlock:^{
         [self hideTip];
         if ([request responseStatusCode] != 200)

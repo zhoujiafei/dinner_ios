@@ -98,7 +98,7 @@
 //请求数据
 -(void)requestNoticeData
 {
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_NOTICE_API]];
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_NOTICE_API]];
     [request setCompletionBlock:^{
         [self hideTip];
         if ([request responseStatusCode] != 200)
