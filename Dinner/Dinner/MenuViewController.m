@@ -341,14 +341,8 @@
     
     NSInteger rowNo = indexPath.row;
     cell.menuName.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"name"];
-    
-    
-    
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
                    placeholderImage:[UIImage imageNamed:@"defaultFood.jpg"]];
-    
-    
-    
     if(isNilNull([[_menusData objectAtIndex:rowNo] objectForKey:@"brief"]))
     {
         cell.menuDetail.text = @"";
