@@ -122,7 +122,7 @@
     }
     
     [ProgressHUD show:@"正在提交注册..."];
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:REGISTER_API]];
+    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:REGISTER_API]];
     [request addPostValue:name forKey:@"name"];
     [request addPostValue:password1 forKey:@"password1"];
     [request addPostValue:password2 forKey:@"password2"];

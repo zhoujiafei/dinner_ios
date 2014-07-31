@@ -114,7 +114,8 @@
 -(void)requestMenuData
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:GET_MENUS_API,_shopId]];
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    ASIHTTPRequest *request_ = [ASIHTTPRequest requestWithURL:url];
+    __weak ASIHTTPRequest *request = request_;
     [request setCompletionBlock:^{
         [self hideTip];
         if ([request responseStatusCode] != 200)
@@ -340,9 +341,22 @@
     
     NSInteger rowNo = indexPath.row;
     cell.menuName.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"name"];
+    
+    
+    
     [cell.menuImageView setImageWithURL:[NSURL URLWithString:[[_menusData objectAtIndex:rowNo] objectForKey:@"index_pic"]]
                    placeholderImage:[UIImage imageNamed:@"defaultFood.jpg"]];
-    cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
+    
+    
+    
+    if(isNilNull([[_menusData objectAtIndex:rowNo] objectForKey:@"brief"]))
+    {
+        cell.menuDetail.text = @"";
+    }
+    else
+    {
+        cell.menuDetail.text = [[_menusData objectAtIndex:rowNo] objectForKey:@"brief"];
+    }
     cell.menuPrice.text = [[[_menusData objectAtIndex:rowNo] objectForKey:@"price"] stringByAppendingString:@"元/份"];
     cell.btn.tag = rowNo;
     

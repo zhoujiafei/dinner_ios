@@ -187,7 +187,7 @@
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
     
     [ProgressHUD show:@"正在取消..."];
-    __block ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:CANCEL_ORDER_API]];
+    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:CANCEL_ORDER_API]];
     [request addPostValue:accessToken forKey:@"access_token"];
     [request addPostValue:[_orderInfo objectForKey:@"id"] forKey:@"id"];
     [request setCompletionBlock:^{
