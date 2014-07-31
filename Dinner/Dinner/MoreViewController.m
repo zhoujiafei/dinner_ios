@@ -164,7 +164,8 @@
 -(void)checkNewVersion
 {
     [ProgressHUD show:@"正在检测..."];
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:CHECK_VERSION_API]];
+    ASIHTTPRequest *request_ = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:CHECK_VERSION_API]];
+    __weak ASIHTTPRequest *request = request_;
     [request setCompletionBlock:^{
         if ([request responseStatusCode] != 200)
         {

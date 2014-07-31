@@ -115,7 +115,8 @@
     }
     
     [ProgressHUD show:@"正在登陆..."];
-    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:LOGIN_API]];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:LOGIN_API]];
+    __weak ASIFormDataRequest *request = request_;
     [request addPostValue:username forKey:@"name"];
     [request addPostValue:password forKey:@"password"];
     [request setCompletionBlock:^{

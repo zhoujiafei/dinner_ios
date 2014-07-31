@@ -114,7 +114,8 @@
 //请求订单数据
 -(void)requestOrderData
 {
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_HISTORY_ORDER_API,_accessToken]]];
+    ASIHTTPRequest *request_ = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_HISTORY_ORDER_API,_accessToken]]];
+    __weak ASIHTTPRequest *request = request_;
     [request setCompletionBlock:^{
         [self hideTip];
         if ([request responseStatusCode] != 200)

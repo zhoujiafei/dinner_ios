@@ -119,7 +119,8 @@
     }
     
     [ProgressHUD show:@"正在修改密码..."];
-    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:MODIFY_PASSWORD_API]];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:MODIFY_PASSWORD_API]];
+    __weak ASIFormDataRequest *request = request_;
     [request addPostValue:_accessToken forKey:@"access_token"];
     [request addPostValue:originalName forKey:@"cur_password"];
     [request addPostValue:modifyPassword forKey:@"new_password"];

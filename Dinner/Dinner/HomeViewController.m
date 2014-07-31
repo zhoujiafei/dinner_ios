@@ -98,7 +98,8 @@
 //请求餐厅列表数据
 -(void)requestShopListData
 {
-    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
+    ASIHTTPRequest *request_ = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:GET_SHOPS_API]];
+    __weak ASIHTTPRequest *request = request_;
     [request setCompletionBlock:^{
         [self hideTip];
         if ([request responseStatusCode] != 200)

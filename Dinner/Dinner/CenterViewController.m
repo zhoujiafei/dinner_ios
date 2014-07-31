@@ -224,7 +224,8 @@
     }
     
     [ProgressHUD show:@"正在退出..."];
-    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:LOGOUT_API]];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:LOGOUT_API]];
+    __weak ASIFormDataRequest *request = request_;
     [request addPostValue:accessToken forKey:@"access_token"];
     [request setCompletionBlock:^{
         if ([request responseStatusCode] != 200)

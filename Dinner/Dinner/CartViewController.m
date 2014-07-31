@@ -264,7 +264,8 @@
     [ProgressHUD show:@"正在提交订单..."];
     NSData *data = [NSJSONSerialization dataWithJSONObject:order options:0 error:nil];
     NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:ORDER_API]];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:ORDER_API]];
+    __weak ASIFormDataRequest *request = request_;
     [request addPostValue:json forKey:@"menu_info"];
     [request addPostValue:accessToken forKey:@"access_token"];
     [request setCompletionBlock:^{

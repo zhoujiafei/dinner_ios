@@ -80,7 +80,8 @@
 //请求个人信息
 -(void)requestPersoanlData
 {
-    __weak ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:GET_USERINFO_API]];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:GET_USERINFO_API]];
+    __weak ASIFormDataRequest *request = request_;
     [request addPostValue:_accessToken forKey:@"access_token"];
     [request setCompletionBlock:^{
         if ([request responseStatusCode] != 200)
