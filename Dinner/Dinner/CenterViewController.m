@@ -78,6 +78,7 @@
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220)];
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"banner"]];
     [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
+    [_pathCover.avatarButton addTarget:self action:@selector(modifyAvatar:) forControlEvents:UIControlEventTouchUpInside];
     [_pathCover.loginButton addTarget:self action:@selector(goToLogin) forControlEvents:UIControlEventTouchUpInside];
     [_pathCover.logoutButton addTarget:self action:@selector(goLogout) forControlEvents:UIControlEventTouchUpInside];
     
@@ -297,6 +298,26 @@
         _pathCover.userNameLabel.hidden = YES;
         _pathCover.birthdayLabel.hidden = YES;
     }
+}
+
+//修改用户头像
+-(void)modifyAvatar:(UIButton *)btn
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"上传头像" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册里取照片" otherButtonTitles:@"拍照", nil];
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    
+    
+    
+    
 }
 
 #pragma mark -

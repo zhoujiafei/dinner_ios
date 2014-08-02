@@ -15,7 +15,7 @@
 #import "ModifyPasswordViewController.h"
 #import "PersonalViewController.h"
 
-@interface CenterViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate>
+@interface CenterViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 
 @property (nonatomic,strong) XHPathCover *pathCover;
 @property (nonatomic,strong) UITableView *tableView;
