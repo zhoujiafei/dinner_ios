@@ -351,12 +351,58 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    NSLog(@"didFinishPickingImage");
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self uploadImage:image];
+    }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
      [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark -
+#pragma mark Upload image Whitch was Picked
+
+//上传选择的图片
+-(void)uploadImage:(UIImage *)image
+{
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSString *url = @"http://localhost/test/1.php";
+    [ProgressHUD show:@"正在上传图片..."];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    __weak ASIFormDataRequest *request = request_;
+    [request addData:imageData forKey:@"avatar"];
+    [request setCompletionBlock:^{
+        if ([request responseStatusCode] != 200)
+        {
+            return;
+        }
+        
+        if (isNilNull([request responseData]))
+        {
+            return;
+        }
+        
+        NSDictionary *returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:0 error:nil];
+        if ([returnData objectForKey:@"errorCode"])
+        {
+            [ProgressHUD showError:[returnData objectForKey:@"errorText"]];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [ProgressHUD dismiss];
+            });
+            return;
+        }
+        else
+        {
+            [ProgressHUD showSuccess:@"上传成功"];
+            [_pathCover setAvatarImage:image];
+        }
+    }];
+    [request setFailedBlock:^{
+        [ProgressHUD showError:@"网络连接错误"];
+    }];
+    [request startAsynchronous];
 }
 
 
