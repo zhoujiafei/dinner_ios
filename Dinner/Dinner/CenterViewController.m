@@ -16,7 +16,6 @@
 @synthesize userInfo = _userInfo;
 @synthesize settingIcons = _settingIcons;
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -303,7 +302,7 @@
 //修改用户头像
 -(void)modifyAvatar:(UIButton *)btn
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"上传头像" delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册里取照片" otherButtonTitles:@"拍照", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"上传头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册里取照片" otherButtonTitles:@"拍照", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -312,13 +311,54 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    
+    switch (buttonIndex)
+    {
+        case 0://从相册取照片
+            [self getPictureFromPhotoLibrary];
+            break;
+        case 1://拍照
+            [self getPictureFromCamera];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark -
+#pragma mark Get Picture Methods
+
+//从相册取照片
+-(void)getPictureFromPhotoLibrary
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.allowsEditing = YES;
+    imagePicker.delegate = self;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+//拍照
+-(void)getPictureFromCamera
+{
     
     
     
     
 }
+
+#pragma mark -
+#pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    NSLog(@"didFinishPickingImage");
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark -
 #pragma mark scroll delegate
