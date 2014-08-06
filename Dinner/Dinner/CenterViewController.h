@@ -14,6 +14,7 @@
 #import "HistoryOrderViewController.h"
 #import "ModifyPasswordViewController.h"
 #import "PersonalViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface CenterViewController : BaseViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 

@@ -330,6 +330,13 @@
 //从相册取照片
 -(void)getPictureFromPhotoLibrary
 {
+    //检查相册是否可用
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+    {
+        [ProgressHUD showError:@"相册不可用"];
+        return;
+    }
+    
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     imagePicker.allowsEditing = YES;
@@ -340,10 +347,42 @@
 //拍照
 -(void)getPictureFromCamera
 {
+    //检查当前相机是否可用
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        [ProgressHUD showError:@"相机不可用"];
+        return;
+    }
     
+    //检查相机是否支持拍照
+    NSArray *avalableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    BOOL canTakePhoto = NO;
+    for (NSString *mediaType in avalableMediaTypes)
+    {
+        if ([mediaType isEqualToString:(NSString*)kUTTypeImage])
+        {
+            //支持拍照
+            canTakePhoto = YES;
+            break;
+        }
+    }
     
+    if (!canTakePhoto)
+    {
+        [ProgressHUD showError:@"不支持拍照"];
+        return;
+    }
     
-    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    //设置图像选取控制器的来源模式为相机模式
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //设置图像选取控制器的类型为静态图像
+    imagePickerController.mediaTypes = [[NSArray alloc] initWithObjects:(NSString*)kUTTypeImage, nil];
+    //允许用户编辑
+    imagePickerController.allowsEditing = YES;
+    //设置代理
+    imagePickerController.delegate = self;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 #pragma mark -
