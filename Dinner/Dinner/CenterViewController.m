@@ -76,13 +76,26 @@
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220)];
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"banner"]];
-    [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
     [_pathCover.avatarButton addTarget:self action:@selector(modifyAvatar:) forControlEvents:UIControlEventTouchUpInside];
     [_pathCover.loginButton addTarget:self action:@selector(goToLogin) forControlEvents:UIControlEventTouchUpInside];
     [_pathCover.logoutButton addTarget:self action:@selector(goLogout) forControlEvents:UIControlEventTouchUpInside];
     
     if ([_userInfo objectForKey:@"name"])
     {
+        if (!isNilNull([_userInfo objectForKey:@"avatar"]))
+        {
+            NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
+                                    [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
+                                    [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
+                                    [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
+            
+            [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+        }
+        else
+        {
+            [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
+        }
+        
         NSString *balance = [NSString stringWithFormat:@"￥ %@",[_userInfo objectForKey:@"balance"]];
         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[_userInfo objectForKey:@"name"], XHUserNameKey, balance, XHBirthdayKey, nil]];
         _pathCover.logoutButton.hidden = NO;
@@ -92,6 +105,7 @@
     {
         _pathCover.logoutButton.hidden = YES;
         _pathCover.loginButton.hidden = NO;
+        [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
     }
     self.tableView.tableHeaderView = self.pathCover;
     
@@ -220,6 +234,8 @@
     {
         [self clearUserInfo];
         [ProgressHUD showSuccess:@"您已经退出"];
+        //头像换成默认头像
+        [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
         return;
     }
     
@@ -281,6 +297,20 @@
         [_userInfo setDictionary:data];
         if ([_userInfo objectForKey:@"name"])
         {
+            if (!isNilNull([_userInfo objectForKey:@"avatar"]))
+            {
+                NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
+                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
+                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
+                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
+                
+                [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+            }
+            else
+            {
+                [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
+            }
+            
             NSString *balance = [NSString stringWithFormat:@"￥ %@",[_userInfo objectForKey:@"balance"]];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[_userInfo objectForKey:@"name"], XHUserNameKey, balance, XHBirthdayKey, nil]];
             _pathCover.logoutButton.hidden = NO;
@@ -296,6 +326,7 @@
         _pathCover.loginButton.hidden = NO;
         _pathCover.userNameLabel.hidden = YES;
         _pathCover.birthdayLabel.hidden = YES;
+        [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
     }
 }
 
@@ -391,7 +422,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        [self uploadImage:image];
+        //先保存图片
+        NSString *imagePath = [self saveImageWithImage:image];
+        //再上传图片
+        [self uploadImage:imagePath];
     }];
 }
 
@@ -401,18 +435,35 @@
 }
 
 #pragma mark -
+#pragma mark Save Avatar Picture
+
+- (NSString *)saveImageWithImage:(UIImage *)image
+{
+    if (image)
+    {
+        NSString *imagePath = [PATH_OF_TEMP stringByAppendingPathComponent:@"avatar.png"];
+        //保存图片
+        [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+        return imagePath;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+#pragma mark -
 #pragma mark Upload image Whitch was Picked
 
 //上传选择的图片
--(void)uploadImage:(UIImage *)image
+-(void)uploadImage:(NSString *)imagePath
 {
     //点击之前判断当前用户有没有登陆,如果没有叫调出登陆界面
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-    NSData *imageData = UIImagePNGRepresentation(image);
     [ProgressHUD show:@"正在上传图片..."];
     ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:MODIFY_AVATAR_API]];
     __weak ASIFormDataRequest *request = request_;
-    [request addData:imageData forKey:@"avatar"];
+    [request addFile:imagePath forKey:@"avatar"];
     [request addPostValue:accessToken forKey:@"access_token"];
     [request setCompletionBlock:^{
         if ([request responseStatusCode] != 200)
@@ -437,7 +488,7 @@
         else
         {
             [ProgressHUD showSuccess:@"上传成功"];
-            [_pathCover setAvatarImage:image];
+            [_pathCover setAvatarImage:[UIImage imageWithContentsOfFile:imagePath]];
         }
     }];
     [request setFailedBlock:^{
