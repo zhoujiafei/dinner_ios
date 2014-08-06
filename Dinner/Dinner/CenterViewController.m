@@ -406,12 +406,14 @@
 //上传选择的图片
 -(void)uploadImage:(UIImage *)image
 {
+    //点击之前判断当前用户有没有登陆,如果没有叫调出登陆界面
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
     NSData *imageData = UIImagePNGRepresentation(image);
-    NSString *url = @"http://localhost/test/1.php";
     [ProgressHUD show:@"正在上传图片..."];
-    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    ASIFormDataRequest *request_ = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:MODIFY_AVATAR_API]];
     __weak ASIFormDataRequest *request = request_;
     [request addData:imageData forKey:@"avatar"];
+    [request addPostValue:accessToken forKey:@"access_token"];
     [request setCompletionBlock:^{
         if ([request responseStatusCode] != 200)
         {
