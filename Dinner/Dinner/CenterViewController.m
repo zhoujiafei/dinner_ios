@@ -339,6 +339,13 @@
 //修改用户头像
 -(void)modifyAvatar:(UIButton *)btn
 {
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    if (!accessToken)
+    {
+        [self goToLogin];
+        return;
+    }
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"上传头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册里取照片" otherButtonTitles:@"拍照", nil];
     [actionSheet showInView:self.view];
 }
