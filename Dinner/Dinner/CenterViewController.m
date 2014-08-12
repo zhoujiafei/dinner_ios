@@ -84,15 +84,15 @@
     {
         if (!isNilNull([_userInfo objectForKey:@"avatar"]))
         {
-            NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
-                                    [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
-                                    [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
-                                    [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
+                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
+                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
+                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+                });  
             });
-            
         }
         else
         {
@@ -302,15 +302,15 @@
         {
             if (!isNilNull([_userInfo objectForKey:@"avatar"]))
             {
-                NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
-                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
-                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
-                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
+                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
+                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
+                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+                    });
                 });
-                
             }
             else
             {
@@ -501,7 +501,9 @@
         else
         {
             [ProgressHUD showSuccess:@"上传成功"];
-            [_pathCover setAvatarImage:[UIImage imageWithContentsOfFile:imagePath]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [_pathCover setAvatarImage:[UIImage imageWithContentsOfFile:imagePath]];
+            });
         }
     }];
     [request setFailedBlock:^{
