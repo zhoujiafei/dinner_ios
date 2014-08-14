@@ -76,28 +76,28 @@
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220)];
     [_pathCover setBackgroundImage:[UIImage imageNamed:@"banner"]];
-    [_pathCover.avatarButton addTarget:self action:@selector(modifyAvatar:) forControlEvents:UIControlEventTouchUpInside];
+//    [_pathCover.avatarButton addTarget:self action:@selector(modifyAvatar:) forControlEvents:UIControlEventTouchUpInside];
     [_pathCover.loginButton addTarget:self action:@selector(goToLogin) forControlEvents:UIControlEventTouchUpInside];
     [_pathCover.logoutButton addTarget:self action:@selector(goLogout) forControlEvents:UIControlEventTouchUpInside];
     
     if ([_userInfo objectForKey:@"name"])
     {
-        if (!isNilNull([_userInfo objectForKey:@"avatar"]))
-        {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
-                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
-                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
-                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
-                });  
-            });
-        }
-        else
-        {
+//        if (!isNilNull([_userInfo objectForKey:@"avatar"]))
+//        {
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
+//                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
+//                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
+//                                        [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+//                });  
+//            });
+//        }
+//        else
+//        {
             [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
-        }
+//        }
         
         NSString *balance = [NSString stringWithFormat:@"￥ %@",[_userInfo objectForKey:@"balance"]];
         [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[_userInfo objectForKey:@"name"], XHUserNameKey, balance, XHBirthdayKey, nil]];
@@ -300,22 +300,22 @@
         [_userInfo setDictionary:data];
         if ([_userInfo objectForKey:@"name"])
         {
-            if (!isNilNull([_userInfo objectForKey:@"avatar"]))
-            {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
-                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
-                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
-                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
-                    });
-                });
-            }
-            else
-            {
+//            if (!isNilNull([_userInfo objectForKey:@"avatar"]))
+//            {
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                    NSString *avatarPath = [NSString stringWithFormat:@"%@%@%@",
+//                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"host"],
+//                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"filepath"],
+//                                            [[_userInfo objectForKey:@"avatar"] objectForKey:@"filename"]];
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [_pathCover setAvatarImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:avatarPath]]]];
+//                    });
+//                });
+//            }
+//            else
+//            {
                 [_pathCover setAvatarImage:[UIImage imageNamed:@"avatar.jpg"]];
-            }
+//            }
             
             NSString *balance = [NSString stringWithFormat:@"￥ %@",[_userInfo objectForKey:@"balance"]];
             [_pathCover setInfo:[NSDictionary dictionaryWithObjectsAndKeys:[_userInfo objectForKey:@"name"], XHUserNameKey, balance, XHBirthdayKey, nil]];
